@@ -1,4 +1,8 @@
 Enpit::Application.routes.draw do
+  #resources :rankings
+
+  match 'rankings/fetch' => "rankings#fetch"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
