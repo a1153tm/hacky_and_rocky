@@ -4,13 +4,11 @@ class RankingsController < ApplicationController
     begin
       Ranking.fetch
       respond_to do |format|
-        format.html { @result = "ok" }
-        format.json { render result: "ok" }
+        format.html { @result = "OK" }
       end
     rescue
       respond_to do |format|
-        format.html { @result = "ng" }
-        format.json { render json: "ng" }
+        format.html { @result = "NG" }
       end
     end
 
