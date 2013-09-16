@@ -17,7 +17,7 @@ class Ranking < ActiveRecord::Base
     logger.debug jsonData["Items"]
     jsonData.each do |item|
       r = Ranking.new
-      r.xml = item["Item"]
+      #r.xml = item["Item"]
       #r.save
     end
   end
