@@ -1,7 +1,5 @@
 Enpit::Application.routes.draw do
 
-  resources :dummies
-
   get 'rankings/fetch' => "rankings#fetch"
 
   # The priority is based upon order of creation: first created -> highest priority.
