@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Dummy</th>
+      <th>dum2</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,6 +15,7 @@
     <% @dummies.each do |dummy| %>
       <tr>
         <td><%= dummy.dummy %></td>
+        <td><%= dummy.dum2 %></td>
         <td><%= link_to 'Show', dummy %></td>
         <td><%= link_to 'Edit', edit_dummy_path(dummy) %></td>
         <td><%= link_to 'Destroy', dummy, method: :delete, data: { confirm: 'Are you sure?' } %></td>

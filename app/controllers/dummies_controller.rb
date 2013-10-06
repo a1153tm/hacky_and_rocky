@@ -69,6 +69,6 @@ class DummiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dummy_params
-      params.require(:dummy).permit(:dummy)
+      params.require(:dummy).permit(:dummy, :dum2)
     end
 end
