@@ -6,3 +6,7 @@ before_script:
 script:
   - "bundle exec rake db:drop db:create db:migrate"
   - "bundle exec rake"
+deploy:
+  provider: heroku
+  api_key: f5d0eb37-ba13-422d-9b88-18423390482c
+  app: hackyandlocky
