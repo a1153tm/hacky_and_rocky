@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/*競馬詳細のテーブル*/
+#vote-table {
+	font-size:120%;
+	border-spacing:0;
+	border-collapse:collapse;
+	text-align:center;
+	border:4px solid #333;
+	width:100%;
+}
+#vote-table th {
+	color:#FFF;
+	font-size:140%;
+	font-weight:bold;
+	padding:12px 10px;
+	border:2px solid #333;
+}
+#vote-table th.white {color:#333;background:#FFF}
+#vote-table th.black {background:#555}
+#vote-table th.red {background:#FF0000}
+#vote-table th.orange {background:#FF7700}
+#vote-table th.yellow {background:#F0C000}
+#vote-table th.blue {background:#0044CC}
+#vote-table th.pink {background:#FF0084}
+#vote-table th.green {background:#009900}
+
+#vote-table td {
+	font-weight:bold;
+	padding:12px 5px;
+	border:2px solid #333;
+}
+#vote-table td.double-circle {
+	color:#FF0084;
+	font-size:240%;
+}
+#vote-table td.circle {
+	color:#FF9900;
+	padding:2px 10px;
+	vertical-align:top;
+	font-size:350%;
+}
+#vote-table td.triangle {
+	font-size:200%;
+}

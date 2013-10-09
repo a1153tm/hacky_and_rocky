@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+/*　メインメニュー関連　*/
+#race-list-title {
+	height:45px;
+	background:url(../images/contents/race_list_bg.png) no-repeat;
+	text-indent:-9999px;
+}
+#race-list-detail {
+	border:3px solid #333;
+}
+#race-list-detail dl {
+	padding:10px;
+	border-bottom:1px dotted #666;
+}
+#race-list-detail dt {
+	width:450px;
+	float:left;
+}
+#race-list-detail dt h3 {
+	font-size:120%;
+	font-weight:bold;
+}
+#race-list-detail dd {
+	float:left;
+}
+#race-list-detail dd.participant {
+	width:150px;
+}
+#race-list-detail dd.participant span{
+	color:#FF6600;
+	font-size:140%;
+	font-weight:bold;
+}
+#race-list-detail dd.election-date {
+	width:100px;
+	text-align:right;
+}
+#race-list-detail div.last {
+	font-size:110%;
+	text-align:right;
+	padding:15px 10px;
+	background:#FAFAFA;
+}
+#race-list-detail div.last > a {
+	color:#397AE6;
+	font-weight:bold;
+}
+#race-list-detail div.last > a:hover {
+	color:#002F99;
+}
+
+
+/* サイドメニュー関連　*/
+
+/* aside-list */
+#aside .aside-list {
+	border:3px solid #333;
+	background:#333;
+	border-radius: 5px 5px 0 0;
+}
+#aside .aside-list > h2 {
+	color:#FFF;
+	font-size:130%;
+	font-weight:bold;
+	padding:5px 10px;
+	background:#333;
+	border-radius: 5px 5px 0 0;
+	border-top: 1px solid rgba(0,0,0,0.2);
+	border-left:1px solid rgba(0,0,0,0.2);
+	border-right:1px solid rgba(0,0,0,0.2);
+	border-bottom:1px solid #000;
+	box-shadow: 0 0 0 1px rgba(255,255,255,0.1); 
+	display:block;
+}
+#aside .aside-list ul {
+	background:#FFF;
+}
+#aside .aside-list li a {
+	color:#000;
+	text-decoration:none;
+	font-weight:bold;
+	padding:3px 10px;
+	border-bottom:1px dotted #666;
+	display:block;
+}
+#aside .aside-list li a.last {
+	border-bottom:none;
+}
+#aside .aside-list li a:hover {
+	background:#FFFF99;
+}
+
+#aside .aside-list > div.last {
+	font-size:110%;
+	text-align:right;
+	padding:15px 10px;
+	background:#FAFAFA;
+}
+#aside .aside-list > div.last > a {
+	color:#397AE6;
+	font-weight:bold;
+}
+#aside .aside-list > div.last > a:hover {
+	color:#002F99;
+}

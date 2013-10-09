@@ -1,0 +1,222 @@
+@charset "utf-8";
+/**
+ * 	Library CSS
+ *  I used to package the parts commonly used.
+ *	I use on all pages. Putting only thing generic.
+ *  @Author Noguchi Hiroshi
+ *  @CreateAt 2013/09/18
+ */
+
+/* input select design Black */
+.lib-select {
+	border:2px solid #333;
+	padding:4px 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.lib-input {
+	border:2px solid #333;
+	padding:5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	
+}
+/*button design default*/
+.lib-btn{
+	color:#000;
+	font-weight:bold;
+	background: #EEE;
+	background: -moz-linear-gradient(top,  #FCFCFC 0%, #E9E9E9 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#E9E9E9));
+	background: -webkit-linear-gradient(top,  #FCFCFC 0%, #E9E9E9 100%);
+	background: -o-linear-gradient(top,  #FCFCFC 0%, #E9E9E9 100%);
+	background: -ms-linear-gradient(top,  #FCFCFC 0%, #E9E9E9 100%);
+	background: linear-gradient(to bottom,  #FCFCFC 0%, #E9E9E9 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', endColorstr='#E9E9E9',GradientType=0 );
+	border:1px solid #CCC;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding:7px 12px;
+}
+.lib-btn:hover {
+	background: #333333;
+	background: -moz-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EEEEEE), color-stop(100%,#CCCCCC));
+	background: -webkit-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: -o-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: -ms-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: linear-gradient(to bottom, #EEEEEE 0%, #CCCCCC 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EEEEEE', endColorstr='#CCCCCC',GradientType=0 );
+}
+.lib-btn:active {
+	background: #333333;
+	background: -moz-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EEEEEE), color-stop(100%,#CCCCCC));
+	background: -webkit-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: -o-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: -ms-linear-gradient(top,  #EEEEEE 0%, #CCCCCC 100%);
+	background: linear-gradient(to bottom, #EEEEEE 0%, #CCCCCC 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EEEEEE', endColorstr='#CCCCCC',GradientType=0 );
+  -webkit-box-shadow: inset 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow   : inset 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow        : inset 0px 1px 2px 2px rgba(0, 0, 0, 0.1);	
+}
+/*button design primary*/
+.lib-btn-primary{
+	color:#FFF;
+	font-weight:bold;
+	background: #EEE;
+    background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+    background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+	border:1px solid #666;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding:7px 12px;
+}
+.lib-btn-primary:hover {
+	background: #333333;
+    background-image: -moz-linear-gradient(top, #0066cc, #0044cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0066cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0066cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0066cc, #0044cc);
+    background-image: linear-gradient(to bottom, #0066cc, #0066cc);
+}
+.lib-btn-primary:active {
+	background: #333333;
+    background-image: -moz-linear-gradient(top, #0066cc, #0044cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0066cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0066cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0066cc, #0044cc);
+    background-image: linear-gradient(to bottom, #0066cc, #0066cc);
+  -webkit-box-shadow: inset 0px 1px 2px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow   : inset 0px 1px 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow        : inset 0px 1px 2px 2px rgba(0, 0, 0, 0.2);	
+}
+/* button design Black */
+.lib-btn-black {
+	color:#FFF;
+	font-weight:bold;
+	background: #444444;
+	background: -moz-linear-gradient(top,  #666666 0%, #333333 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666666), color-stop(100%,#333333));
+	background: -webkit-linear-gradient(top,  #666666 0%, #33333 100%);
+	background: -o-linear-gradient(top,  #666666 0%, #33333 100%);
+	background: -ms-linear-gradient(top,  #666666 0%, #33333 100%);
+	background: linear-gradient(to bottom,  #666666 0%, #33333 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#333333',GradientType=0 );
+	border:none;
+	border-bottom-color: #a2a2a2;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding:7px 12px;
+}
+.lib-btn-black:hover {
+	background: #333333;
+	background: -moz-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#222222));
+	background: -webkit-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: -o-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: -ms-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: linear-gradient(to bottom,  #555555 0%, #222222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#222222',GradientType=0 );
+}
+.lib-btn-black:active {
+	background: #333333;
+	background: -moz-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#222222));
+	background: -webkit-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: -o-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: -ms-linear-gradient(top,  #555555 0%, #222222 100%);
+	background: linear-gradient(to bottom,  #555555 0%, #222222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#141414',GradientType=0 );
+  -webkit-box-shadow: inset 0px 1px 2px 3px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow   : inset 0px 1px 2px 3px rgba(0, 0, 0, 0.7);
+  box-shadow        : inset 0px 1px 2px 3px rgba(0, 0, 0, 0.7);	
+}
+/* block box-design */
+.lib-box {
+	background: #eeeeee;
+	background: -moz-linear-gradient(top,  #eeeeee 0%, #ffffff 51%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(51%,#ffffff), color-stop(100%,#ffffff));
+	background: -webkit-linear-gradient(top,  #eeeeee 0%,#ffffff 51%,#ffffff 100%);
+	background: -o-linear-gradient(top,  #eeeeee 0%,#ffffff 51%,#ffffff 100%);
+	background: -ms-linear-gradient(top,  #eeeeee 0%,#ffffff 51%,#ffffff 100%);
+	background: linear-gradient(to bottom,  #eeeeee 0%,#ffffff 51%,#ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=0 );
+	border:3px solid #333;
+	padding:10px;
+}
+/* input-radius */
+.lib-input-radius {border-radius:3px}
+/* button frame size */
+.lib-button-small  {padding:3px 8px}
+.lib-button-medium {padding:7px 12px}
+.lib-button-large  {padding:9px 14px}
+/* select frame size */
+.lib-select-small  {padding:2px 3px}
+.lib-select-medium {padding:4px 5px}
+.lib-select-large  {padding:6px 7px}
+/* input frame size */
+.lib-input-small   {padding:3px}
+.lib-input-medium  {padding:5px}
+.lib-input-large   {padding:7px}
+/* input width */
+.lib-input-width-short  {width:20%}
+.lib-input-width-medium {width:50%}
+.lib-input-width-long   {width:70%}
+.lib-input-width-max    {width:100%}
+
+/* Page aside Margin || Padding Down Top  */
+.lib-aside-mDown {margin-bottom:20px}
+.lib-aside-mTop  {margin-top:20px}
+.lib-aside-pDown {padding-bottom:20px}
+.lib-aside-pTop  {padding-top:20px}
+
+/* pagination */
+.lib-pagination {
+	text-align: center;
+}
+.lib-pagination li {
+	display:inline;
+}
+.lib-pagination li a{
+	font-weight:bold;
+	color:#333;
+	border:1px solid #0088CC;
+	background:#FFF;
+	padding:5px 8px;
+	margin-right:5px;
+	text-decoration:none;
+
+}
+.lib-pagination li a:hover,
+.lib-pagination li a.active{
+	color:#FFF;
+	background:#0088CC;
+}
+
+/*icon addition*/
+.icon-margin-right {
+	margin-right:5px;
+}
+
+/* clear fix */
+.cf:before , .cf:after { 
+   content:"";
+   display:block;
+   overflow:hidden;
+} 
+.cf:after { 
+   clear:both;
+} 
+.cf {    
+   zoom:1;
+}
