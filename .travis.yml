@@ -12,4 +12,4 @@ deploy:
     secure: QZ918s1u9rF5KCAWGgfr9NaockILC7xD3SMHAe2SnuSWhHmfhZ9gOphxLhOvDsKkIPEg+9uNKnpADHFkZVRXsCkEwPHbrVuO1p9AOzt+L8/9S6CNH4v+XxV8113XEGJgp3cyPtxAboyjoROu00AyIIsAyRGznBDq+KW4C0e8Cis=
   app: protected-earth-8442
   on:
-    repo: NoguHiro/enpit
+    repo: NoguHiro/hacky_and_rocky
