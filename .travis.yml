@@ -1,12 +1,15 @@
 nguage: ruby
 rvm:
-  - "2.0.0"
+- 2.0.0
 before_script:
-  - psql -c "create role enpit with password 'enpit' login createdb;" -U postgres
+- psql -c "create role enpit with password 'enpit' login createdb;" -U postgres
 script:
-  - "bundle exec rake db:drop db:create db:migrate"
-  - "bundle exec rake"
+- bundle exec rake db:drop db:create db:migrate
+- bundle exec rake
 deploy:
   provider: heroku
-  api_key: f5d0eb37-ba13-422d-9b88-18423390482c
-  app: hackyandlocky
+  api_key:
+    secure: QZ918s1u9rF5KCAWGgfr9NaockILC7xD3SMHAe2SnuSWhHmfhZ9gOphxLhOvDsKkIPEg+9uNKnpADHFkZVRXsCkEwPHbrVuO1p9AOzt+L8/9S6CNH4v+XxV8113XEGJgp3cyPtxAboyjoROu00AyIIsAyRGznBDq+KW4C0e8Cis=
+  app: protected-earth-8442
+  on:
+    repo: NoguHiro/hacky_and_rocky
