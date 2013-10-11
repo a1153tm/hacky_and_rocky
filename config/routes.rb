@@ -1,5 +1,13 @@
 Enpit::Application.routes.draw do
 
+  resources :books
+
+  resources :race_horses
+
+  resources :races
+  
+  # testです・・・
+  get 'races_test/test' => 'races#test'
   # Authentication
   get '/auth/:provider/callback' => "sessions#create"
 
