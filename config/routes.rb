@@ -1,5 +1,11 @@
 Enpit::Application.routes.draw do
 
+  # Authentication
+  get '/auth/:provider/callback' => "sessions#create"
+
+  get '/logout' => "sessions#destroy", :as => :logout
+
+  # 以下は不要ルート。ちゃんとキレイにする
   resources :dummies
 
   get 'rankings/fetch' => "rankings#fetch"

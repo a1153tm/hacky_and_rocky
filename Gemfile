@@ -8,6 +8,11 @@ gem 'httpclient'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
+# Facebook authentication
+gem 'omniauth'
+
+gem 'omniauth-facebook'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
