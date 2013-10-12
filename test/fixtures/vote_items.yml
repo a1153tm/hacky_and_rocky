@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  point_weight: 1
+  voting_card_id: 1
+  race_horse_id: 1
+
+two:
+  point_weight: 1
+  voting_card_id: 1
+  race_horse_id: 1

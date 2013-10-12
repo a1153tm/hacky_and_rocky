@@ -1,4 +1,5 @@
 class RaceHorse < ActiveRecord::Base
-  belongs_to :races
-  belongs_to :books
+  belongs_to :book
+  belongs_to :race
+  has_one :vote_item
 end

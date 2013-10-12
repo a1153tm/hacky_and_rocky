@@ -1,5 +1,5 @@
 class RacesController < ApplicationController
-  before_action :set_race, only: [:show, :edit, :update, :destroy]
+  before_action :set_race, only: [:edit, :update, :destroy]
 
   # GET /races
   # GET /races.json
@@ -10,10 +10,16 @@ class RacesController < ApplicationController
   def test
     @raceTest = Race.find(1,:include => :race_horses)
   end
-
+  
+  #POST /races/1
+  def voting_card_addtion
+      
+  end
+  
   # GET /races/1
   # GET /races/1.json
   def show
+    @race = Race.find(params[:id],:include => :race_horses)
   end
 
   # GET /races/new
@@ -74,6 +80,6 @@ class RacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def race_params
-      params.require(:race).permit(:name, :grad, :etype, :start_date, :end_date)
+      params.require(:race).permit(:name, :grade, :etype, :start_date, :end_date)
     end
 end

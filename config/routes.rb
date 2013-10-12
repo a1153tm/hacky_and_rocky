@@ -1,8 +1,8 @@
 Enpit::Application.routes.draw do
 
-  resources :books
-
   resources :race_horses
+
+  resources :books
 
   resources :races
   

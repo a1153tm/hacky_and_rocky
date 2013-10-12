@@ -1,29 +1,58 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @race.name %>
-</p>
-
-<p>
-  <strong>Grade:</strong>
-  <%= @race.grade %>
-</p>
-
-<p>
-  <strong>Etype:</strong>
-  <%= @race.etype %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @race.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @race.end_date %>
-</p>
-
-<%= link_to 'Edit', edit_race_path(@race) %> |
-<%= link_to 'Back', races_path %>
+!-- レース　詳細ページ　仮配置  -->
+<h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
+	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i><%= @race.name %>
+</h2>
+<!-- ここに form タグを挿入すること -->
+<form action="#" method="post" accept-charset="utf-8">
+<table id="vote-table">
+	<thead>
+		<tr>
+		<% for i in 1..@race.race_horses.size %>
+			<th class="blue"><%= i %></th>
+		<% end %>
+			<!-- ここまで -->
+			<th>　</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<% for race_horse in @race.race_horses %>
+			<td><%= race_horse.book.title %></td>
+		<% end %>
+			<td>著名</td>
+		</tr><!--　著名 -->
+		<tr>
+		<% for race_horse in @race.race_horses %>
+			<td><%= race_horse.book.author %></td>
+		<% end %>
+			<td>著者</td>
+		</tr><!-- 著者 -->
+		<tr>
+		<% for race_horse in @race.race_horses %>
+			<td><%= race_horse.book.publisher %></td>
+		<% end %>
+			<td>出版舎</td>
+		</tr><!-- 出版社 -->
+		<tr>
+		<% for i in 1..@race.race_horses.size %>
+			<td>
+				<select name="horse_<%= i %>" class="lib-select lib-select-small">
+					<option value=""> </option>
+					<option value="1">◎本命</option>
+					<option value="2">○？？</option>
+					<option value="3">▲？？</option>
+					<option value="4">×ヒモ</option>
+				</select>
+				<input type="hidden" name="horse_id_<%= i %>" value="<%= @race.race_horses[i-1].id %>" >
+			</td>
+		<% end %>
+			<td>選択</td>
+		</tr>
+	</tbody>
+</table>
+<div class="submit lib-aside-mTop" style="text-align: center">
+	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
+	<button class="lib-btn lib-button-large" style="margin-left:20px;font-size:200%;">戻　る</button>
+	<input type="hidden" name="race_id" value="<%= @race.id %>" >
+</div>
+</form>

@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010155712) do
+ActiveRecord::Schema.define(version: 20131011190346) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "dudas", force: true do |t|
-    t.string   "dum"
+  create_table "books", force: true do |t|
+    t.string   "title"
+    t.string   "author"
+    t.string   "publisher"
+    t.string   "isbn"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,6 +36,25 @@ ActiveRecord::Schema.define(version: 20131010155712) do
     t.datetime "updated_at"
   end
 
+  create_table "race_horses", force: true do |t|
+    t.text     "comment"
+    t.integer  "race_id"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "horse_no"
+  end
+
+  create_table "races", force: true do |t|
+    t.string   "name"
+    t.integer  "grade"
+    t.string   "etype"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rankings", force: true do |t|
     t.text     "xml"
     t.datetime "created_at"
@@ -48,6 +67,22 @@ ActiveRecord::Schema.define(version: 20131010155712) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uid"
+  end
+
+  create_table "vote_items", force: true do |t|
+    t.integer  "point_weight"
+    t.integer  "voting_card_id"
+    t.integer  "race_horse_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "voting_cards", force: true do |t|
+    t.date     "vote_date"
+    t.integer  "race_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
