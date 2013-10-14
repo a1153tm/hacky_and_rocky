@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>ブック競馬管理ページ</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <%= stylesheet_link_tag    "bootstrap/bootstrap.css" %>
+    <%= stylesheet_link_tag    "bootstrap/theme.css" %>
+    <%= stylesheet_link_tag    "font-awesome/font-awesome.css" %>
+
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <!-- Demo page code -->
+
+<style type="text/css">
+input[type="text"] ,input[type="checkbox"] , textarea ,select {
+	padding:0;
+	margin:0;
+	height:auto;
+	color: #333;
+	width:auto;
+	background: #fff;
+	zoom: 1;
+}
+.brand .first {
+    color: #ccc;
+    font-style: italic;
+}
+.brand .second {
+    color: #fff;
+    font-weight: bold;
+}
+</style>
+
+  <body class=""> 
+    <div class="navbar">
+        <div class="navbar-inner">
+                <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i> スニーカー
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">My Account</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                            <li class="divider visible-phone"></li>
+                            <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+                <%= link_to raw('<span class="first">競馬</span> <span class="second">ブック</span>'), admin_home_path , class: "brand"%>
+        </div>
+    </div>
+    
+    <div class="sidebar-nav">
+        <a href="#race-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>レース管理<i class="icon-chevron-up"></i></a>
+        <ul id="race-menu" class="nav nav-list collapse">
+        	<li><%= link_to 'レース登録', new_race_path %></li>
+        	<li><%= link_to 'レース検索・編集', adm_race_path %></li>
+        </ul>
+
+        <a href="#act-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>アカウント管理<i class="icon-chevron-up"></i></a>
+        <ul id="act-menu" class="nav nav-list collapse">
+        	<li><a href="">アカウントの編集</a></li>
+        	<li><a href="">アカウントの確認</a></li>
+        </ul>
+        
+    </div>
+
+    <div class="content">
+
+      <%= yield %>
+
+      <footer>
+        <p>&copy; 2013 <a href="http://www.portnine.com" target="_blank">hacky and rocky</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+

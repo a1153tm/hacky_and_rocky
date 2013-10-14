@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010155712) do
+ActiveRecord::Schema.define(version: 20131013083256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "books", force: true do |t|
+    t.string   "title"
+    t.string   "author"
+    t.string   "publisher"
+    t.string   "isbn"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dudas", force: true do |t|
     t.string   "dum"
@@ -34,6 +43,32 @@ ActiveRecord::Schema.define(version: 20131010155712) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "race_grades", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "race_horses", force: true do |t|
+    t.text     "comment"
+    t.integer  "race_id"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "horse_no"
+  end
+
+  create_table "races", force: true do |t|
+    t.string   "name"
+    t.integer  "grade"
+    t.string   "etype"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "genre_id"
   end
 
   create_table "rankings", force: true do |t|
