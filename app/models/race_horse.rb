@@ -1,4 +1,4 @@
 class RaceHorse < ActiveRecord::Base
-  belongs_to :races
-  belongs_to :books
+  belongs_to :race
+  belongs_to :book
 end

@@ -1,0 +1,70 @@
+<div class="header">
+  <h1 class="page-title">レース検索</h1>
+</div>
+
+<%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="row-fluid" style="border:none;">   
+      <div class="block" style="border:none;">
+  
+      <table class="add-table-box">
+        <tr>
+          <th class="req" >レース名</th>
+          <th class="req" >ジャンル</th>
+          <th class="req" >グレード</th>
+          <th class="req" >タイプ</th>
+          <th class="req" >出走数</th>
+          <th class="req" >開始日</th>
+          <th class="req" >終了日</th>
+        </tr>
+        <tr>
+      <% @races.each do |r| %>
+        <tr>
+          <td><%= link_to r.name, edit_race_path(r)%></td>
+          <td><%= r.genre.name %></td>
+          <td><%= Race::GRADES[r.grade] || '-' %></td>
+          <td><%= r.etype %></td>
+          <td><%= r.race_horses.size %></td>
+          <td><%= format_time_to_date(r.start_date) %></td>
+          <td><%= format_time_to_date(r.end_date) %></td>
+        </tr>
+      <% end %>
+      </table>
+        
+      <p><%= will_paginate @races, previous_label: '<<', next_label: '>>' %></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+.add-table-box {
+  width:100%;
+  font-size:85%;
+  border-spacing:0;
+  border-collapse:collapse;
+}
+.add-table-box ul{
+  list-style: none;
+}
+.add-table-box th {
+  padding:10px 10px;
+  text-align:left;
+  background:#fafafa;
+  border:1px solid #ccc;
+  /*width:150px;*/
+}
+.add-table-box td {
+  padding:10px 10px;
+  text-align:left;
+  min-width:50px;
+  border:1px solid #ccc;
+}
+.jquery-ui-button {
+  list-style-type:none;
+}
+</style>
+

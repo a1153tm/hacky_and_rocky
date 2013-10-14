@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Genre.delete_all
 Genre.create(genre_id: 1001, name: '漫画（コミック）')
 Genre.create(genre_id: 1002, name: '語学・学習参考書')
 Genre.create(genre_id: 1003, name: '絵本・児童書・図鑑')
@@ -28,3 +29,9 @@ Genre.create(genre_id: 1021, name: 'ボーイズラブ（BL）')
 Genre.create(genre_id: 1022, name: '付録付き')
 Genre.create(genre_id: 1023, name: 'バーゲン本')
 Genre.create(genre_id: 1024, name: '電子ブック')
+
+Book.delete_all
+20.times do |i|
+  Book.create(title: "タイトル#{i}", author: "著者#{i}", publisher: "出版社#{i}", isbn: "ISBN#{i}")
+end
+

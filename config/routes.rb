@@ -2,24 +2,28 @@ Enpit::Application.routes.draw do
 
   resources :books
 
-  resources :race_horses
+  #resources :race_horses
 
-  resources :races
+  #resources :races
+  get '/races(.:format)'       => "races#index", :as => :races
+  get '/race/:id(.:format)'    => "races#show",  :as => :race
   
+  # Administrator pages
+  get    '/admin/home'          => "admin#home"
+  get    '/admin/login'         => "admin#login"
+  get    '/admin/race/list'     => "admin#list_race",   :as => :adm_race
+  get    '/admin/race/new'      => "admin#new_race",    :as => :new_race
+  post   '/admin/race'          => "admin#create_race"
+  get    '/admin/race/edit/:id' => "admin#edit_race",   :as => :edit_race
+  put    '/admin/race/:id'      => "admin#update_race"
+  patch  '/admin/race/:id'      => "admin#update_race"
+  delete '/admin/race/:id'      => "admin#destroy_race"
+
   # testです・・・
   get 'races_test/test' => 'races#test'
   # Authentication
   get '/auth/:provider/callback' => "sessions#create"
   get '/logout' => "sessions#destroy", :as => :logout
-
-  # Administrator pages
-  get    '/admin/login' => "admin#login"
-  get    '/admin/race/list'    => "admin#list_race"
-  get    'admin/race/new'      => "admin#new_race",    :as => :new_race
-  post   'admin/race'          => "admin#create_race"
-  get    'admin/race/edit/:id' => "admin#edit_race",   :as => :edit_race
-  get    'admin/race'          => "admin#update_race"
-  delete 'admin/race/:id'      => "admin#delete_race"
 
   # 以下は不要ルート。ちゃんとキレイにする
   resources :dummies
