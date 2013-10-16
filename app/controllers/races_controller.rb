@@ -1,3 +1,9 @@
+#
+# Description aw
+# Author Sniker.
+# created 2013/10/7
+#
+
 class RacesController < ApplicationController
   before_action :set_race, only: [:edit, :update, :destroy]
 
@@ -11,15 +17,20 @@ class RacesController < ApplicationController
     @raceTest = Race.find(1,:include => :race_horses)
   end
   
-  #POST /races/1
-  def voting_card_addtion
-      
-  end
-  
   # GET /races/1
-  # GET /races/1.json
   def show
-    @race = Race.find(params[:id],:include => :race_horses)
+    @race = nil
+    @error = nil
+    @horseNumberColors = ['white','black','red','blue','orange','green','pink','skyblue','yellow','limegreen']
+
+    if Race.find_by_id(params[:id]) != nil
+      #if @current_user
+      #  redirect_to :action => 'index'
+      #end
+      @race = Race.find(params[:id],:include => :race_horses)
+    else 
+      redirect_to :action => 'index'
+    end
   end
 
   # GET /races/new

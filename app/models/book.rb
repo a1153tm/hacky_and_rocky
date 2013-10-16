@@ -1,3 +1,3 @@
 class Book < ActiveRecord::Base
-  has_many :race_horses
+   :race_horses
 end

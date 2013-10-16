@@ -6,6 +6,7 @@ Enpit::Application.routes.draw do
 
   resources :races
   
+  post 'races/:id' => 'voting_cards#insert'
   # testです・・・
   get 'races_test/test' => 'races#test'
   # Authentication

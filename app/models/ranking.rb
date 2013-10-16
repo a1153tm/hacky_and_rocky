@@ -21,3 +21,29 @@ class Ranking < ActiveRecord::Base
     end
   end
 end
+
+class RankingPoint < ActiveRecord::Base
+  belongs_to :race_horse_point
+
+  def calcurate_point()
+    raw_data = get_json(...) # 実際にはgenre_codeを渡す
+    item = search_item(raw_data, ...)  # 実際にはitem_codeを渡す
+    if item
+      point = item[...] # 実際にはjsonのキーを指定する
+    else
+      point = 0
+    end
+    save()
+  end
+
+  private
+    def get_json(genre_id)
+      # 楽天APIを叩く
+    end
+
+    def search_item(raw_data, item_code)
+      # raw_dataを検索する
+    end
+end
+
+
