@@ -23,5 +23,5 @@
 set :output, "log/cron.log"
 
 every 1.minutes do
-  runner "Tasks::HelloTask.execute"
+  runner "RaceTask.execute"
 end
