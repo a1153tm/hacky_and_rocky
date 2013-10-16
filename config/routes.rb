@@ -21,13 +21,12 @@ Enpit::Application.routes.draw do
 
   # testです・・・
   get 'races_test/test' => 'races#test'
+
   # Authentication
   get '/auth/:provider/callback' => "sessions#create"
   get '/logout' => "sessions#destroy", :as => :logout
 
   # 以下は不要ルート。ちゃんとキレイにする
-  resources :dummies
-
   get 'rankings/fetch' => "rankings#fetch"
 
   # The priority is based upon order of creation: first created -> highest priority.
