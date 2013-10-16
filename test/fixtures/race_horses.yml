@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  house_no: 1
+  horse_no: 1
   comment: MyText
   race_id: 1
   book_id: 1
 
 two:
-  house_no: 1
+  horse_no: 1
   comment: MyText
   race_id: 1
   book_id: 1
