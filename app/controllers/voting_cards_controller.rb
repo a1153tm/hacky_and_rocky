@@ -1,7 +1,7 @@
 class VotingCardsController < ApplicationController
   
   #投票データを格納する。
-  def insert
+  def entry
     
     @horseNumberColors = ['white','black','red','blue','orange','green','pink','skyblue','yellow','limegreen']
     @error = nil
@@ -13,18 +13,18 @@ class VotingCardsController < ApplicationController
       
       if votingCard.save
         begin
-          VoteItem.transaction{
+          votingCard = VotingCard.find(:last)
+          ActiveRecord::Base.transaction do
             for i in 1..@race.race_horses.size - 1
               if params['horse_' + i.to_s].length > 0 
-               votingCard = VotingCard.find(:last)
                voteItem = VoteItem.new(
                         :voting_card_id => votingCard.id,
                         :race_horse_id => params['horse_id_'+ i.to_s ],
-                        :point_weight => params['horse_'+ i.to_s ])
+                        :point_weight => params['point_weight'+ i.to_s ])
                 voteItem.save!
               end
             end
-          }
+          end
           @error = '登録できました。'
           render 'races/show'
         rescue

@@ -18,36 +18,36 @@
 	</thead>
 	<tbody>
 		<tr>
-		<% @race.race_horses.each do |race_horse| %>
+		<% @race.race_horses.reverse_each do |race_horse| %>
 			<td><%= rowText(race_horse.book.title).html_safe %></td>
 		<% end %>
 			<td class="title"><%= rowText("著名").html_safe %></td>
 		</tr><!--　著名 -->
 		<tr>
-		<% @race.race_horses.each do |race_horse| %>
+		<% @race.race_horses.reverse_each do |race_horse| %>
 			<td><%= race_horse.book.author %></td>
 		<% end %>
 			<td class="title"><%= rowText("著者").html_safe %></td>
 		</tr><!-- 著者 -->
 		<tr>
-		<% @race.race_horses.each do |race_horse| %>
+		<% @race.race_horses.reverse_each do |race_horse| %>
 			<td><%= race_horse.book.publisher %></td>
 		<% end %>
 			<td class="title"><%= rowText("出版社").html_safe %></td>
 		</tr><!-- 出版社 -->
 		<tr>
-		<% for i in 1..@race.race_horses.size %>
+		<% @race.race_horses.size.downto(1) do |num| %>
 			<td>
 				
-				<label for="horse_<%= i %>" class="valid-message"></label>
-				<select name="horse_<%= i %>" id="horse_<%= i %>" class="require lib-select lib-select-small">
+				<label for="horse_<%= num %>" class="valid-message"></label>
+				<select name="horse_<%= num %>" id="horse_<%= num %>" class="require lib-select lib-select-small">
 					<option value=""> </option>
 					<option value="1">◎本命</option>
 					<option value="2">○？？</option>
 					<option value="3">▲？？</option>
 					<option value="4">×ヒモ</option>
 				</select>
-				<input type="hidden" name="horse_id_<%= i %>" value="<%= @race.race_horses[i-1].id %>" >
+				<input type="hidden" name="horse_id_<%= num %>" value="<%= @race.race_horses[num - 1].id %>" >
 			</td>
 		<% end %>
 			<td class="title"><%= rowText("選択").html_safe %></td>

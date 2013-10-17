@@ -1,4 +1,9 @@
 class Race < ActiveRecord::Base
-  has_many :race_horses
-  has_many :voting_cards
+
+  GRADES = {1 => 'GⅠ', 2 => 'GⅡ', 3 => 'GⅢ'}
+
+  has_many :race_horses, :dependent => :destroy
+  has_many :voting_cards, :dependent => :destroy 
+  belongs_to :genre
+ 
 end

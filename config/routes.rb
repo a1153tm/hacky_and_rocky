@@ -1,22 +1,32 @@
 Enpit::Application.routes.draw do
 
-  resources :race_horses
-
   resources :books
 
-  resources :races
-  
-  post 'races/:id' => 'voting_cards#insert'
+  #resources :race_horses
+
+  #resources :races
+  get '/races(.:format)'       => "races#index", :as => :races
+  get '/race/:id(.:format)'    => "races#show",  :as => :race
+  post '/races/:id' => 'voting_cards#entry'
+  # Administrator pages
+  get    '/admin/home'          => "admin#home"
+  get    '/admin/login'         => "admin#login"
+  get    '/admin/race/list'     => "admin#list_race",   :as => :adm_race
+  get    '/admin/race/new'      => "admin#new_race",    :as => :new_race
+  post   '/admin/race'          => "admin#create_race"
+  get    '/admin/race/edit/:id' => "admin#edit_race",   :as => :edit_race
+  put    '/admin/race/:id'      => "admin#update_race"
+  patch  '/admin/race/:id'      => "admin#update_race"
+  delete '/admin/race/:id'      => "admin#destroy_race"
+
   # testです・・・
   get 'races_test/test' => 'races#test'
+
   # Authentication
   get '/auth/:provider/callback' => "sessions#create"
-
   get '/logout' => "sessions#destroy", :as => :logout
 
   # 以下は不要ルート。ちゃんとキレイにする
-  resources :dummies
-
   get 'rankings/fetch' => "rankings#fetch"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131011190346) do
+ActiveRecord::Schema.define(version: 20131013083256) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20131011190346) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "genre_id"
   end
 
   create_table "rankings", force: true do |t|
