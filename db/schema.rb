@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013083256) do
+ActiveRecord::Schema.define(version: 20131017133720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20131013083256) do
     t.string   "isbn"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "item_code"
+    t.integer  "item_price"
+    t.text     "item_caption"
+    t.string   "item_url"
+    t.string   "sales_date"
+    t.string   "small_image_url"
+    t.string   "medium_image_url"
+    t.string   "large_image_url"
+    t.string   "books_genre_id"
+    t.integer  "genre_id"
   end
 
   create_table "dudas", force: true do |t|
