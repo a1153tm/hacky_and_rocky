@@ -1,7 +1,5 @@
 class RacesController < ApplicationController
   
-  before_action :login_check, only:[:show]
- 
   # GET /races
   # GET /races.json
   def index
@@ -10,6 +8,9 @@ class RacesController < ApplicationController
 
   # GET /races/1
   def show
+    if current_user == nil
+      redirect_to :action => 'index'
+    end
     if Race.find_by_id(params[:id]) != nil
       @race = Race.find(params[:id],:include => :race_horses)
       @voting_card = nil
@@ -26,12 +27,5 @@ class RacesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_race
       @race = Race.find(params[:id])
-    end
-    
-    # Login Check
-    def login_check
-      if current_user == nil
-        redirect_to :action => 'index'
-      end
     end
 end
