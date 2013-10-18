@@ -15,9 +15,9 @@ class RacesController < ApplicationController
       @race = Race.find(params[:id],:include => :race_horses)
       @voting_card = nil
       @error = nil
-      if VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
+      if VotingCard.find_by(:race_id => @race.id, :user_id => current_user.id)
         @error = 'すでに登録しています。'
-        @voting_card = VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
+        @voting_card = VotingCard.find_by(:race_id => @race.id, :user_id => current_user.id)
       end
       #@voting_card = VotingCard.new(voting_card_params)
     end
