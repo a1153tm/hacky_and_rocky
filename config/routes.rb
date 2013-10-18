@@ -3,7 +3,7 @@ Enpit::Application.routes.draw do
   resources :books
 
   #resources :race_horses
-
+  root 'races#top'
   #resources :races
   get '/races(.:format)'       => "races#index", :as => :races
   get '/race/:id(.:format)'    => "races#show",  :as => :race

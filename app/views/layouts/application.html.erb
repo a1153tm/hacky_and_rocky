@@ -9,6 +9,9 @@
 <body>
 
 <%= render 'layouts/header' %>
+<% if params[:controller]+params[:action] == "racestop" %>
+<%= render 'layouts/top_page_parts' %>
+<% end %>
 <div id="contents" class="cf">
 <%= yield %>
 </div>

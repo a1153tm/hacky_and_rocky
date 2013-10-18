@@ -75,31 +75,33 @@ img {
 #header .top-login a:hover {
 	text-decoration:underline;
 }
-#header .gallery {
+
+
+#top-contents .gallery {
 	background:#FFFF99;
 	min-height:200px;
 }
-#header .gallery-list {
+#top-contents .gallery-list {
 	width:980px;
 	margin: 0 auto;
 }
-#header .gallery-list ul {
+#top-contents .gallery-list ul {
 	padding:10px;
 	text-align:right;
 }
-#header .search {
+#top-contents .search {
 	padding:10px 0;
 	background:#F5F5F5;
 
 	border-top:1px solid #AAA;
 	border-bottom: 1px solid #AAA;
 }
-#header .search h3 {
+#top-contents .search h3 {
 	font-size:140%;
 	font-weight:bold;
 	display:inline;
 }
-#header .search > ul.inner {
+#top-contents .search > ul.inner {
 	width:980px;
 	margin: 0 auto;
 }

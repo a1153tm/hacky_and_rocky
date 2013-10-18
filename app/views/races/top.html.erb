@@ -45,190 +45,32 @@
 		</div><!-- aside -->
 		<div id="main">
 			<div id="race-list">
-				<h2 id="race-list-title">開催中のレース一覧</h2>
+				<h2><%= image_tag('contents/race_list_bg.png', alt: '') %></h2>
 				<div id="race-list-detail">
 					<!-- ここから　ループ対象 -->
+					<% @races.each do |race| %>
 					<dl class="cf">
 						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
+							<h3>
+								<%= link_to race.name, race %>
+							</h3>
 						</dt><!--　タイトル名 -->
 						<dd class="participant">
 							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
+						</dd><!--　ジャンル名 -->
 						<dd class="election-date">
-							10/31 ～12/1
+							<p style="font-weight:bold">開催日</p>
+							<%= race.start_date.strftime("%Y-%m-%d") %>
+							<p style="font-weight:bold">終了日</p>
+							<%= race.end_date.strftime("%Y-%m-%d") %>
 						</dd><!-- 投票受付日から締日 -->
 					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1e
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<dl class="cf">
-						<dt>
-							<h3>G1芥川レースじｄｗじゃおいじおあ</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span>50</span>名
-						</dd><!--　参加者数 -->
-						<dd class="election-date">
-							10/31 ～12/1
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
+					<% end %>
 					<!-- ここまで　-->
 					<div class="last">
 						<ul class="lib-pagination">
 							<li><a href="#" class="active">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">6</a></li>
-							<li><a href="#">7</a></li>
-							<li><a href="#">8</a></li>
-							<li><a href="#">9</a></li>
-							<li><a href="#">10</a></li>
-							<li class="next">
-								<a href="">Next</a>
-							</li>
+							<!-- <li class="next"><a href="">Next</a></li> -->
 						</ul>
 					</div>
 				</div><!-- // race-list-detail -->

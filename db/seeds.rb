@@ -34,4 +34,3 @@ Book.delete_all
 20.times do |i|
   Book.create(title: "タイトル#{i}", author: "著者#{i}", publisher: "出版社#{i}", isbn: "ISBN#{i}")
 end
-
