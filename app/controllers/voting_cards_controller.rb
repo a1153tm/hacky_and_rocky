@@ -50,7 +50,8 @@ class VotingCardsController < ApplicationController
     
     # Login Check
     def login_check
-      if current_user == nil
+      if current_user != nil
+      else
         redirect_to :controller => 'races' , :action => 'index'
       end
     end
