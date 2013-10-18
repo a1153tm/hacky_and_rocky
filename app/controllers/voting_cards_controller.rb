@@ -62,7 +62,11 @@ class VotingCardsController < ApplicationController
     
     #エントリー済
     def entry_success_check
-      if VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
+      if current_user
+        if VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
+          redirect_to :controller => 'races' , :action => 'index'
+        end
+      else
         redirect_to :controller => 'races' , :action => 'index'
       end
     end
