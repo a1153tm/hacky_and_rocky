@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131017165228) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "books", force: true do |t|
     t.string   "title"
     t.string   "author"
@@ -35,12 +32,6 @@ ActiveRecord::Schema.define(version: 20131017165228) do
     t.integer  "genre_id"
   end
 
-  create_table "dudas", force: true do |t|
-    t.string   "dum"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dummies", force: true do |t|
     t.string   "dummy"
     t.datetime "created_at"
@@ -55,6 +46,7 @@ ActiveRecord::Schema.define(version: 20131017165228) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "race_grades", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -68,6 +60,8 @@ ActiveRecord::Schema.define(version: 20131017165228) do
     t.integer  "race_progress_id"
   end
 
+=======
+>>>>>>> 3a02486e7cb72bc0be3668ce2b29d2d3fe73ff9d
   create_table "race_horses", force: true do |t|
     t.text     "comment"
     t.integer  "race_id"
@@ -107,6 +101,22 @@ ActiveRecord::Schema.define(version: 20131017165228) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uid"
+  end
+
+  create_table "vote_items", force: true do |t|
+    t.integer  "point_weight"
+    t.integer  "voting_card_id"
+    t.integer  "race_horse_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "voting_cards", force: true do |t|
+    t.date     "vote_date"
+    t.integer  "race_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

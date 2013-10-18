@@ -1,6 +1,54 @@
-
-<%= @raceTest.race_horses[0].comment %>
-
-<%= @receTest.race_horses.each do horse %>
-	<p><% horse.comment %></p>
-<% end %>
+<!-- レース　詳細ページ　仮配置  -->
+<h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
+	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i><%= @raceTest.name %>
+</h2>
+<!-- ここに form タグを挿入すること -->
+<table id="vote-table">
+	<thead>
+		<tr>
+		<% for i in 1..@raceTest.race_horses.size %>
+			<th class="blue"><%= i %></th>
+		<% end %>
+			<!-- ここまで -->
+			<th>　</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<% for race_horse in @raceTest.race_horses %>
+			<td><%= race_horse.book.title %></td>
+		<% end %>
+			<td>著名</td>
+		</tr><!--　著名 -->
+		<tr>
+		<% for race_horse in @raceTest.race_horses %>
+			<td><%= race_horse.book.author %></td>
+		<% end %>
+			<td>著者</td>
+		</tr><!-- 著者 -->
+		<tr>
+		<% for race_horse in @raceTest.race_horses %>
+			<td><%= race_horse.book.publisher %></td>
+		<% end %>
+			<td>出版舎</td>
+		</tr><!-- 出版社 -->
+		<tr>
+		<% for i in 1..@raceTest.race_horses.size %>
+			<td>
+				<select name="" id="" class="lib-select lib-select-small">
+					<option value=""> </option>
+					<option value="">◎本命</option>
+					<option value="">○？？</option>
+					<option value="">▲？？</option>
+				</select>
+			</td>
+		<% end %>
+			<td>選択</td>
+		</tr>
+	</tbody>
+</table>
+<%= debug(@raceTest.race_horses[0].book) %>
+<div class="submit lib-aside-mTop" style="text-align: center">
+	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
+	<button class="lib-btn lib-button-large" style="margin-left:20px;font-size:200%;">戻　る</button>
+</div>

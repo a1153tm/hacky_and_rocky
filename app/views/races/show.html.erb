@@ -1,29 +1,199 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @race.name %>
-</p>
-
-<p>
-  <strong>Grade:</strong>
-  <%= @race.grade %>
-</p>
-
-<p>
-  <strong>Etype:</strong>
-  <%= @race.etype %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @race.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @race.end_date %>
-</p>
-
-<%= link_to 'Edit', edit_race_path(@race) %> |
-<%= link_to 'Back', races_path %>
+<!-- レース　詳細ページ　仮配置  -->
+<%= @error %>
+<h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
+	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
+	<%= @race.name %>
+</h2>
+<!-- ここに form タグを挿入すること -->
+<form action="#" id="vote-form" method="post" accept-charset="utf-8">
+<table id="vote-table">
+	<thead>
+		<tr>
+		<% @race.race_horses.size.downto(1) do |num| %>
+			<th class="<%= @horseNumberColors[num-1] %>"><%= num %></th>
+		<% end %>
+			<!-- ここまで -->
+			<th>　</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<% @race.race_horses.reverse_each do |race_horse| %>
+			<td><%= rowText(race_horse.book.title).html_safe %></td>
+		<% end %>
+			<td class="title"><%= rowText("著名").html_safe %></td>
+		</tr><!--　著名 -->
+		<tr>
+		<% @race.race_horses.reverse_each do |race_horse| %>
+			<td><%= race_horse.book.author %></td>
+		<% end %>
+			<td class="title"><%= rowText("著者").html_safe %></td>
+		</tr><!-- 著者 -->
+		<tr>
+		<% @race.race_horses.reverse_each do |race_horse| %>
+			<td><%= race_horse.book.publisher %></td>
+		<% end %>
+			<td class="title"><%= rowText("出版社").html_safe %></td>
+		</tr><!-- 出版社 -->
+		<tr>
+		<% @race.race_horses.size.downto(1) do |num| %>
+			<td>
+				
+				<label for="horse_<%= num %>" class="valid-message"></label>
+				<select name="horse_<%= num %>" id="horse_<%= num %>" class="require lib-select lib-select-small">
+					<option value=""> </option>
+					<option value="1">◎本命</option>
+					<option value="2">○？？a</option>
+					<option value="3">▲？？</option>
+					<option value="4">×ヒモ</option>
+				</select>
+				<input type="hidden" name="horse_id_<%= num %>" value="<%= @race.race_horses[num - 1].id %>" >
+			</td>
+		<% end %>
+			<td class="title"><%= rowText("選択").html_safe %></td>
+		</tr>
+	</tbody>
+</table>
+<div class="submit lib-aside-mTop" style="text-align: center">
+	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
+	<button class="lib-btn lib-button-large" style="margin-left:20px;font-size:200%;">戻　る</button>
+	<input type="hidden" name="race_id" value="<%= @race.id %>" >
+</div>
+<style type="text/css" media="screen">
+#vote-table td {width:97px;}
+.require {margin-top:10px;margin-bottom:5px;}
+label.valid-message {
+	color:#FFF;
+	background:#FF7700;
+	font-weight:bold;
+	line-height:2.2em;
+	padding:0 3px;
+	border-radius:5px;
+	border:2px solid #FF7700;
+	display:block;
+	position: relative;
+}
+label.valid-error{
+	color:#FFF;
+	background:#FF7700;
+}
+label.valid-success{
+	color:#FF6600;
+	background: #FAFAFA;
+	border:2px solid #999;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+$(window).load(function()
+{
+	var voteForm = $("#vote-form");
+	var require = $(".require");
+	var errorCount   = 0;
+	var errorAlertMessage = '必須項目を全て、選択してから投票してください！';
+	var errorLabel = 'valid-error';
+	var successLabel = 'valid-success';
+	var errorLabelMessage = '必須です';
+	var successLabelMessage = 'OK';
+	
+	validateInitialize();
+	
+	/**
+	 * 投票フォームを送信した時に
+	 * weightを選択したかチェックする。
+	 * 全部選択していたら、送信画面へ。
+	 * @return boolean(void)
+	 */
+	voteForm.submit(function()
+	{
+		errorCount = 0
+		require.each(function()
+		{
+			if( 0 >= $(this).val().length )
+			{
+				_errorMessage( $(this).attr('id') );
+				errorCount++;
+			}
+			else
+			{
+				_successMessage( $(this).attr('id') );
+			}
+		});
+		if ( errorCount > 0 ) alert( errorAlertMessage );
+		return 0 >= errorCount ? true : false ;
+	});
+	
+	/**
+	 * 投票フォームの必須項目の選択内容が、
+	 * 選択した時に、他の必須項目も正しいかどうか
+	 * リアルタイムで確認させるための処理。
+	 * @return void
+	 */
+	require.change(function()
+	{
+		if( 0 >= $(this).val() )
+		{
+			_errorMessage( $(this).attr('id') );
+		}
+		else
+		{
+			_successMessage( $(this).attr('id') );
+		}
+	});
+	
+	/**
+	 * 画面読み込み時に、投票フォームの
+	 * 項目を確認する。戻る等のボタンを押して
+	 * キャッシュが残っている時にも対応。
+	 * @return void
+	 */
+	function validateInitialize()
+	{
+		require.each(function()
+		{
+			if( 0 >= $(this).val() )
+			{
+				_errorMessage( $(this).attr('id') );
+			}
+			else
+			{
+				_successMessage( $(this).attr('id') );
+			}
+		});
+	}
+	
+	/**
+	 * 選択項目が正しい時のメッセージ
+	 * @param id string
+	 * @return void
+	 */
+	function _successMessage(id)
+	{
+		if(typeof id !== 'undefined')
+		{
+			$('label[for="'+id+'"]')
+				.removeClass( errorLabel )
+				.addClass( successLabel );
+			$('label[for="'+id+'"]')
+				.text( successLabelMessage );
+		}
+	}
+	
+	/**
+	 * 選択項目が誤っている時のメッセージ
+	 * @param id string
+	 * @return void
+	 */
+	function _errorMessage(id)
+	{
+		if(typeof id !== 'undefined')
+		{
+			$('label[for="'+id+'"]')
+				.removeClass( successLabel )
+				.addClass( errorLabel )
+			$('label[for="'+id+'"]')
+				.text( errorLabelMessage );
+		}
+	}
+	
+});
+</script>

@@ -24,12 +24,15 @@
 #vote-table th.blue {background:#0044CC}
 #vote-table th.pink {background:#FF0084}
 #vote-table th.green {background:#009900}
+#vote-table th.skyblue{background:#0088CC}
+#vote-table th.limegreen{background:#33EE33}
 
 #vote-table td {
 	font-weight:bold;
 	padding:12px 5px;
 	border:2px solid #333;
 }
+#vote-table td.title{background:#FAFAFA}
 #vote-table td.double-circle {
 	color:#FF0084;
 	font-size:240%;
