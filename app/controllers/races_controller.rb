@@ -1,35 +1,24 @@
-#
-# Description aw
-# Author Sniker.
-# created 2013/10/7
-#
-
 class RacesController < ApplicationController
-  before_action :set_race, only: [:edit, :update, :destroy]
-
+  
+  before_action :login_check, only:[:show]
+ 
   # GET /races
   # GET /races.json
   def index
     @races = Race.all
   end
-  
-  def test
-    @raceTest = Race.find(1,:include => :race_horses)
-  end
-  
+
   # GET /races/1
   def show
-    @race = nil
-    @error = nil
-    @horseNumberColors = ['white','black','red','blue','orange','green','pink','skyblue','yellow','limegreen']
-
     if Race.find_by_id(params[:id]) != nil
-      #if @current_user
-      #  redirect_to :action => 'index'
-      #end
       @race = Race.find(params[:id],:include => :race_horses)
-    else 
-      redirect_to :action => 'index'
+      @voting_card = nil
+      @error = nil
+      if VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
+        @error = 'すでに登録しています。'
+        @voting_card = VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
+      end
+      #@voting_card = VotingCard.new(voting_card_params)
     end
   end
 
@@ -38,9 +27,11 @@ class RacesController < ApplicationController
     def set_race
       @race = Race.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def race_params
-      params.require(:race).permit(:name, :grade, :etype, :start_date, :end_date)
+    
+    # Login Check
+    def login_check
+      if current_user == nil
+        redirect_to :action => 'index'
+      end
     end
 end

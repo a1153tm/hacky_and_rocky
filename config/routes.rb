@@ -7,7 +7,7 @@ Enpit::Application.routes.draw do
   #resources :races
   get '/races(.:format)'       => "races#index", :as => :races
   get '/race/:id(.:format)'    => "races#show",  :as => :race
-  post '/races/:id' => 'voting_cards#entry'
+  post '/race/:id' => 'voting_cards#entry'
   # Administrator pages
   get    '/admin/home'          => "admin#home"
   get    '/admin/login'         => "admin#login"
