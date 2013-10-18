@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  race_progress: 1
+  race_horse_id: 1
+
+two:
+  race_progress: 1
+  race_horse_id: 1
