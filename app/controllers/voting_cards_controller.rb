@@ -2,7 +2,7 @@ class VotingCardsController < ApplicationController
   
   #before_action :login_check, only:[:entry]
   #before_action :entry_success_check, only:[:entry]
-  before_action :race_undefined_check, only:[:entry]
+  #before_action :race_undefined_check, only:[:entry]
 
   
 
