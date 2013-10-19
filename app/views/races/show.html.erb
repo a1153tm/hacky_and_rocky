@@ -66,8 +66,8 @@
 <% if @voting_card == nil %>
 	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
 <% end %>
-	<a class="lib-btn lib-button-large" style="margin-left:20px;font-size:200%;">戻　る</a>
-	<input type="hidden" name="race_id" value="<%= @race.id %>" >
+	<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+	<input type="hidden" name="race_id" value="<%= @race.id %>" />
 </div>
 </form>
 <style type="text/css" media="screen">
