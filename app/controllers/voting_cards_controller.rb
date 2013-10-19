@@ -19,12 +19,8 @@ class VotingCardsController < ApplicationController
   #投票データを格納する。
   #route POST race/:id
   def entry
-    if current_user != nil
+    #if current_user != nil
       @race = Race.find(params[:id], :include => :race_horses)
-      if VotingCard.find_by(:race_id => params[:id] , :user_id => current_user.id)
-        #エントリー済
-        redirect_to :controller => 'races' , :action => 'index'
-      else
         begin
           ActiveRecord::Base.transaction do
             @voting_card = VotingCard.new(:race_id => @race.id , :user_id => current_user.id, :vote_date => Time.now)
@@ -44,10 +40,9 @@ class VotingCardsController < ApplicationController
           @error = '登録できませんでした'
           render 'races/show'
         end
-      end  
-    else
-      redirect_to :controller => 'races' , :action => 'index'
-    end
+    #else
+    #  redirect_to :controller => 'races' , :action => 'index'
+    #end
   end
   
   private
