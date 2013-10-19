@@ -25,13 +25,13 @@
 		</tr><!--　著名 -->
 		<tr>
 		<% @race.race_horses.reverse_each do |race_horse| %>
-			<td><%= race_horse.book.author %></td>
+			<td><%= row_text(race_horse.book.author).html_safe %></td>
 		<% end %>
 			<td class="title"><%= row_text("著者").html_safe %></td>
 		</tr><!-- 著者 -->
 		<tr>
 		<% @race.race_horses.reverse_each do |race_horse| %>
-			<td><%= race_horse.book.publisher %></td>
+			<td><%= row_text(race_horse.book.publisher).html_safe %></td>
 		<% end %>
 			<td class="title"><%= row_text("出版社").html_safe %></td>
 		</tr><!-- 出版社 -->
@@ -103,17 +103,54 @@ $(window).load(function()
 	var errorAlertMessage = '必須項目を全て、選択してから投票してください！';
 	var errorLabel = 'valid-error';
 	var successLabel = 'valid-success';
-	var errorLabelMessage = '必須です';
+	var errorLabelMessage = '3つ';
 	var successLabelMessage = 'OK';
-	
+	var validCount = 0;
 	validateInitialize();
 	
+	voteForm.submit(function()
+	{
+		var expectionCounts =  _getExpectionCountsArray()
+		if ( expectionCounts['honmei'] === 1 && expectionCounts['taikou'] === 1 && expectionCounts['himo'] === 1 )
+		{
+			alert("この値ならば登録できます");
+			return false;
+		} 
+		else
+		{
+			alert("登録できません。")
+			return false;
+		}
+	});
+	
+	function _getExpectionCountsArray()
+	{
+		var expection = {honmei: 1,taikou: 2,himo: 3};
+		var expectionCounts = {honmei:0,taikou:0,himo:0};
+		require.each(function()
+		{
+			if( $(this).val() == expection['honmei'] )
+			{
+				expectionCounts['honmei']++;
+			} 
+			else if( $(this).val() == expection['taikou'] )
+			{
+				expectionCounts['taikou']++;
+			}
+			else if( $(this).val() == expection['himo'] )
+			{
+				expectionCounts['himo']++;
+			}
+		});
+		return expectionCounts;
+	}
 	/**
 	 * 投票フォームを送信した時に
 	 * weightを選択したかチェックする。
 	 * 全部選択していたら、送信画面へ。
 	 * @return boolean(void)
 	 */
+	/*
 	voteForm.submit(function()
 	{
 		errorCount = 0
@@ -131,7 +168,7 @@ $(window).load(function()
 		});
 		if ( errorCount > 0 ) alert( errorAlertMessage );
 		return 0 >= errorCount ? true : false ;
-	});
+	});*/
 	
 	/**
 	 * 投票フォームの必須項目の選択内容が、
@@ -139,6 +176,8 @@ $(window).load(function()
 	 * リアルタイムで確認させるための処理。
 	 * @return void
 	 */
+	
+	/*
 	require.change(function()
 	{
 		if( 0 >= $(this).val() )
@@ -149,7 +188,7 @@ $(window).load(function()
 		{
 			_successMessage( $(this).attr('id') );
 		}
-	});
+	});*/
 	
 	/**
 	 * 画面読み込み時に、投票フォームの

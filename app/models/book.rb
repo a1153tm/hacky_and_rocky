@@ -1,3 +1,4 @@
 class Book < ActiveRecord::Base
-   :race_horses
+ has_many :race_horses
+ belongs_to :genre
 end
