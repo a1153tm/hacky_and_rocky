@@ -4,12 +4,10 @@ Enpit::Application.routes.draw do
 
   #resources :race_horses
   root 'races#top'
-
   #resources :races
   get '/races(.:format)'       => "races#index", :as => :races
   get '/race/:id(.:format)'    => "races#show",  :as => :race
-  post '/race/:id' => 'voting_cards#entry', :as => :create_voting_card
-
+  post '/race/:id' => 'voting_cards#entry'
   # Administrator pages
   get    '/admin/home'          => "admin#home"
   get    '/admin/login'         => "admin#login"
@@ -25,7 +23,6 @@ Enpit::Application.routes.draw do
   get 'races_test/test' => 'races#test'
 
   # Authentication
-  get '/auth/:provider' => "sessions#create_devlopper" unless Rails.env.production?
   get '/auth/:provider/callback' => "sessions#create"
   get '/logout' => "sessions#destroy", :as => :logout
 

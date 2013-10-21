@@ -4,25 +4,13 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     user = User.find_by_uid(auth["uid"])
     if user
-      session[:user_id] = user.id
+      session[:user_id] = user
     else
       user = User.new(uid: auth["uid"], name: auth["info"]["name"])
       user.save
-      session[:user_id] = user.id
+      session[:user_id] = user
     end
     redirect_to request.env['omniauth.origin'] || root_path
-  end
-
-  def create_devlopper
-    user = User.find_by_uid('developper')
-    if user
-      session[:user_id] = user.id
-    else
-      user = User.new(uid: 'developper', name: '開発者')
-      user.save
-      session[:user_id] = user.id
-    end
-    redirect_to :back
   end
 
   def destroy
