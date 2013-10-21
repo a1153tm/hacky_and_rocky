@@ -23,6 +23,7 @@ Enpit::Application.routes.draw do
   get 'races_test/test' => 'races#test'
 
   # Authentication
+  get '/auth/:provider' => "sessions#create_developer" unless Rails.env.production?
   get '/auth/:provider/callback' => "sessions#create"
   get '/logout' => "sessions#destroy", :as => :logout
 
