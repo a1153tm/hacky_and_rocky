@@ -22,7 +22,7 @@
 set :output, "log/cron.log"
 
 if ENV["RAILS_ENV"] == "production"
-  every 1.days do
+  every 1.minutes do
     runner "RaceTask.execute"
   end
 else
