@@ -2,15 +2,15 @@ class Genre < ActiveRecord::Base
   has_many :races
   has_many :books
 
+  validates :genre_id, :uniqueness => true
+
   def self.get_all
     json_data = JSON.parse(get_json)
     second_level_items = json_data['children'].map {|c| c['child']}
-
-    Genre.transaction do
-      Genre.delete_all
-      second_level_items.each do |item|
-        Genre.create(genre_id: item['genreId'], name: item['genreName'])
-      end
+    second_level_items.each do |item|
+      genre = Genre.find_by_genre_id(item['genreId'])
+      genre = Genre.new(genre_id: item['genreId'], name: item['genreName']) unless genre
+      genre.save()
     end
   end
 
