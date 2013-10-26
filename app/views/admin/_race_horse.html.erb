@@ -1,0 +1,45 @@
+<% if index == 0 %>
+  <th rowspan="3">出走馬<%= index + 1 %></th>
+  <% if @race.id %>
+    <td colspan="3">
+      <%= collection_select :race_horses, index.to_s, @books, :id, :title, selected: @race.race_horses[index].book.id %>
+    </td>
+  <% else %>
+    <td colspan="3">
+      <%= collection_select :race_horses, index.to_s, @books, :id, :title %>
+    </td>
+  <% end %>
+<% else %>
+  <tr>
+    <th rowspan="3">出走馬<%= index + 1 %></th>
+  <% if @race.id %>
+    <td colspan="3">
+      <%= collection_select :race_horses, index.to_s, @books, :id, :title, selected: @race.race_horses[index].book.id %>
+    </td>
+  <% else %>
+    <td colspan="3">
+      <%= collection_select :race_horses, index.to_s, @books, :id, :title %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
+
+<tr>
+  <td colspan="3">
+    <% if @race.id %>
+      <span>オッズ：　</span><%= text_field :race_horse_odds, index.to_s, size: 10, value: @race.race_horses[index].odds %>
+    <% else %>
+      <span>オッズ：　</span><%= text_field :race_horse_odds, index.to_s, size: 10, value: 1.0 %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td colspan="3">
+    <% if @race.id %>
+      <span>コメント：</span><%= text_field :race_horse_comments, index.to_s, size: 100, value: @race.race_horses[index].comment %>
+    <% else %>
+      <span>コメント：</span><%= text_field :race_horse_comments, index.to_s, size: 100 %>
+    <% end %>
+  </td>
+</tr>
+

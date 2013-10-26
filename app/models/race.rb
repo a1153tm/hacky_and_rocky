@@ -5,6 +5,9 @@ class Race < ActiveRecord::Base
   has_many :race_progresses, :dependent => :destroy
   belongs_to :genre
   
+  validates :name, :start_date, :end_date, :genre_id,  presence: true
+  validates :name, length: {minimum: 3, maximum: 20}
+
   GRADES = {1 => 'GⅠ', 2 => 'GⅡ', 3 => 'GⅢ'}
  
   # バッチ処理から呼出される
