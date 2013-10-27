@@ -13,14 +13,11 @@ class RacesController < ApplicationController
 
   # GET /races/1
   def show
-    if Race.find_by_id(params[:id]) != nil
-      @race = Race.find(params[:id] , :include => :race_horses)
-      @books = Book.find(:all)
-      @voting_card = nil
-      @error = nil
-      if VotingCard.find_by(:race_id => @race.id, :user_id => 3)
-        @error = 'すでに登録しています。'
-        @voting_card = VotingCard.find_by(:race_id => @race.id, :user_id => 3)
+    if Race.find_by_id(params[:id])
+      @race = Race.find(params[:id], :include => :race_horses)
+      if current_user
+        @card = VotingCard.find_by(:race_id => @race.id, :user_id => current_user.id)
+        flash[:notice] = "あなたの投票内容です。" if @card
       end
     else
       redirect_to :controller => 'races' , :action => 'index'
@@ -32,4 +29,5 @@ class RacesController < ApplicationController
     def set_race
       @race = Race.find(params[:id])
     end
+
 end
