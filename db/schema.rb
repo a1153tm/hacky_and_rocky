@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021134122) do
+ActiveRecord::Schema.define(version: 20131023150904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20131021134122) do
     t.integer  "genre_id"
   end
 
+  create_table "dudas", force: true do |t|
+    t.string   "dum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "dummies", force: true do |t|
     t.string   "dummy"
     t.datetime "created_at"
@@ -49,6 +55,19 @@ ActiveRecord::Schema.define(version: 20131021134122) do
     t.datetime "updated_at"
   end
 
+  create_table "race_grades", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "race_horse_points", force: true do |t|
+    t.integer  "race_horse_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "race_progress_id"
+  end
+
   create_table "race_horses", force: true do |t|
     t.text     "comment"
     t.integer  "race_id"
@@ -56,6 +75,7 @@ ActiveRecord::Schema.define(version: 20131021134122) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "horse_no"
+    t.float    "odds",       default: 1.0
   end
 
   create_table "race_progresses", force: true do |t|
@@ -76,21 +96,6 @@ ActiveRecord::Schema.define(version: 20131021134122) do
     t.integer  "genre_id"
   end
 
-  create_table "racing_points", force: true do |t|
-    t.integer  "point"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rakutens", force: true do |t|
-    t.integer  "rank"
-    t.string   "itemName"
-    t.integer  "genre_id"
-    t.string   "itemUrl"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "ranking_points", force: true do |t|
     t.integer  "point"
     t.datetime "created_at"
@@ -100,16 +105,6 @@ ActiveRecord::Schema.define(version: 20131021134122) do
 
   create_table "rankings", force: true do |t|
     t.text     "xml"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rranking_alls", force: true do |t|
-    t.integer  "rank"
-    t.string   "itemName"
-    t.integer  "genre_id"
-    t.string   "itemUrl"
-    t.string   "itemCaption"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

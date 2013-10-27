@@ -1,5 +1,6 @@
 require 'httpclient'
 class RankingPoint < ActiveRecord::Base
+
   attr_accessor :race_horse
 
   BASE_URL = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20120927'
@@ -17,7 +18,9 @@ class RankingPoint < ActiveRecord::Base
       self.point = 0
     end  
   end
+
   private
+
   def get_json(genre_id)
     httpClient = HTTPClient.new
     httpClient.get_content(BASE_URL, {
@@ -26,6 +29,7 @@ class RankingPoint < ActiveRecord::Base
       'genreId' => genre_id
     })
   end
+
   def search_item(hash, item_code)
    hash['Items'].each do |item|
       if item['Item']['itemCode'] == item_code then
@@ -33,4 +37,5 @@ class RankingPoint < ActiveRecord::Base
       end
     end
   end
+
 end

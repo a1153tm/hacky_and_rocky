@@ -4,7 +4,7 @@
   <tr>
     <th class="req" >レース名</th>
     <td colspan="3">
-      <%= r.text_field :name, size: 60, maxlength: 30%>
+      <%= r.text_field :name, size: 60, maxlength: 20%>
     </td>
   </tr>
   <tr>
@@ -40,42 +40,12 @@
     <td colspan="2"><span>終了日　</span><%= r.date_select :end_date, use_month_numbers: true %></td>
   </tr>
   <tr>
-    <th rowspan="10">出走馬</th>
-    <% if @race.id %>
-      <td colspan="2">
-        <%= collection_select :race_horses, "0", @books, :id, :title, selected: @race.race_horses[0].book.id %>
-      </td>
-      <td>
-        <%= text_field :race_horse_comments, "0", size: 80, value: @race.race_horses[0].comment %>
-      </td>
-    <% else %>
-      <td colspan="2">
-        <%= collection_select :race_horses, "0", @books, :id, :title %>
-      </td>
-      <td>
-        <%= text_field :race_horse_comments, "0", size: 80 %>
-      </td>
-    <% end %>
+    <% rows = 10 * 3 %>
+    <th rowspan="<%= rows %>">出走馬</th>
+    <%= render partial: 'race_horse', locals: { index: 0 } %>
   </tr>
-
   <% (1..9).each do |i| %>
-  <tr>
-    <% if @race.id %>
-      <td colspan="2">
-        <%= collection_select :race_horses, "#{i}", @books, :id, :title, selected: @race.race_horses[i].book.id %>
-      </td>
-      <td>
-        <%= text_field :race_horse_comments, "#{i}", szie: 80, value: @race.race_horses[i].comment %>
-      </td>
-    <% else %>
-      <td colspan="2">
-        <%= collection_select :race_horses, "#{i}", @books, :id, :title %>
-      </td>
-      <td>
-        <%= text_field :race_horse_comments, "#{i}", szie: 80 %>
-      </td>
-    <% end %>
-  </tr>
+    <%= render partial: 'race_horse', locals: { index: i } %>
   <% end %>
 
 </table>
