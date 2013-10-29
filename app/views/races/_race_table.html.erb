@@ -11,6 +11,14 @@
 	<tbody>
 		<tr>
 		<% @race.race_horses.reverse_each do |race_horse| %>
+      <% book = race_horse.book %>
+      <% image_url = book.medium_image_url || book.large_image_url || book.small_image_url %>
+			<td><%= link_to image_tag(image_url, size: '60x90', alt: "イメージ"), book.item_url %></td>
+		<% end %>
+			<td class="title"><%= row_text("イメージ").html_safe %></td>
+		</tr><!-- イメージ -->
+		<tr>
+		<% @race.race_horses.reverse_each do |race_horse| %>
 			<td><%= row_text(race_horse.book.title).html_safe %></td>
 		<% end %>
 			<td class="title"><%= row_text("著名").html_safe %></td>
@@ -28,6 +36,11 @@
 			<td class="title"><%= row_text("出版社").html_safe %></td>
 		</tr><!-- 出版社 -->
 		<tr>
+		<% @race.race_horses.reverse_each do |race_horse| %>
+			<td><%= race_horse.odds %></td>
+    <% end %>
+			<td class="title"><%= row_text("オッズ").html_safe %></td>
+		</tr><!-- オッズ -->
 		<% unless @card %>
 			<% @race.race_horses.each do |horse| %>
 			  <td>

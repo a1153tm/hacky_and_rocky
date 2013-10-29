@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  point: 1
+  point: 100
 
 two:
   name: MyString
