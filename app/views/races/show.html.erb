@@ -99,76 +99,35 @@ $(window).load(function()
 {
 	var voteForm = $("#vote-form");
 	var require = $(".require");
-	var errorCount   = 0;
+	var checkMaxCount = 3;
+	var horseCount = 10
 	var errorAlertMessage = '必須項目を全て、選択してから投票してください！';
 	var errorLabel = 'valid-error';
 	var successLabel = 'valid-success';
 	var errorLabelMessage = '3つ';
 	var successLabelMessage = 'OK';
-	var validCount = 0;
+	
 	validateInitialize();
-	
-	voteForm.submit(function()
-	{
-		var expectionCounts =  _getExpectionCountsArray()
-		if ( expectionCounts['honmei'] === 1 && expectionCounts['taikou'] === 1 && expectionCounts['himo'] === 1 )
-		{
-			alert("この値ならば登録できます");
-			return false;
-		} 
-		else
-		{
-			alert("登録できません。")
-			return false;
-		}
-	});
-	
-	function _getExpectionCountsArray()
-	{
-		var expection = {honmei: 1,taikou: 2,himo: 3};
-		var expectionCounts = {honmei:0,taikou:0,himo:0};
-		require.each(function()
-		{
-			if( $(this).val() == expection['honmei'] )
-			{
-				expectionCounts['honmei']++;
-			} 
-			else if( $(this).val() == expection['taikou'] )
-			{
-				expectionCounts['taikou']++;
-			}
-			else if( $(this).val() == expection['himo'] )
-			{
-				expectionCounts['himo']++;
-			}
-		});
-		return expectionCounts;
-	}
+
 	/**
 	 * 投票フォームを送信した時に
 	 * weightを選択したかチェックする。
 	 * 全部選択していたら、送信画面へ。
 	 * @return boolean(void)
 	 */
-	/*
 	voteForm.submit(function()
 	{
-		errorCount = 0
-		require.each(function()
+		if ( _getCheckCount() === checkMaxCount )
 		{
-			if( 0 >= $(this).val().length )
-			{
-				_errorMessage( $(this).attr('id') );
-				errorCount++;
-			}
-			else
-			{
-				_successMessage( $(this).attr('id') );
-			}
-		});
-		if ( errorCount > 0 ) alert( errorAlertMessage );
-		return 0 >= errorCount ? true : false ;
-	});*/
+			alert('登録できます');
+		}
+		else
+		{
+			alert('登録できねーよ');
+		}
+		_validateDisplay();
+		return false;
+	});
 	
 	/**
 	 * 投票フォームの必須項目の選択内容が、
@@ -176,19 +135,57 @@ $(window).load(function()
 	 * リアルタイムで確認させるための処理。
 	 * @return void
 	 */
-	
-	/*
 	require.change(function()
 	{
-		if( 0 >= $(this).val() )
+		_validateDisplay();
+	});
+	
+	
+	/**
+	 * チェックされた項目数をカウントする
+	 * @return integer
+	 */
+	function _getCheckCount()
+	{
+		var checkCount = 0
+		require.each(function()
 		{
-			_errorMessage( $(this).attr('id') );
-		}
-		else
+			if( $(this).val().length > 0  ) checkCount++;
+		});
+		return checkCount;
+	}
+	
+	/**
+	 * 不正解だったらエラー表示
+	 * 正解だったら表示 
+	 */
+	function _validateDisplay()
+	{
+		var errorMessage = null;
+		if( _getCheckCount() === checkMaxCount )
 		{
-			_successMessage( $(this).attr('id') );
+			require.each(function()
+			{
+				_successMessage( $(this).attr('id') );
+			});
 		}
-	});*/
+		else if(_getCheckCount() > checkMaxCount)
+		{
+			errorMessage = _getCheckCount() - checkMaxCount + 'つ越え';
+			require.each(function()
+			{
+				_errorMessage( $(this).attr('id') , errorMessage );
+			});
+		}
+		else if(_getCheckCount() < checkMaxCount)
+		{
+			errorMessage =  checkMaxCount - _getCheckCount() + 'つ';
+			require.each(function()
+			{
+				_errorMessage( $(this).attr('id') , errorMessage );
+			});
+		}
+	}
 	
 	/**
 	 * 画面読み込み時に、投票フォームの
@@ -198,17 +195,7 @@ $(window).load(function()
 	 */
 	function validateInitialize()
 	{
-		require.each(function()
-		{
-			if( 0 >= $(this).val() )
-			{
-				_errorMessage( $(this).attr('id') );
-			}
-			else
-			{
-				_successMessage( $(this).attr('id') );
-			}
-		});
+		_validateDisplay();
 	}
 	
 	/**
@@ -233,17 +220,17 @@ $(window).load(function()
 	 * @param id string
 	 * @return void
 	 */
-	function _errorMessage(id)
+	function _errorMessage(id,message)
 	{
+		if ( typeof message === 'undefined' ) message = errorLabelMessage; 
 		if(typeof id !== 'undefined')
 		{
 			$('label[for="'+id+'"]')
 				.removeClass( successLabel )
-				.addClass( errorLabel )
+				.addClass( errorLabel );
 			$('label[for="'+id+'"]')
-				.text( errorLabelMessage );
+				.text( message );
 		}
 	}
-	
 });
 </script>
