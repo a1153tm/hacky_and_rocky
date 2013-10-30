@@ -14,7 +14,7 @@ Enpit::Application.routes.draw do
   get '/race/:id/progresses/:date' => "race_progresses#show", :as => :race_progress
 
   # Voting card
-  post '/race/:id/voting_cards' => 'voting_cards#entry', :as => :voting_cards
+  post '/race/:id/voting_cards' => 'voting_cards#vote', :as => :voting_cards
 
   # Administrator pages
   get    '/admin/home'          => "admin#home"

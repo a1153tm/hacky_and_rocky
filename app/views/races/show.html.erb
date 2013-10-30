@@ -1,8 +1,20 @@
 <!-- レース　詳細ページ　仮配置  -->
+<% if @card and @card.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@card.errors.count, "error") %> prohibited this book from being saved:</h2>
+    <ul>
+    <% @card.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <!-- エラーメッセージ。TODO 協調表示する -->
 <% if flash[:error] %>
-  <p><%= flash[:error] %></p>
+  <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+  </div>
 <% end %>
 
 <% if flash[:notice] %>
@@ -17,10 +29,10 @@
 <!-- ここに form タグを挿入すること -->
 <% unless @card %>
   <%= form_tag voting_cards_path(@race) do %>
-    <%= render 'race_table' %>
+    <%= render 'races/race_table' %>
   <% end %>
 <% else %>
-  <%= render 'race_table' %>
+  <%= render 'races/race_table' %>
 <% end %>
 
 <style type="text/css" media="screen">

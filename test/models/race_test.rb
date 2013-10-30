@@ -13,9 +13,13 @@ class RaceTest < ActiveSupport::TestCase
       end
     end
     # setup test class
-    @race = Race.new
-    @race.save()
-    @the_date = DateTime.parse('2013-10-10').to_date
+    @race = Race.new(name: 'テストレース', start_date: DateTime.parse('2013-10-23'),
+      end_date: DateTime.parse('2013-10-23'), genre_id: 1)
+    10.times do |i|
+      @race.race_horses << RaceHorse.new(horse_no: i, odds: 1.0, book_id: i)
+    end
+    @race.save!()
+    @the_date = DateTime.parse('2013-10-23').to_date
   end
 
   teardown do
