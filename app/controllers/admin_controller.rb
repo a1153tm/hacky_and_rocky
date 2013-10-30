@@ -23,14 +23,14 @@ class AdminController < ApplicationController
 
   def create_race
     @race = Race.new(race_params)
-    logger.debug "dudada"
-    logger.debug params[:race_horse_comments]
     params[:race_horses].each_with_index do |(i,v)|
-      horse = RaceHorse.new(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i])
+      horse = RaceHorse.new(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i],
+        odds: params[:race_horse_odds][i])
+      logger.debug horse
       horse.race = @race
       @race.race_horses << horse
     end
-    @race.save
+    @race.save!
     redirect_to adm_race_path
   end
 
@@ -46,7 +46,8 @@ class AdminController < ApplicationController
       # 出走馬を再作成する
       @race.race_horses.each {|h| h.destroy}
       params[:race_horses].each_with_index do |(i,v)|
-        horse = RaceHorse.new(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i])
+        horse = RaceHorse.new(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i],
+          odds: params[:race_horse_odds][i])
         horse.race = @race
         horse.save
       end

@@ -19,9 +19,15 @@
 
 # Learn more: http://github.com/javan/whenever
 
-#set :environment, :development
 set :output, "log/cron.log"
 
-every 1.minutes do
-  runner "RaceTask.execute"
+if ENV["RAILS_ENV"] == "production"
+  every 1.minutes do
+    runner "RaceTask.execute"
+  end
+else
+  set :environment, :development unless ENV["RAILS_ENV"] == "production"
+  every 5.minutes do
+    runner "RaceTask.execute"
+  end
 end

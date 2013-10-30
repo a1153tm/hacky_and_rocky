@@ -1,13 +1,21 @@
 Enpit::Application.routes.draw do
 
+  get "race_progresses/show"
   resources :books
 
   #resources :race_horses
   root 'races#top'
-  #resources :races
-  get '/races(.:format)'       => "races#index", :as => :races
-  get '/race/:id(.:format)'    => "races#show",  :as => :race
-  post '/race/:id' => 'voting_cards#entry'
+
+  # Race
+  get '/races(.:format)'        => "races#index", :as => :races
+  get '/race/:id(.:format)'     => "races#show",  :as => :race
+
+  # Race Progress
+  get '/race/:id/progresses/:date' => "race_progresses#show", :as => :race_progress
+
+  # Voting card
+  post '/race/:id/voting_cards' => 'voting_cards#entry', :as => :voting_cards
+
   # Administrator pages
   get    '/admin/home'          => "admin#home"
   get    '/admin/login'         => "admin#login"
@@ -23,6 +31,7 @@ Enpit::Application.routes.draw do
   get 'races_test/test' => 'races#test'
 
   # Authentication
+  get '/auth/:provider' => "sessions#create_developer" unless Rails.env.production?
   get '/auth/:provider/callback' => "sessions#create"
   get '/logout' => "sessions#destroy", :as => :logout
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017165228) do
+ActiveRecord::Schema.define(version: 20131023150904) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20131017165228) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "horse_no"
+    t.float    "odds",       default: 1.0
   end
 
   create_table "race_progresses", force: true do |t|
@@ -78,6 +79,13 @@ ActiveRecord::Schema.define(version: 20131017165228) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "genre_id"
+  end
+
+  create_table "ranking_points", force: true do |t|
+    t.integer  "point"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "race_horse_point_id"
   end
 
   create_table "rankings", force: true do |t|
