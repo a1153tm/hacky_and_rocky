@@ -1,0 +1,4 @@
+item_codes = [16664945,16654021,16637775,16696458,16691399,16658813,16658129,16658830,16671040,16622165,16619087]
+item_codes.each do |item_code|
+  PickBookTask.execute item_code.to_s
+end
