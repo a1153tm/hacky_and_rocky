@@ -1,0 +1,39 @@
+<div id="progress-error">
+	<h2>該当するページが見つかりませんでした。</h2>
+	<ul>
+		<li>
+			<p>アクセスして頂いたページは、レースが存在しないか、またはレース状況が存在しないため</p>
+			<p>ページが見つかりませんでした。</p>
+			<p>お手数お掛け致しますが、戻るをクリックして、お戻りください。</p>
+		</li>
+		<li class="redirect">
+			<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "font-size:200%;" %>
+		</li>
+	</ul>
+</div>
+<style>
+#progress-error {margin-top:60px;}
+#progress-error h2{
+	color:#333;
+	font-size:140%;
+	font-weight:bold;
+	border:1px solid #CCC;
+	background:#FAFAFA;
+	padding:20px;
+	display:block;
+}
+#progress-error ul {
+	border-top:1px solid #EEE;
+	border-bottom:1px solid #CCC;
+	border-left:1px solid #CCC;
+	border-right:1px solid #CCC;
+	padding:20px;
+}
+#progress-error li p {
+	font-size:120%;
+	font-weight:bold;
+	line-height:2em;
+}
+#progress-error li.redirect {padding-top:40px;text-align:center}
+#progress-error li a {text-decoration:none}
+</style>

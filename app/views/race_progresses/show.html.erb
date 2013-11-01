@@ -1,35 +1,9 @@
-<h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
-	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
-	<%= @race.name %>
-</h2>
-<table id="progress-table">
-	<thead>
-		<tr>
-			<th>順位</th>
-			<th>画像</th>
-			<th>著者</th>
-			<th>ポイント</th>
-		</tr>
-	</thead>
-	<tbody>
-	<% for i in 1..10 %>
-		<tr>
-			<td class="rank <%= horse_number_colors(i-1) %>"><%= i %></td>
-			<td>
-				イメージ
-			</td>
-			<td>
-				下流社会
-			</td>
-			<td class="point">
-				<span>170</span>pt
-			</td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+<% unless flash[:error] %>
+	<%= render 'race_progresses/show_table' %>
+<% else %>
+	<%= render 'race_progresses/show_error' %>
+<% end %>
 <style type="text/css" media="screen">
-
 #progress-table {
 	font-size:120%;
 	border-spacing:0;
@@ -58,9 +32,9 @@
 	padding:20px 5px;
 	border:3px solid #333;
 }
-
-#progress-table td.point span {color:#FF6600;font-size:120%;}
-#progress-table td.rank{width:80px;font-size:150%;}
+#progress-table td.book-image img{width:auto;height:85px}
+#progress-table td.point span {color:#FF6600;font-size:120%}
+#progress-table td.rank{width:80px;font-size:150%}
 #progress-table td.white {color:#333;background:#FFF}
 #progress-table td.black {color:#FFF;background:#555}
 #progress-table td.red {color:#FFF;background:#FF0000}

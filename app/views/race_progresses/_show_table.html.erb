@@ -1,0 +1,35 @@
+<h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
+	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
+	<%= @race.name %>
+</h2>
+<table id="progress-table">
+	<thead>
+		<tr>
+			<th>順位</th>
+			<th>画像</th>
+			<th>著者</th>
+			<th>ポイント</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @prog.race_horses.each do |horse| %>
+		<tr>
+			<td class="rank <%= horse_number_colors(horse.order-1) %>">
+				<%= horse.order %>
+				<!-- 順位 -->
+			</td>
+			<td class="book-image">
+				<a href="<%= horse.book.item_url %>" target="_blank">
+					<img src="<%= horse.book.large_image_url %>" alt="<%= horse.book.title %>" />
+				</a>
+			</td><!-- ブック画像 -->
+			<td>
+				<%= horse.book.title %>
+			</td><!-- ブックタイトル -->
+			<td class="point">
+				<span><%= horse.point %></span>pt
+			</td><!-- ポイント -->
+		</tr>
+	<% end %>
+	</tbody>
+</table>
