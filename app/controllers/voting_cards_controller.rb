@@ -41,6 +41,7 @@ class VotingCardsController < ApplicationController
           logger.error e
         else
           puts e
+        end
         flash[:error] = "投票できませんでした。"
       end
     end
