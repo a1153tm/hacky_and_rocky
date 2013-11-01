@@ -3,7 +3,7 @@
 </div>
 <h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
 	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
-	2013/10時点　アニメ本競争のレース状況
+	<%= @race.name %>
 </h2>
 <table id="vote-table">
 	<thead>
@@ -12,24 +12,26 @@
 			<th>画像</th>
 			<th>著者</th>
 			<th>ポイント</th>
-			<th>指標</th>
 		</tr>
 	</thead>
 	<tbody>
-	<?php $rankColor = array('black','red','white','orange','yellow','blue','pink','green','skyblue','limegreen'); ?>
-	<?php for($i = 1 ; $i <= 10 ; $i++): ?>
+	<% @prog.race_horse_points.each do |point| %>
 		<tr>
-			<td class="rank <?php echo $rankColor[$i-1]?>"><?php echo $i ?></td>
-			<td><img src="images/contents/book_image01.jpg" alt="" style="width:auto;height:70px;" /></td>
-			<td>とある化学の超魔術</td>
-			<td>
-				<span class="point">
-					<?php echo rand(5,10)+$i ?>
-				</span>
-				pt
+			<td class="rank">
+				<%= debug(point.race_horse.id) %>
+				<!-- 順位 -->
 			</td>
-			<td>あ</td>
+			<td>
+				
+				<!-- ブック画像 -->
+			</td>
+			<td>
+				<%= point.point %>
+			</td>
+			<td>
+				<span class="point"><%= point.point %></span>pt
+			</td><!-- ポイント -->
 		</tr>
-	<?php endfor; ?>
+	<% end %>
 	</tbody>
 </table>
