@@ -12,20 +12,25 @@
 		</tr>
 	</thead>
 	<tbody>
-	<% for i in 1..10 %>
+	<% @prog.race_horses.each do |horse| %>
 		<tr>
-			<td class="rank <%= horse_number_colors(i-1) %>"><%= i %></td>
-			<td>
-				イメージ
+			<td class="rank">
+				<%= horse.order %>
+				<!-- 順位 -->
 			</td>
 			<td>
-				下流社会
+				
+				<!-- ブック画像 -->
 			</td>
-			<td class="point">
-				<span>170</span>pt
+			<td>
+				<%= horse.book.title %>
 			</td>
+			<td>
+				<span class="point"><%= horse.point %></span>pt
+			</td><!-- ポイント -->
 		</tr>
 	<% end %>
+
 	</tbody>
 </table>
 <style type="text/css" media="screen">
