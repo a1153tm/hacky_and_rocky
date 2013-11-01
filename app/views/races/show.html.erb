@@ -1,8 +1,20 @@
 <!-- レース　詳細ページ　仮配置  -->
+<% if @card and @card.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@card.errors.count, "error") %> prohibited this book from being saved:</h2>
+    <ul>
+    <% @card.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <!-- エラーメッセージ。TODO 協調表示する -->
 <% if flash[:error] %>
-  <p><%= flash[:error] %></p>
+  <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+  </div>
 <% end %>
 
 <% if flash[:notice] %>
@@ -17,12 +29,11 @@
 <!-- ここに form タグを挿入すること -->
 <% unless @card %>
   <%= form_tag voting_cards_path(@race) do %>
-    <%= render 'race_table' %>
+    <%= render 'races/race_table' %>
   <% end %>
 <% else %>
-  <%= render 'race_table' %>
+  <%= render 'races/race_table' %>
 <% end %>
-<input type="hidden" name="sign-check" value="<%= @sign_check %>" id="sign-check"/>
 <style type="text/css" media="screen">
 #vote-table td {width:97px;}
 .require {margin-top:10px;margin-bottom:5px;}
@@ -48,26 +59,6 @@ label.valid-success{
 }
 </style>
 <script type="text/javascript" charset="utf-8">
-/**
- *　ログイン確認 
- */
-$(window).load(function()
-{
-	var signCheck = $("#sign-check").val();
-	var error = "false";
-	var submitButton = $("#button-field").find("input")
-	
-	function initialize()
-	{
-		if(signCheck === error)
-		{
-			
-		}
-	}
-		
-});
-
-
 /**
  *　Voting Validation
  * 投票のバリデーションを行う 

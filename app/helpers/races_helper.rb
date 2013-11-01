@@ -20,7 +20,8 @@ module RacesHelper
     result = ''
     textArr = text.split(//)
     textArr.each do |s|
-      result += s+'<br />'
+      s = s === "ー" ? "｜" : s ;
+      result += s + '<br />'
     end
     return result
   end

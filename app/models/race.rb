@@ -7,6 +7,11 @@ class Race < ActiveRecord::Base
   
   validates :name, :start_date, :end_date, :genre_id,  presence: true
   validates :name, length: {minimum: 3, maximum: 20}
+  validates_each :race_horses do |record, attr, horses|
+    unless horses.size == 10
+      record.errors[attr] << "本を10冊登録してください。"
+    end
+  end
 
   GRADES = {1 => 'GⅠ', 2 => 'GⅡ', 3 => 'GⅢ'}
 

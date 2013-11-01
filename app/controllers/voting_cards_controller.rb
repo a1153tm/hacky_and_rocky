@@ -16,22 +16,36 @@ class VotingCardsController < ApplicationController
   
   #投票データを格納する。
   #route POST race/:id/voting_cards
-  def entry
-    flash[:error] = "投票する前にログインしてください。" unless current_user
+  def vote
+    flash[:error] = "投票する前にログインしてください。" unless user = current_user
     flash[:error] = "レースが存在しません。" unless @race = Race.find(params[:id])
-    flash[:error] = "このレースは投票済みです。" if VotingCard.find_by(:race_id => @race.id, :user_id => current_user.id)
+    if @race and user and VotingCard.find_by(:race_id => @race.id, :user_id => current_user.id)
+      flash[:error] = "このレースは投票済みです。"
+    end
 
-    card = VotingCard.new(:race_id => @race.id , :user_id => current_user.id, :vote_date => Time.now)
-    params[:vote_items].each do |(horse_id,weight)|
-      if weight and !weight.empty?
-        card.vote_items << VoteItem.new(race_horse_id: horse_id, point_weight: weight)
+    unless flash[:error]
+      card = VotingCard.new(:race_id => @race.id , :user_id => current_user.id, :vote_date => Time.now)
+      items = params[:vote_items].select {|horse_id,weight| weight and !weight.empty?}
+      items.each do |horse_id,weight|
+        card.vote_items << VoteItem.new(voting_card: card, race_horse_id: horse_id, point_weight: weight)
+      end
+
+      begin
+        user.point -= items.values.inject(0) {|sum,weight| sum += weight.to_i}
+        VotingCard.transaction do
+          card.save!
+          user.save!
+        end
+      rescue => e
+        logger.error e
+        flash[:error] = "投票できませんでした。"
       end
     end
 
-    if flash[:error].nil? and card.save!()
+    unless flash[:error]
       redirect_to race_progress_path(@race, :last)
     else
-      redirect_to @race
+      render 'races/show'
     end
   end
   
