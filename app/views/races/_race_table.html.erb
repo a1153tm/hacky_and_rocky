@@ -13,7 +13,7 @@
 		<% @race.race_horses.reverse_each do |race_horse| %>
       <% book = race_horse.book %>
       <% image_url = book.medium_image_url || book.large_image_url || book.small_image_url %>
-			<td><%= link_to image_tag(image_url, size: '60x90', alt: "イメージ"), book.item_url %></td>
+			<td><%= link_to image_tag(image_url, size: '60x90', alt: "image"), book.item_url %></td>
 		<% end %>
 			<td class="title"><%= row_text("イメージ").html_safe %></td>
 		</tr><!-- イメージ -->
@@ -43,7 +43,7 @@
 		</tr><!-- オッズ -->
 		<% unless @card %>
 			<% @race.race_horses.each do |horse| %>
-			  <td>
+			  <td id="vote_item_<%= horse.id %>" class="vote_item">
           <%= label "vote_items", horse.id, '', {:class => 'valid-message'} %>
           <%= select "vote_items", horse.id, VoteItem::EXPECTATION.map {|k,v| [v,k]},
             {:include_blank => true}, {:class => 'require lib-select lib-select-small'} %>
@@ -72,4 +72,51 @@
 <% end %>
 	<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 </div>
+
+<style type="text/css" media="screen">
+#vote-table td {width:97px;}
+.require {margin-top:10px;margin-bottom:5px;}
+label.valid-message {
+	color:#FF7700;
+	background:#FFF;
+	font-weight:bold;
+	line-height:2.2em;
+	padding:0 3px;
+	border-radius:5px;
+	border:2px solid #FF7700;
+	display:block;
+	position: relative;
+}
+label.valid-ok {
+	color:#FFF;
+	background:#FF7700;
+	font-weight:bold;
+	line-height:2.2em;
+	padding:0 3px;
+	border-radius:5px;
+	border:2px solid #FF7700;
+	display:block;
+	position: relative;
+}
+label.valid-none {
+  color: transparent;
+	background:transparent;
+	font-weight:bold;
+	line-height:2.2em;
+	padding:0 3px;
+	border-radius:5px;
+	border:2px solid transparent;
+	display:block;
+	position: relative;
+}
+label.valid-error{
+	color:#FFF;
+	background:#FF7700;
+}
+label.valid-success{
+	color:#FF6600;
+	background: #FAFAFA;
+	border:2px solid #999;
+}
+</style>
 

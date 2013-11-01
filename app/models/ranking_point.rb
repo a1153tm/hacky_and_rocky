@@ -32,11 +32,11 @@ class RankingPoint < ActiveRecord::Base
   end
 
   def search_item(hash, item_code)
-   hash['Items'].each do |item|
+    hash['Items'].each do |item|
       if item['Item']['itemCode'] == item_code then
         return item['Item']['rank']
       end
-   end
-   nil
+    end
+    nil
   end
 end
