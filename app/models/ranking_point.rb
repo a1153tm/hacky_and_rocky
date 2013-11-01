@@ -8,7 +8,8 @@ class RankingPoint < ActiveRecord::Base
   AFFI_ID = '11b5cf1c.5f32ac57.11b5cf1d.b23d0e32'
 
   def calc_point
-  	item_code = @race_horse.book().item_code（）
+  	sleep 0.1
+    item_code = @race_horse.book().item_code
   	genre_id = @race_horse.race().genre().genre_id()
     raw_data = get_json(genre_id) 
     ranking = search_item(JSON.parse(raw_data), item_code)
@@ -36,6 +37,6 @@ class RankingPoint < ActiveRecord::Base
         return item['Item']['rank']
       end
     end
+    nil
   end
-
 end

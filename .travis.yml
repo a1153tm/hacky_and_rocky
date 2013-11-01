@@ -9,7 +9,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: fDQZSYLS3Dfdm+P64UzPgk9Q+RJhSm4Jf18nfGSHSi2EwwfEjDQRHIU4OVDSabYs6XTKcL6CaO5A5rqWILY4nXrm4Wu535x9RlMlvFKpkABXdlQSbiQ5rqs0daQaLWtDeGGHddib1nP27qCLT38RJI7TwRds22QqdtQ4tWVR+IA=
+    secure: OcFz5jgaZ5ljRIYP8cBde4H43niJK50s1hUrz8j+mNJfJUSHlayVqCSF5Xo5NHp/3ucnDJ+kHkB7Yz7RQgZ3upbu6JvDZpAPKXkudxRv+9sCIuHWBjiCONjqJCud1h7upQtjWbwdd3eyxiG3U1prfwlMtgcorkdQ/uJuSKjQOYc=
   app: denka
   on:
     repo: NoguHiro/hacky_and_rocky

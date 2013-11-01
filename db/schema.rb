@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131023150904) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "books", force: true do |t|
     t.string   "title"
     t.string   "author"
@@ -35,12 +32,7 @@ ActiveRecord::Schema.define(version: 20131023150904) do
     t.integer  "genre_id"
   end
 
-  create_table "dudas", force: true do |t|
-    t.string   "dum"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
+<<<<<<< HEAD
   create_table "dummies", force: true do |t|
     t.string   "dummy"
     t.datetime "created_at"
@@ -48,14 +40,10 @@ ActiveRecord::Schema.define(version: 20131023150904) do
     t.integer  "dum2"
   end
 
+=======
+>>>>>>> a7f07d7904fd578fe6e78b09a63cc80fa9dad5f0
   create_table "genres", force: true do |t|
     t.integer  "genre_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "race_grades", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,12 +57,12 @@ ActiveRecord::Schema.define(version: 20131023150904) do
   end
 
   create_table "race_horses", force: true do |t|
+    t.integer  "horse_no"
     t.text     "comment"
     t.integer  "race_id"
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "horse_no"
     t.float    "odds",       default: 1.0
   end
 

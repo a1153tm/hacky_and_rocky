@@ -13,6 +13,7 @@ class RacesController < ApplicationController
 
   # GET /races/1
   def show
+    @sign_check = current_user != nil ? "true" : "false" ;
     if Race.find_by_id(params[:id])
       @race = Race.find(params[:id], :include => :race_horses)
       if current_user

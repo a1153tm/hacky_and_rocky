@@ -14,7 +14,7 @@ class Race < ActiveRecord::Base
   end
 
   GRADES = {1 => 'GⅠ', 2 => 'GⅡ', 3 => 'GⅢ'}
- 
+
   # バッチ処理から呼出される
   def create_progress(the_date)
     olds = race_progresses.select {|p| p.record_date == the_date}

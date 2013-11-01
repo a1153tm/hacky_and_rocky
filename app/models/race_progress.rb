@@ -11,7 +11,7 @@ class RaceProgress < ActiveRecord::Base
       race_horse_points << point
     end
   end
-
+  
   def <=>(other)
     record_date <=> other.record_date
   end
