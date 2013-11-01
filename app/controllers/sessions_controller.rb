@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
     else
-      user = User.new(uid: auth["uid"], name: auth["info"]["name"])
+      user = User.new(uid: auth["uid"], name: auth["info"]["name"], point: 100)
       user.save
       session[:user_id] = user.id
     end
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
     else
-      user = User.new(uid: 'developer', name: '開発者')
+      user = User.new(uid: 'developer', name: '開発者', point: 100)
       user.save
       session[:user_id] = user.id
     end
