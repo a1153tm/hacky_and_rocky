@@ -37,9 +37,7 @@ class VotingCardsController < ApplicationController
           user.save!
         end
       rescue => e
-        logger.error "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
-        puts "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
-        flash[:error] = "投票できませんでした。"
+        logger.error e
       end
     end
 
