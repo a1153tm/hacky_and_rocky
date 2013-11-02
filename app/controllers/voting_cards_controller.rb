@@ -37,10 +37,8 @@ class VotingCardsController < ApplicationController
           user.save!
         end
       rescue => e
-        unless Rails.env.production?
-          logger.error e
-        end
-        puts e
+        logger.error "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
+        puts "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
         flash[:error] = "投票できませんでした。"
       end
     end
