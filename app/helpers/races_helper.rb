@@ -2,7 +2,7 @@ module RacesHelper
 
   #出走の色付け -> show
   def horse_number_colors(number)
-    horseNumberColors = ['white','black','red','blue','orange','green','pink','skyblue','yellow','limegreen']
+    horseNumberColors = ['white','black','red','blue','yellow','green','orange','pink','skyblue','limegreen']
     currentColor = nil
     if horseNumberColors.size - 1 >= number
       currentColor = horseNumberColors[number]
