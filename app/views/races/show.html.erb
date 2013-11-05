@@ -23,7 +23,7 @@
 
 <h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
 	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
-	<%= @race.name %>
+	<%= @race.name + "(" + Race::GRADES[@race.grade] +")" + "\s" +"発走：" + @race.start_date.strftime("%Y年 %m月 %d日") %>
 </h2>
 
 <!-- ここに form タグを挿入すること -->
