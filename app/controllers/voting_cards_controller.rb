@@ -17,6 +17,9 @@ class VotingCardsController < ApplicationController
   #投票データを格納する。
   #route POST race/:id/voting_cards
   def vote
+    puts 'puts----------------------------------'
+    logger.error 'LOG---------------------------'
+    raise 'ERORRRRRRRRRRRRRRRRRRPPPPPPPPPPP-------------------------------'
     flash[:error] = "投票する前にログインしてください。" unless user = current_user
     flash[:error] = "レースが存在しません。" unless @race = Race.find(params[:id])
     if @race and user and VotingCard.find_by(:race_id => @race.id, :user_id => current_user.id)
@@ -37,7 +40,9 @@ class VotingCardsController < ApplicationController
           user.save!
         end
       rescue => e
-        logger.error e
+        logger.error "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
+        puts "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
+        flash[:error] = "投票できませんでした。"
       end
     end
 
