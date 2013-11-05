@@ -1,0 +1,27 @@
+<h1>Listing race_results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Race progress</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @race_results.each do |race_result| %>
+      <tr>
+        <td><%= race_result.race_progress_id %></td>
+        <td><%= link_to 'Show', race_result %></td>
+        <td><%= link_to 'Edit', edit_race_result_path(race_result) %></td>
+        <td><%= link_to 'Destroy', race_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Race result', new_race_result_path %>
