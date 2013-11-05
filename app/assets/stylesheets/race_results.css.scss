@@ -1,0 +1,81 @@
+// Place all the styles related to the RaceResults controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.race_results {
+  #result-table {
+  	font-size:120%;
+  	border-spacing:0;
+  	border-collapse:collapse;
+  	text-align:center;
+  	border:4px solid #333;
+  	width:100%;
+  	-webkit-border-radius: 10px;
+  	-moz-border-radius: 10px;
+  	border-radius: 10px;
+    
+    th {
+    	color:#333;
+    	background:#EEE;
+    	font-size:120%;
+    	font-weight:bold;
+    	padding:20px 10px;
+    	border:3px solid #333;
+    	border-bottom:3px solid #333;
+    }
+    
+    td {
+  	  font-size:120%;
+  	  font-weight:bold;
+  	  background:#FFF;
+  	  padding:20px 5px;
+  	  border:3px solid #333;
+    }
+  
+    .rank-image {
+      border-right: none;
+    }
+  
+    #first {
+      width: 58px;
+      background: url(/assets/ranking.jpg) no-repeat;
+      background-position: -8px -20px;
+    }
+  
+    #second {
+      width: 58px;
+      background: url(/assets/ranking.jpg) no-repeat;
+      background-position: -82px -20px;
+    }
+    
+    #third {
+      width: 58px;
+      background: url(/assets/ranking.jpg) no-repeat;
+      background-position: -156px -20px;
+    }
+    
+    .rank {
+      /*text-align: left;*/
+      border-left: none;
+    }
+  
+    .point {
+      span {
+        color:#FF6600;
+        font-size:120%;
+      }
+    }
+  }
+
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  #payout {
+    h2 {
+      font-size: 140%;
+      font-weight: bold;
+    }
+  }
+}
+

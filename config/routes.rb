@@ -10,8 +10,11 @@ Enpit::Application.routes.draw do
   get '/races(.:format)'        => "races#index", :as => :races
   get '/race/:id(.:format)'     => "races#show",  :as => :race
 
-  # Race Progress
+  # Race progress
   get '/race/:id/progresses/:date' => "race_progresses#show", :as => :race_progress
+
+  # Race result
+  get '/race/:id/result'        => "race_results#show", :as => :race_result
 
   # Voting card
   post '/race/:id/voting_cards' => 'voting_cards#vote', :as => :voting_cards
