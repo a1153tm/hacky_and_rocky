@@ -39,13 +39,26 @@ class VotingCard < ActiveRecord::Base
     count = 1;
     race.progress.race_horses.each do |horse|
       puts horse.order
+      
+      puts "vote_item method check ....."
+      puts horse.respond_to?("vote_item")
+      puts "vote_item method check ......end"
+      
+      puts "vote_item.point_weight method check ....."
+      puts horse.respond_to?("vote_item.point_weight")
+      puts "vote_item.point_weight method check ......end"
+      
+      puts "odds method_check"
+      puts horse.respond_to?("odds")
+      puts "odds method_check .......end"
+      
       #if (10 >= count) && !(horse.vote_item.nil?)
       if horse.respond_to?("vote_item")
         value += horse.odds * horse.vote_item.point_weight
       end
+      puts count
       count += 1
       puts value
-      puts count
       puts "calc_success"
     end
     self.payout = value
