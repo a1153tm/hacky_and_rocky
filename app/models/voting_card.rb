@@ -38,7 +38,7 @@ class VotingCard < ActiveRecord::Base
   def calc_payout
     value = 0
     race.progress(:last).race_horses.each do |horse|
-      if 0 > horse.order and horse.vote_item != nil
+      if 3 >= horse.order and horse.vote_item != nil
         value += horse.odds * horse.vote_item.point_weight
       end
     end
