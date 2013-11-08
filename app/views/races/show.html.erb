@@ -20,13 +20,12 @@
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
-
 <h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
 	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
-	<%= @race.name + "(" + Race::GRADES[@race.grade] +")" + "\s" +"発走：" + @race.start_date.strftime("%Y年 %m月 %d日") %>
+	出走馬一覧
 </h2>
-
 <!-- ここに form タグを挿入すること -->
+<div id="rece-list">
 <% unless @card %>
   <%= form_tag voting_cards_path(@race), id: 'vote-form' do %>
     <%= render 'races/race_table' %>
@@ -34,6 +33,8 @@
 <% else %>
   <%= render 'races/race_table' %>
 <% end %>
+</div>
+
 
 <!--
 <script type="text/javascript" charset="utf-8">

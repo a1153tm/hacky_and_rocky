@@ -1,6 +1,6 @@
 class VoteItem < ActiveRecord::Base
 
-  EXPECTATION = {10 => '◎　本命' , 5 => '○　対抗' , 3 =>'△　穴ヒモ'}
+  EXPECTATION = {10 => '本命' , 5 => '対抗' , 3 =>'ヒモ'}
 
   belongs_to :voting_card
   belongs_to :race_horse

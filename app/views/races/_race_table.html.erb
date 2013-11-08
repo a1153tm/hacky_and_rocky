@@ -1,3 +1,11 @@
+<div class="boxTitle" style="width:65px;float:right">
+	    <h3 style="font-weight:bold;text-align:center;font-size:140%;"><%= (@race.genre.name[0,3]) %></h3>
+	    <div style="font-weight:bold;background:#000;color:#FFF;font-size:250%;text-align:center;padding:10px;"><%= (@race.id.to_s) %></div>
+	    <h4 style="text-align:center;font-weight:bold;font-size:130%">発走</h4>
+	    <h4 style="text-align:center;font-weight:bold;font-size:110%"><%= @race.start_date.strftime("%m-%d") %></h4>
+	    <h3 style="font-weight:bold;text-align:center;font-size:150%;padding:10px;"> <%= row_text(@race.name).html_safe %> <%= "(" + Race::GRADES[@race.grade] +")"%></h3>
+ </div>
+<div class="boxHorse">
 <table id="vote-table">
 	<thead>
 		<tr>
@@ -65,6 +73,7 @@
 		</tr>
 	</tbody>
 </table>
+</div>
 
 <div class="submit lib-aside-mTop" style="text-align: center">
 <% unless @card %>
@@ -72,9 +81,10 @@
 <% end %>
 	<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 </div>
-
 <style type="text/css" media="screen">
-#vote-table td {width:97px;}
+.boxTitle {width : 65px;}
+.boxHorse {width : 65px;}
+.title td {width:10px;}
 .require {margin-top:10px;margin-bottom:5px;}
 label.valid-message {
 	color:#FF7700;
