@@ -35,12 +35,13 @@ class VotingCard < ActiveRecord::Base
   
   private 
   def calc_payout
-    value = 1
+    value = 10000
     race.progress.race_horses.each do |horse|
       if 10 > horse.order and horse.vote_item != nil
         value += horse.odds * horse.vote_item.point_weight
-        puts "calc_process"
       end
+      puts horse.order
+      puts value
       puts "calc_success"
     end
     self.payout = value
