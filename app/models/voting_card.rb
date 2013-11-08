@@ -21,12 +21,7 @@ class VotingCard < ActiveRecord::Base
     end
   end
   
-  def payback
-    calc_payout
-    payout
-  end
-  
-  def a_payback 
+  def payback 
     begin
       calc_payout
       user.point += payout
