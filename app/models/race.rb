@@ -33,4 +33,13 @@ class Race < ActiveRecord::Base
     end
   end
 
+  # for testing
+  def result
+    result = RaceResult.new
+    prog = progress(:last)
+    result.race_progress = prog
+    result.race = self
+    result
+  end
+
 end
