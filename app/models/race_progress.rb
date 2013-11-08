@@ -29,7 +29,7 @@ class RaceProgress < ActiveRecord::Base
       end
       horse.order = i + 1
       horse.point = p.point
-      logger.debug horse.book.title
+      #logger.debug horse.book.title
       horses << horse
     end
     horses
