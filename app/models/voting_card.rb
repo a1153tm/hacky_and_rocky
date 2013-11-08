@@ -23,8 +23,7 @@ class VotingCard < ActiveRecord::Base
   
   def payback 
     begin
-      calc_payout
-      user.point += payout
+      user.point += calc_payout
       VotingCard.transaction do
         user.save!
         self.save!
@@ -37,7 +36,7 @@ class VotingCard < ActiveRecord::Base
   private 
   def calc_payout
     value = 0
-    race.progress(:last).race_horses.each do |horse|
+    race.progress.race_horses.each do |horse|
       if 3 >= horse.order and horse.vote_item != nil
         value += horse.odds * horse.vote_item.point_weight
       end
