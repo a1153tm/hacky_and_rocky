@@ -46,7 +46,7 @@
 			  <td id="vote_item_<%= horse.id %>" class="vote_item">
           <%= label "vote_items", horse.id, '', {:class => 'valid-message'} %>
           <%= select "vote_items", horse.id, VoteItem::EXPECTATION.map {|k,v| [v,k]},
-            {:include_blank => true}, {:class => 'require lib-select lib-select-small'} %>
+            {:include_blank => true}, {:style => 'padding:0' ,:class => 'require lib-select lib-select-small'} %>
 			  </td>
 			<% end %>
 		<% else %>
