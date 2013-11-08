@@ -1,11 +1,5 @@
-<div class="boxTitle" style="width:65px;float:right">
-	    <h3 style="font-weight:bold;text-align:center;font-size:140%;"><%= (@race.genre.name[0,3]) %></h3>
-	    <div style="font-weight:bold;background:#000;color:#FFF;font-size:250%;text-align:center;padding:10px;"><%= (@race.id.to_s) %></div>
-	    <h4 style="text-align:center;font-weight:bold;font-size:130%">発走</h4>
-	    <h4 style="text-align:center;font-weight:bold;font-size:110%"><%= @race.start_date.strftime("%m-%d") %></h4>
-	    <h3 style="font-weight:bold;text-align:center;font-size:150%;padding:10px;"> <%= row_text(@race.name).html_safe %> <%= "(" + Race::GRADES[@race.grade] +")"%></h3>
- </div>
-<div class="boxHorse">
+<div class="cf">
+<div id="race-table" style="width:915px;float:left">
 <table id="vote-table">
 	<thead>
 		<tr>
@@ -74,7 +68,14 @@
 	</tbody>
 </table>
 </div>
-
+<div id="race-caption" style="width:65px;float:left">
+    <h3 style="font-weight:bold;text-align:center;font-size:140%;"><%= (@race.genre.name[0,3]) %></h3>
+	<div style="font-weight:bold;background:#000;color:#FFF;font-size:250%;text-align:center;padding:10px;"><%= (@race.id.to_s) %></div>
+	<h4 style="text-align:center;font-weight:bold;font-size:130%">発走</h4>
+	<h4 style="text-align:center;font-weight:bold;font-size:110%"><%= @race.start_date.strftime("%m-%d") %></h4>
+	<h3 style="font-weight:bold;text-align:center;font-size:150%;padding:10px;"> <%= row_text(@race.name).html_safe %> <%= "(" + Race::GRADES[@race.grade] +")"%></h3>
+</div>
+</div>
 <div class="submit lib-aside-mTop" style="text-align: center">
 <% unless @card %>
 	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
@@ -82,8 +83,7 @@
 	<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 </div>
 <style type="text/css" media="screen">
-.boxTitle {width : 65px;}
-.boxHorse {width : 65px;}
+#race-table td {width:97px;}
 .title td {width:10px;}
 .require {margin-top:10px;margin-bottom:5px;}
 label.valid-message {
@@ -129,4 +129,3 @@ label.valid-success{
 	border:2px solid #999;
 }
 </style>
-
