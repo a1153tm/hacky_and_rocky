@@ -1,11 +1,9 @@
 class RaceResult < ActiveRecord::Base
 
   belongs_to :race
-  #has_one :race_progress
-  attr_accessor :race_progress
+  belongs_to :race_progress
 
-  def race_horses
-    race_progress.race_horses
-  end
-
+  delegate :race_horses, :to => :race_progress
+  #delegate :race, :to => :race_progress
+  
 end
