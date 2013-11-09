@@ -25,7 +25,8 @@ class VotingCardTask
     puts "#{Time.now} VotingCardTask started."
     today = Date.today.to_datetime
     #Race.find_all_by_end_date(today) do |race|
-    Race.all do |race|
+    Race.find(:all) do |race|
+      puts "hoge"
       race.create_result
       race.voting_cards.each do |card|
         card.payback
