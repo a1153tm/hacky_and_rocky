@@ -24,7 +24,7 @@ class Race < ActiveRecord::Base
     prog.race = self
     prog.calc_order()
     self.race_progresses << prog
-    save()!
+    save!
   end
 
   def progress(the_date = :last)
@@ -36,7 +36,7 @@ class Race < ActiveRecord::Base
 
   def create_result()
     self.race_result = RaceResult.new(race_progress: progress(:last), race: self)
-    save()!
+    save!
   end
 
   # for testing
