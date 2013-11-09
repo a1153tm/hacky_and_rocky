@@ -21,4 +21,14 @@ class VotingCard < ActiveRecord::Base
     end
   end
 
+  # Stub method
+  def payout()
+    horse = race.result.race_horses.first
+    item = vote_items.select {|item| item.race_horse == horse}.first
+    if item
+    then horse.odds * item.point_weight
+    else 0
+    end
+  end
+
 end

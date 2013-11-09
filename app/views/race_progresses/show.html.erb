@@ -1,4 +1,5 @@
 <% unless flash[:error] %>
+  <canvas id="race-canvas" width=900 height=300></canvas>
 	<%= render 'race_progresses/show_table' %>
 <% else %>
 	<%= render 'race_progresses/show_error' %>

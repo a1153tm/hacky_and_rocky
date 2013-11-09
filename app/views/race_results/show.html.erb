@@ -1,5 +1,13 @@
-<p id="notice">レースが確定しました！</p>
-<br />
+<div id="message">
+  <p>レースが確定しました！</p>
+  <% if @card %>
+    <% unless @card.payout == 0 %>
+      <p>おめでとうございます。予想が的中しました！</p>
+    <% else %>
+      <p>予想は当たりませんでしたが、次のレースがんばってください！</p>
+    <% end %>
+  <% end %>
+</div>
 
 <h2 style="display:block;background:#333;padding:10px;color:#FFF;font-size:190%;font-weight:bold;border-radius:5px 5px 0 0">
 	<i class="icon-trophy icon-margin-right" style="font-size:120%;font-weight:normal;color: yellow"></i>
@@ -62,9 +70,17 @@
 <% if @card %>
   <hr>
   <div id="payout">
-    <h2>このレースの投票結果</h2>
-    <%= @card.payout %>
-    <%= current_user.point %>
+    <h3>このレースの払い戻し</h3>
+    <table>
+      <tr>
+        <th>払い戻しポイント：</th>
+        <td><%= @card.payout %></td>
+      </tr>
+      <tr>
+        <th>現在のポイント合計：</th>
+        <td><%= current_user.point %></td>
+      </tr>
+    </table>
   </div>
 <% end %>
 
