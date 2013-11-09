@@ -12,9 +12,13 @@ class VotingCardTask
   def self.task_payback
     today = Date.today.to_datetime
     cards = VotingCard.find(:all, :include => :race, :conditions => ['payout IS ?' , nil])
-    cards.each do |card|
-      puts "#{Time.now} calc_payout VotingCard ID #{card.id}"
-      card.payback
+    if cards.count > 0
+     cards.each do |card|
+       puts "#{Time.now} calc_payout VotingCard ID #{card.id}"
+       card.payback
+     end
+    else
+      puts "VotingCard Nothing..."
     end
   end
   
