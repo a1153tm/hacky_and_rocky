@@ -16,7 +16,7 @@ task :payback_voting_card => :enviroment do
   #Race.find_all_by_end_date(today) do |race|
   Race.find(:all ,:conditions => ['end_date = ?', today]).each do |race|
     race.create_result
-    race.voting_cards.each do |card|
+    race.voting_cards.find_all_by_payout(nil).each do |card|
       card.payback
     end
   end

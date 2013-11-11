@@ -35,7 +35,7 @@ class VotingCard < ActiveRecord::Base
   
   private 
   def calc_payout
-    value = 0
+    value = 1000
     horse = race.race_result.race_horses.first
     vote_item = vote_items.find{|item| item.race_horse == horse}
     if vote_item
