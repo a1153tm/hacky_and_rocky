@@ -21,11 +21,11 @@ class VotingCardTask
     else
       puts "VotingCard Nothing..."
     end
-=end
+=end:
     puts "#{Time.now} VotingCardTask started."
     today = Date.today.to_datetime
     #Race.find_all_by_end_date(today) do |race|
-    Race.all.each do |race|
+    Race.find(:all ,:conditions => ['end_date = ?', today]).each do |race|
       puts "hoge"
       race.create_result
       race.voting_cards.each do |card|
