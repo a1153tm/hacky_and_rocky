@@ -3,6 +3,7 @@ require 'test_helper'
 class VotingCardsControllerTest < ActionController::TestCase
   setup do
     @race = races(:one)
+    @race.genre = genres(:one)
   end
 
   test "should create_voting_card on vote" do

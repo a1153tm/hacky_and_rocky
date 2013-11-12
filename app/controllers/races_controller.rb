@@ -7,7 +7,7 @@ class RacesController < ApplicationController
   end
   
   def top
-    @races = Race.find(:all,:conditions => ['end_date > ?' , Time.now])
+    @races = Race.find(:all, :conditions => ['end_date >= ?' , Date.today.to_datetime])
     render "races/top"
   end
 

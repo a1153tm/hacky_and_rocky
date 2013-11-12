@@ -5,5 +5,5 @@ one:
   name: MyString
 
 two:
-  genre_id: 1
+  genre_id: 2
   name: MyString

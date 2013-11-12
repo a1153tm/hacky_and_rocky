@@ -7,7 +7,6 @@ class RaceProgress < ActiveRecord::Base
     race.race_horses.each do |h|
       point = RaceHorsePoint.new
       point.race_horse = h
-      sleep 0.1
       point.calc_point()
       race_horse_points << point
     end
@@ -29,7 +28,6 @@ class RaceProgress < ActiveRecord::Base
       end
       horse.order = i + 1
       horse.point = p.point
-      #logger.debug horse.book.title
       horses << horse
     end
     horses

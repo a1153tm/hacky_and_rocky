@@ -11,6 +11,14 @@ class RaceHorsePointTest < ActiveSupport::TestCase
         @called = true
       end
     end
+    # monkey patch for RankingPoint
+    ReviewPoint.class_eval do
+      alias :org_calc_point :calc_point
+      attr_accessor :called
+      def calc_point
+        @called = true
+      end
+    end
     # setup test class
     @point = RaceHorsePoint.new
     @point.race_horse = RaceHorse.new
@@ -21,12 +29,18 @@ class RaceHorsePointTest < ActiveSupport::TestCase
     RankingPoint.class_eval do
       alias :calc_point :org_calc_point
     end
+    # Revert monkey patch
+    ReviewPoint.class_eval do
+      alias :calc_point :org_calc_point
+    end
   end
 
   test "should value of calc point equals value of RankingPoint" do
     ranking = RankingPoint.new(:point => 120)
+    review = ReviewPoint.new(:review_count => 5, :review_average => 3.145)
     @point.ranking_point = ranking
-    assert_equal 120, @point.point
+    @point.review_point = review
+    assert_equal (120 + 5 * 3.145 * 100).to_i, @point.point
   end
 
   test "should invoke calc_point of RankingPoint" do
@@ -43,8 +57,10 @@ class RaceHorsePointTest < ActiveSupport::TestCase
     points = []
     3.times do |i|
       ranking = RankingPoint.new(:point => 10 - i)
+      review = ReviewPoint.new(:review_count => 0, :review_average => 0.0)
       point = RaceHorsePoint.new
       point.ranking_point = ranking
+      point.review_point = review
       points << point
     end
     assert_equal 8, (points.sort)[0].point

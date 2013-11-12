@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  review_count: 1
+  review_average: 1.5
+  race_horse_point_id: 1
+
+two:
+  review_count: 1
+  review_average: 1.5
+  race_horse_point_id: 1

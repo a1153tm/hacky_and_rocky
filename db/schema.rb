@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105104951) do
+ActiveRecord::Schema.define(version: 20131112124854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,19 +33,6 @@ ActiveRecord::Schema.define(version: 20131105104951) do
     t.string   "large_image_url"
     t.string   "books_genre_id"
     t.integer  "genre_id"
-  end
-
-  create_table "dudas", force: true do |t|
-    t.string   "dum"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "dummies", force: true do |t|
-    t.string   "dummy"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "dum2"
   end
 
   create_table "genres", force: true do |t|
@@ -112,6 +99,14 @@ ActiveRecord::Schema.define(version: 20131105104951) do
 
   create_table "rankings", force: true do |t|
     t.text     "xml"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "review_points", force: true do |t|
+    t.integer  "review_count",        default: 0
+    t.float    "review_average",      default: 0.0
+    t.integer  "race_horse_point_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

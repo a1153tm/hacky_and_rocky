@@ -29,7 +29,7 @@ class Race < ActiveRecord::Base
 
   def progress(the_date = :last)
     if the_date == :last
-    then return race_progresses.sort.reverse.last
+    then return race_progresses.sort.last
     else return race_progresses.find {|p| p.record_date == the_date}
     end
   end

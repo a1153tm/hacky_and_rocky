@@ -44,11 +44,14 @@ class AdminController < ApplicationController
   def update_race
     Race.transaction do
       # 出走馬を再作成する
-      @race.race_horses.each {|h| h.destroy}
+      #@race.race_horses.each {|h| h.destroy}
       params[:race_horses].each_with_index do |(i,v)|
-        horse = RaceHorse.new(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i],
+        #horse = RaceHorse.new(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i],
+        #  odds: params[:race_horse_odds][i])
+        #horse.race = @race
+        horse = @race.race_horses[i.to_i]
+        horse.update_attributes(horse_no: i.to_i + 1, book_id: v, comment: params[:race_horse_comments][i],
           odds: params[:race_horse_odds][i])
-        horse.race = @race
         horse.save
       end
       # レースのベースを更新する
