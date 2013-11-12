@@ -3,6 +3,7 @@
 one:
   name: MyString
   grade: 1
+  genre: one
   etype: MyString
   start_date: 2013-10-11 14:27:57
   end_date: 2013-10-11 14:27:57
@@ -10,6 +11,7 @@ one:
 two:
   name: MyString
   grade: 1
+  genre: two
   etype: MyString
   start_date: 2013-10-11 14:27:57
   end_date: 2013-10-11 14:27:57

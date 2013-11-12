@@ -85,6 +85,6 @@ class RaceTest < ActiveSupport::TestCase
     end
     _race = Race.find(@race.id)
     assert_equal 3, _race.race_progresses.size
-    assert_equal @the_date, _race.progress(:last).record_date
+    assert_equal @the_date + 2, _race.progress(:last).record_date
   end
 end

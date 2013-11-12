@@ -15,6 +15,10 @@ class ReviewPoint < ActiveRecord::Base
     end
   end
 
+  def point
+    @point ||= (review_count * review_average * 100).to_i
+  end
+  
   def get_json(isbn)
     sleep 1
     httpClient = HTTPClient.new

@@ -17,7 +17,7 @@ class RaceHorsePoint < ActiveRecord::Base
 
   # 将来的には拡張する (レビューポイント、ツイートポイント)
   def point
-    ranking_point.point + review_point.review_count * 100
+    ranking_point.point + review_point.point
   end
 
   def <=>(other)
