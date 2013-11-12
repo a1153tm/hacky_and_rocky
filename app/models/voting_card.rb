@@ -20,15 +20,35 @@ class VotingCard < ActiveRecord::Base
       record.errors[attr] << "重複して登録することはできません。"
     end
   end
-
-  # Stub method
-  def payout()
-    horse = race.result.race_horses.first
-    item = vote_items.select {|item| item.race_horse == horse}.first
-    if item
-    then horse.odds * item.point_weight
-    else 0
+  
+  def payback
+    calc_payout
+    payout
+  end
+  
+  def a_payback 
+    begin
+      calc_payout
+      user.point += payout
+      VotingCard.transaction do
+        user.save!
+        self.save!
+      end
+    rescue => e
+      logger.error e
     end
   end
+  
+  private 
 
+  def calc_payout
+    value = 0
+    race.progress(:last).race_horses.each do |horse|
+      if 0 > horse.order and horse.vote_item != nil
+        value += horse.odds * horse.vote_item.point_weight
+      end
+    end
+    self.payout = value
+  end
+  
 end

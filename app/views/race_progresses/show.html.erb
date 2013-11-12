@@ -1,10 +1,18 @@
+<h3 id="prog-date"><%= @prog.record_date %> 時点 レース状況</h3>
+
 <% unless flash[:error] %>
-  <canvas id="race-canvas" width=900 height=300></canvas>
+  <canvas id="race-canvas" width=1000 height=500></canvas>
 	<%= render 'race_progresses/show_table' %>
 <% else %>
 	<%= render 'race_progresses/show_error' %>
 <% end %>
 <style type="text/css" media="screen">
+#prog-date {
+  font-size: 140%;
+  font-weight: bold;
+}
+
+
 #progress-table {
 	font-size:120%;
 	border-spacing:0;

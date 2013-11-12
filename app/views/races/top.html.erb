@@ -52,7 +52,7 @@
 					<dl class="cf">
 						<dt>
 							<h3>
-                <% unless race.result %>
+                <% unless race.race_result %>
                   <% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
 								    <%= link_to race.name, race_progress_path(race.id, :last) %>
                   <% else %>

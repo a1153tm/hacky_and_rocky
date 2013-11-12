@@ -1,4 +1,9 @@
 class RaceProgressesController < ApplicationController
+
+  def race_horses
+    race = Race.find_by_id(params[:id])
+    @horses = race.progress(params[:date].to_sym).race_horses
+  end
   
   def show
     flash[:error] = "レースが存在しません。" unless @race = Race.find_by_id(params[:id])
@@ -13,7 +18,7 @@ class RaceProgressesController < ApplicationController
     #end
     
     unless flash[:error]
-      @prog = @race.progress(:last)
+      @prog = @race.progress(params[:date].to_sym)
     end
 
   end

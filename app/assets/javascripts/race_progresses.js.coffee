@@ -5,40 +5,58 @@
 $ ->
   canvas = $('#race-canvas').get(0)
   ctx = canvas.getContext("2d")
-  #ctx.fillStyle = "red"
-  #ctx.rect(0,0,300,300)
-  #ctx.fill()
-  #ctx.stroke()
 
+  # Stroke track
   ctx.beginPath()
-  #ctx.moveTo(0,0)
-  ctx.arc(150, 150, 100, 0.5 * Math.PI, 1.5 * Math.PI, false)
-  ctx.lineTo(450, 50)
-  ctx.arc(450, 150, 100, -0.5 * Math.PI, 0.5 * Math.PI, false)
-  ctx.lineTo(150, 250)
+  ctx.arc(250, 250, 200, 0.5 * Math.PI, 1.5 * Math.PI, false)
+  ctx.lineTo(750, 50)
+  ctx.arc(750, 250, 200, -0.5 * Math.PI, 0.5 * Math.PI, false)
+  ctx.lineTo(750, 450)
   ctx.closePath()
   ctx.fillStyle = '#FFFFF0'
   ctx.fill()
   ctx.stroke()
 
   # Mark start point
-  ctx.moveTo(180, 35)
-  ctx.lineTo(180, 65)
+  ctx.moveTo(250, 40)
+  ctx.lineTo(250, 60)
   ctx.closePath()
   ctx.fill()
   ctx.stroke()
   ctx.font = "120% Sans-Serif"
   ctx.textAlign = 'center'
-  ctx.strokeText('スタート', 180, 30)
+  ctx.strokeText('スタート', 250, 30)
 
-  # Mark start point
-#  ctx.moveTo(180, 35)
-#  ctx.lineTo(180, 65)
-#  ctx.closePath()
-#  ctx.fill()
-#  ctx.stroke()
-#  ctx.font = "120% Sans-Serif"
-#  ctx.textAlign = 'center'
-#  ctx.strokeText('スタート', 180, 30)
+  # Mark goal point
+  ctx.moveTo(250, 440)
+  ctx.lineTo(250, 460)
+  ctx.closePath()
+  ctx.fill()
+  ctx.stroke()
+  ctx.font = "120% Sans-Serif"
+  ctx.textAlign = 'center'
+  ctx.strokeText('ゴール', 250, 480)
 
+  # Map horses
+  $.get "#{location.pathname}/race_horses", (horses) ->
+    totalLen = 500 + Math.PI * 200 + 500
+    limitLen = totalLen
+    denominator = horses[0].point
+    _.each (horse) ->
+      len = (horse.point / denominator) * totalLen
+      if len <= 500
+        x = 250 + len
+        y = 50
+      else if len <= 500 + Math.PI * 200
+        arcLen = len - 500
+        #angle = ((Math.PI * 200) / arclen) * 180
+        deg = arcLen / 200 * Math.PI
+        rad = deg * Math.PI/ 180.0 
+      else
+
+      img = new Image()
+      img.src = first.book.small_image_url
+      console.log first.book.small_image_url
+      img.onload = ->
+        ctx.drawImage(img, 100, 200)
 
