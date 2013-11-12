@@ -14,9 +14,9 @@ end
 task :payback_voting_card => :enviroment do
   puts "#{Time.now} payback_voting_card started."
   today = Date.today.to_datetime
-  Race.find(:all ,:conditions => ['end_date = ?', today]).each do |race|
-    puts "race : #{r.name}, end_date : #{r.end_date}"
-    race.create_result
+  Race.where(end_date: today).load.each do |race|
+    puts "race : #{race.name}, end_date : #{race.end_date}"
+    race.create_result unless race.race_result
     race.voting_cards.find_all_by_payout(nil).each do |card|
       card.payback
     end
