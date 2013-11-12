@@ -13,6 +13,7 @@ class RaceTask
   def self.update_race_progress
     puts "#{Time.now} update_race_progress started."
     today = Date.today.to_datetime
+    RakutenRanking.instance.clear
     Race.find(:all, conditions: ["start_date <= ? and end_date >= ?", today, today]).each do |r|
       puts "race : #{r.name}, end_date : #{r.end_date}"
       r.create_progress today
