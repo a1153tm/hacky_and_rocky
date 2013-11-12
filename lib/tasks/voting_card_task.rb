@@ -5,16 +5,21 @@ class VotingCardTask
   
   def self.execute
     puts "#{Time.now} VotingCardTask started."
-    payback
+    task_payback
     puts "#{Time.now} VotingCardTask finished."
   end
   
-  def self.payback
+  def self.task_payback
     today = Date.today.to_datetime
-    cards = VotingCard.find(:all, :include => :race, :conditions => ['? = races.end_date AND payout IS ?' , today, nil])
-    cards.each do |card|
-      puts "#{Time.now} calc_payout VotingCard ID #{card.id}"
-      card.payback
+    #Race.find_all_by_end_date(today) do |race|
+    Race.find(:all ,:conditions => ['end_date = ?', today]).each do |race|
+      puts "#{race.id} race payback search start..."
+      race.create_result
+      race.voting_cards.find_all_by_payout(nil).each do |card|
+        puts "VotingCard:#{card.id} Race:#{card.race.id} payback"
+        card.payback
+        puts "#{card.id} payback success"
+      end
     end
   end
   

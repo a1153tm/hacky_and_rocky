@@ -3,6 +3,7 @@ class Race < ActiveRecord::Base
   has_many :race_horses, :dependent => :destroy
   has_many :voting_cards, :dependent => :destroy 
   has_many :race_progresses, :dependent => :destroy
+  has_one  :race_result, :dependent => :destroy
   belongs_to :genre
   
   validates :name, :start_date, :end_date, :genre_id,  presence: true
@@ -23,7 +24,7 @@ class Race < ActiveRecord::Base
     prog.race = self
     prog.calc_order()
     self.race_progresses << prog
-    save()
+    save!
   end
 
   def progress(the_date = :last)
@@ -33,8 +34,13 @@ class Race < ActiveRecord::Base
     end
   end
 
+  def create_result()
+    self.race_result = RaceResult.new(race_progress: progress(:last), race: self)
+    save!
+  end
+
   # for testing
-  def result
+  def _result
     result = RaceResult.new
     prog = progress(:last)
     result.race_progress = prog

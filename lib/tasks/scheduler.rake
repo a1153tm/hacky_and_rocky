@@ -13,14 +13,22 @@ end
 task :payback_voting_card => :enviroment do
   puts "#{Time.now} VotingCardTask started."
   today = Date.today.to_datetime
-  cards = VotingCard.find(:all, :include => :race, :conditions => ['? = races.end_date AND payout IS ?' , today, nil])
+  #Race.find_all_by_end_date(today) do |race|
+  Race.find(:all ,:conditions => ['end_date = ?', today]).each do |race|
+    race.create_result
+    race.voting_cards.find_all_by_payout(nil).each do |card|
+      card.payback
+    end
+  end
+  puts "#{Time.now} VotingCardTask finished."
+=begin
+  cards = VotingCard.find(:all, :include => :race, :conditions => ['races.end_date = ? AND payout IS ?' , today, nil])
     cards.each do |card|
       puts "#{Time.now} calc_payout VotingCard ID #{card.id}"
       card.payback
     end
   puts "#{Time.now} VotingCardTask finished."
+=end
 end
 
-Rake::Task[:payback_voting_card].enhance([:update_race_progress]) do
-  Rake::Task[:update_race_progress].invoke
-end
+Rake::Task[:payback_voting_card].enhance([:update_race_progress])
