@@ -7,7 +7,6 @@ class RaceProgressesController < ApplicationController
   
   def show
     flash[:error] = "レースが存在しません。" unless @race = Race.find_by_id(params[:id])
-    #if Time.now > @race.end_date
     # @TODO　ラスト前提で現在は構成しているため。現在は日付までは追っていない 
     flash[:error] = "レース状況がありません" unless RaceProgress.find_by(:race_id => params[:id])
 

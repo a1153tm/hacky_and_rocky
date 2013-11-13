@@ -1,18 +1,26 @@
 <% unless flash[:error] %>
   <h3 id="prog-date"><%= @prog.record_date %> 時点 レース状況</h3>
+  <div id="marquee">
+  	<marquee>うおぽえこわぽｄぱｐｐかｊｓｆｇｄｓｇｊｄｆｈｇｆｄｋｌｆｈだｓｓｄｋｊｌｓｆｈｓｄｂｊｇせ１</marquee>
+  </div>
   <canvas id="race-canvas" width=1000 height=500></canvas>
 	<%= render 'race_progresses/show_table' %>
+	<%= render 'race_progresses/show_comments' %>
 <% else %>
 	<%= render 'race_progresses/show_error' %>
 <% end %>
-
 <style type="text/css" media="screen">
 #prog-date {
   font-size: 140%;
   font-weight: bold;
 }
 
-
+#marquee {
+	font-size:160%;
+	top: 150px;
+	position:absolute;
+	display:block;
+}
 #progress-table {
 	font-size:120%;
 	border-spacing:0;
