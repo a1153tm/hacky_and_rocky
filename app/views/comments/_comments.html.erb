@@ -1,0 +1,7 @@
+<% @race.comments.each do |comment| %>
+  <dl>
+    <dt><%= "#{comment.created_at} #{comment.user.name}" %></dt>
+    <dd><%= comment.comment %></dd>
+  </dl>
+<% end %>
+
