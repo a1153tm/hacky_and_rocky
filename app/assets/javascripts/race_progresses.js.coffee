@@ -69,13 +69,13 @@ $ ->
         rad = deg * Math.PI / 180.0 
         _x = Math.sin(rad) * HANKEI
         console.log _x
-        x = _x + YOHAKU + STRAIT
+        x = _x + YOHAKU + HANKEI + STRAIT
         console.log x
         _y = Math.cos(rad) * HANKEI
         if _y < 0
           y = _y * -1 + HANKEI + YOHAKU
         else
-          y = _y + YOHAKU
+          y = (HANKEI - _y) + YOHAKU
       else
         x = (YOHAKU + HANKEI + STRAIT) - (len - STRAIT - Math.PI * HANKEI)
         y = HANKEI * 2 + YOHAKU
