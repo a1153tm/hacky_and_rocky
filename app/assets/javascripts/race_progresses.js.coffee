@@ -64,13 +64,9 @@ $ ->
       else if len <= STRAIT + Math.PI * HANKEI
         arcLen = len - STRAIT
         deg = (arcLen / (Math.PI * HANKEI)) * 180.0
-        console.log horse.book.title
-        console.log deg
         rad = deg * Math.PI / 180.0 
         _x = Math.sin(rad) * HANKEI
-        console.log _x
         x = _x + YOHAKU + HANKEI + STRAIT
-        console.log x
         _y = Math.cos(rad) * HANKEI
         if _y < 0
           y = _y * -1 + HANKEI + YOHAKU
