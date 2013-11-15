@@ -20,6 +20,9 @@ Enpit::Application.routes.draw do
   # Voting card
   post '/race/:id/voting_cards' => 'voting_cards#vote', :as => :voting_cards
 
+  # Comment
+  post '/race/:race_id/comments' => 'comments#create',   :as => :comments
+
   # Administrator pages
   get    '/admin'               => "admin#home",        :as => :admin_home
   get    '/admin/login'         => "admin#login"

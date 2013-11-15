@@ -3,7 +3,7 @@ class Race < ActiveRecord::Base
   has_many :race_horses, :dependent => :destroy
   has_many :voting_cards, :dependent => :destroy 
   has_many :race_progresses, :dependent => :destroy
-  has_many :comment, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   has_one  :race_result, :dependent => :destroy
   belongs_to :genre
   

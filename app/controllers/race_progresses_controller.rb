@@ -18,8 +18,8 @@ class RaceProgressesController < ApplicationController
     
     unless flash[:error]
       @prog = @race.progress(params[:date].to_sym)
+      @comment = Comment.new(user_id: current_user.id) if current_user
     end
-
   end
   
 end

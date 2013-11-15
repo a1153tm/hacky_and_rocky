@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+  $('#new_comment').bind 'ajax:success', (data, res, xhr) ->
+    $('#race-comments .read').html(res)
+
   canvas = $('#race-canvas').get(0)
   ctx = canvas.getContext("2d")
 
