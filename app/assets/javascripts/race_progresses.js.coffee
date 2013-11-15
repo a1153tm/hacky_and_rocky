@@ -8,6 +8,7 @@ $ ->
   #-----------------------------------------------------------------------------
   $('#new_comment').bind 'ajax:success', (data, res, xhr) ->
     $('#race-comments .read').html(res)
+    $('#comment_comment').val('')
 
   #-----------------------------------------------------------------------------
   # For race canvas
@@ -63,6 +64,8 @@ $ ->
       else if len <= STRAIT + Math.PI * HANKEI
         arcLen = len - STRAIT
         deg = (arcLen / (Math.PI * HANKEI)) * 180
+        console.log horse.book.title
+        console.log deg
         rad = deg * Math.PI / 180.0 
         _x = Math.sin(rad) * HANKEI
         x = _x + YOHAKU + STRAIT
