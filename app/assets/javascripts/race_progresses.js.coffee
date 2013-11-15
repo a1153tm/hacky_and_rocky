@@ -81,3 +81,4 @@ $ ->
       img.onload = ->
         ctx.drawImage(img, x, y)
 
+
