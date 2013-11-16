@@ -18,6 +18,7 @@ $ ->
   STRAIT = 500
 
   canvas = $('#race-canvas').get(0)
+  return unless canvas;
   ctx = canvas.getContext("2d")
 
   # Stroke track
