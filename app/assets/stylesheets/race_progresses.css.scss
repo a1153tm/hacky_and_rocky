@@ -1,3 +1,87 @@
 // Place all the styles related to the RaceProgresses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.overlay{
+  background:url(/assets/contents/race_process_bg2.png) repeat;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+#marquee {
+  font-size:200%;
+  color:#ff9900;
+  font-weight:bold;
+  position:absolute;
+}
+#marquee > marquee {
+  line-height:1em;
+}
+#modal{
+  overflow:auto;
+  z-index:1001;
+  position:absolute;
+}
+#modal > #logs {
+  width:194px;
+  height:594px;
+  border:3px solid #333;
+  background:#FFF;
+  float:left;
+}
+#modal > #fields {
+  width:600px;
+  margin:0 10px;
+  float:left;
+}
+#modal > #fields > #race-paint {
+  background:#FFF;
+  height:428px;
+  border:3px solid #333;
+}
+
+#modal > #fields > #race-paint img{
+  width:594px;
+  height:auto;
+}
+
+#modal > #fields > #race-paint .inner {
+}
+
+#modal > #fields > #race-comments {
+  background:#FAFAFA;
+  margin-top:10px;
+  border:3px solid #333;
+  height:110px;
+}
+#modal > #fields > #race-comments #test{
+  width:587px;
+  padding:6px 1px;
+  margin-bottom:5px;
+}
+
+#modal > #list {
+  width:160px;
+  height:600px;
+  float:left;
+}
+#modal > #list dl {
+  background:#FFF;
+  border:3px solid #333;
+  margin-bottom:10px;
+}
+#modal > #list dt {
+  color:#fff;
+  background:#333;
+  font-size:130%;
+  font-weight:bold;
+  padding:1px;
+  text-align:center;
+}
+#modal > #list dd {
+  font-size:110%;
+  font-weight:bold;
+  padding:2px;
+}

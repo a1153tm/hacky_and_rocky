@@ -1,0 +1,114 @@
+<div class="overlay" style="display:none"></div>
+
+	<div id="modal" class="cf" style="display:none;">
+		
+		<div id="logs">
+			<h2 style="color:#FFF;background:#333;padding:10px;font-size:140%;font-weight:bold;display:block;">コメント一覧</h2>
+		</div>
+		
+		<div id="fields">
+			<div id="developper-comment">
+				<h2 style="color:#FFF;background:#333;padding:10px;font-size:140%;font-weight:bold;display:block;">レース実況</h2>
+			</div>
+			<div id="race-paint">
+				<div class="inner">
+					<div id="marquee"></div>
+					<%= image_tag('contents/race_images.png', alt: 'w') %>
+				</div>
+			</div>
+			<div id="race-comments">
+				<form action="javascript:void(0)" id="comments" >
+					<input type="text" name="test" id="test" />
+					<input type="submit" class="lib-btn-black" value="送信" />
+					<button id="race-mode-close" class="lib-btn">閉じる</button>
+				</form>
+			</div>
+		</div>
+		
+		<div id="list">
+		<% @prog.race_horses.each do |horse| %>
+			<dl class="cf">
+				<dt><%= horse.order %>位</dt>
+				<dd><%= horse.book.title %></dd>
+			</dl>
+		<% end %>
+		</div>
+		
+	</div>
+
+</html>
+<script type="text/javascript" charset="utf-8">
+$(window).load(function()
+{
+	var parentMarquee = $("#marquee");
+	var _marquee = $(".marquee　marquee");
+	var comments = $("#comments");
+	var values = $("#test");
+	
+	comments.submit(function()
+	{
+		sendMarquee(values.val());
+		values.val("");
+		return false;
+	});
+	
+	
+	function sendLog(text)
+	{
+		
+	}
+	
+	function sendMarquee(text)
+	{
+		text = '<marquee behavior="scroll" loop="1" scrollamount="15" direction="left" width="594">'+text+'</marquee>'
+		if(parentMarquee.find('marquee').size() > 15) parentMarquee.html("");
+		parentMarquee.append(text);
+		marqueeCount++;
+	}
+	
+	function getMarqueeId()
+	{
+		return 'marquee'　+　marqueeCount;
+	}
+	
+});
+$(window).load(function()
+{
+	var modal = $("#modal");
+	var overlay = $(".overlay");
+	var button = $("#race-mode");
+	var closeButton = $("#race-mode-close");
+	var parentMarquee = $("#marquee");
+	var modalWidth = 980;
+	var modalHeight = 600;
+
+	button.click(function()
+	{
+		overlay.show();
+		modal.show();
+		set();
+	});
+	
+	closeButton.click(function()
+	{
+		parentMarquee.html("");
+		overlay.hide();
+		modal.hide();
+	})
+	
+	$(window).resize(function()
+	{
+		set();
+	});
+	
+	function set()
+	{
+		marginWidth  = ($(window).width() - modalWidth) / 2;
+		marginHeight = ($(window).height() - modalHeight) / 2;
+		modal.width(modalWidth);
+		modal.height(modalHeight);
+		modal.css('left',marginWidth);
+		modal.css('top',marginHeight);
+	}
+});
+</script>
