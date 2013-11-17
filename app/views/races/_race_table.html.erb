@@ -77,7 +77,9 @@
 </div>
 <div class="submit lib-aside-mTop" style="text-align: center">
 <% unless @card %>
+　　<% if current_user %>
 	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
+　　<% end %>
 <% end %>
 	<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 </div>
