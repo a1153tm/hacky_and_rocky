@@ -1,6 +1,41 @@
 // Place all the styles related to the RaceProgresses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#back-default-mode {
+  left:980px;
+  position:absolute;
+  z-index: 1001;
+}
+#back-default-mode a {
+  width:100px;
+  height:40px;
+  background:url(/assets/contents/default_mode_button.png) no-repeat;
+  text-indent:-99999pt;
+  display:block;
+}
+#back-default-mode a:hover {
+  background:url(/assets/contents/default_mode_button_on.png) no-repeat;
+}
+#mode-frame {
+  width:180px;
+  height:150px;
+  top:0;
+  left:0;
+  position:absolute;
+}
+#mode-frame a {
+  width:180px;
+  height:150px;
+  text-indent:-9999pt;
+  background:url(/assets/contents/mode.png) no-repeat;
+  display:block;
+}
+#mode-frame a:hover {
+  background:url(/assets/contents/mode_on.png) no-repeat;
+}
+///////////////////////////////////////////////////////////////////////
+//　モーダル関連のスタイル設定
+///////////////////////////////////////////////////////////////////////
 .overlay{
   background:url(/assets/contents/race_process_bg2.png) repeat;
   width: 100%;
@@ -17,7 +52,12 @@
   position:absolute;
 }
 #marquee > marquee {
+  width:800px;
   line-height:1em;
+  position:absolute;
+  top:0;
+  left:0;
+  display:block;
 }
 #modal{
   overflow:auto;
@@ -26,15 +66,26 @@
 }
 #modal > #logs {
   width:194px;
-  height:594px;
   border:3px solid #333;
   background:#FFF;
   float:left;
+}
+#modal #log-list {
+  height:554px;
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+#modal > #logs > #log-list dl {
+  border-bottom:1px solid #333;
+  padding:5px;
 }
 #modal > #fields {
   width:600px;
   margin:0 10px;
   float:left;
+  position:relative;
+  overflow:hidden;
 }
 #modal > #fields > #race-paint {
   background:#FFF;
