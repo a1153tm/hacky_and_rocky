@@ -80,6 +80,5 @@ class PickBookTask
       'isbn' => isbn,
     })
   end
-
 end
 
