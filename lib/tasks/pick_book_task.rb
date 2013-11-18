@@ -2,7 +2,7 @@ require './app/models/book'
 require './app/models/genre'
 
 class PickBookTask
-  def self.execute(item_code = "14365300")
+  def self.execute(item_code = "14365301")
     #Genre.find(:all).each do |g|
       begin
         item_json = JSON.parse(get_item_json(item_code))
