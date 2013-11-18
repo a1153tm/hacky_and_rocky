@@ -1,7 +1,6 @@
 <% unless flash[:error] %>
   <h3 id="prog-date"><%= @prog.created_at.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
 	<canvas id="race-canvas" width="1000" height="500"></canvas>
-	<button id="race-mode" class="lib-btn-black lib-button-large" style="margin:10px 0;">実況モード</button>
 	<%= render 'race_progresses/show_table' %>
 	<%= render 'race_progresses/show_race_mode' %>
   <h2 class="lib-box-title lib-aside-mTop">コメント</h2>
