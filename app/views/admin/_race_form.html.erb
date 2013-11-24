@@ -28,16 +28,16 @@
   </tr>
   <tr>
     <th rowspan="4" class="req">期間</th>
-    <th rowspan="2">投票</th>
-    <td colspan="2"><span>開始日　</span><%= r.date_select :start_date, use_month_numbers: true %></td>
+    <th rowspan="2">集計</th>
+    <td colspan="2"><span>開始日　</span><%= r.date_select :collect_start, use_month_numbers: true %></td>
   </tr>
   <tr>
-    <td colspan="2"><span>終了日　</span><%= r.date_select :end_date, use_month_numbers: true %></td>
+    <td colspan="2"><span>終了日　</span><%= r.date_select :collect_end, use_month_numbers: true %></td>
   </tr>
     <th rowspan="2">レース</th>
-    <td colspan="2"><span>開始日　</span><%= r.date_select :start_date, use_month_numbers: true %></td>
+    <td colspan="2"><span>開始日時　</span><%= r.datetime_select :start_date, use_month_numbers: true %></td>
   <tr>
-    <td colspan="2"><span>終了日　</span><%= r.date_select :end_date, use_month_numbers: true %></td>
+    <td colspan="2"><span>終了日時　</span><%= r.datetime_select :end_date, use_month_numbers: true %></td>
   </tr>
   <tr>
     <% rows = 10 * 3 %>

@@ -67,10 +67,10 @@
 							参加者<span><%= race.voting_cards.size %></span>名
 						</dd><!--　ジャンル名 -->
 						<dd class="election-date">
-							<p style="font-weight:bold">開催日</p>
-							<%= race.start_date.strftime("%Y-%m-%d") %>
-							<p style="font-weight:bold">終了日</p>
-							<%= race.end_date.strftime("%Y-%m-%d") %>
+							<p style="font-weight:bold">開始日時</p>
+							<%= race.start_date.strftime("%m-%d %H:%M") %>
+							<p style="font-weight:bold">終了日時</p>
+							<%= race.end_date.strftime("%m-%d %H:%M") %>
 						</dd><!-- 投票受付日から締日 -->
 					</dl>
 					<% end %>
