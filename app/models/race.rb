@@ -46,6 +46,11 @@ class Race < ActiveRecord::Base
     save!
   end
 
+  def start
+    puts "race start: {name: #{name}, start_date: #{start_date}, end_date: #{end_date}}"
+    puts "race end:   {name: #{name}, start_date: #{start_date}, end_date: #{end_date}}"
+  end
+
   # for testing
   def _result
     result = RaceResult.new

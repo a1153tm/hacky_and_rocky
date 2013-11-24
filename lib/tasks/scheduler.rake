@@ -11,6 +11,19 @@ task :update_race_progress => :environment do
   puts "#{Time.now} update_race_progress finished."
 end
 
+task :start_races => :environment do
+  puts "#{Time.now} start races started."
+  threads = []
+  Race.where(["state = ? and start_date <= ?", 'READY', Time.now]).each do |r|
+    threads << Thread.new { r.start }
+  end    
+  sleep 1
+  threads.each {|t| t.join}
+  puts "#{Time.now} start races finished."
+end
+
+# start_races()でVotingCard#payback()を呼び出すため、コメントアウト
+=begin
 task :payback_voting_card => :enviroment do
   puts "#{Time.now} payback_voting_card started."
   today = Date.today.to_datetime
@@ -25,4 +38,5 @@ task :payback_voting_card => :enviroment do
 end
 
 Rake::Task[:payback_voting_card].enhance([:update_race_progress])
+=end
 
