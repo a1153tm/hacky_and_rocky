@@ -1,14 +1,15 @@
 require './app/models/book'
 require './app/models/genre'
 
-class PickBookTask
-  def self.execute(item_code)
-    #Genre.find(:all).each do |g|
+class TenBookTask
+  def self.execute()
+    item_array = [16619894, 16658137, 16556322, 16691369, 16563784, 15938558, 10537438, 11133217, 12015154, 16591135]
+    item_array.each do |i|
       begin
-        item_json = JSON.parse(get_item_json(item_code))
+        item_json = JSON.parse(get_item_json(i))
       rescue HTTPClient::BadResponseError => e
         p e
-        #next
+        next
       end
       items = item_json['Items'].map {|i| i['Item']}
       books = items.inject([]) do |bs,i|
@@ -32,7 +33,7 @@ class PickBookTask
             p book_json
           rescue HTTPClient::BadResponseError => e
             p e
-            #next
+            next
           end
           if book_json['count']
             hash = book_json['Items'][0]['Item']
@@ -57,7 +58,7 @@ class PickBookTask
       rescue NoMethodError => e
         p e
       end
-    #end
+    end
   end
 
   private

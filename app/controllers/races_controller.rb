@@ -7,13 +7,14 @@ class RacesController < ApplicationController
   end
   
   def top
+    @users = User.find(:all, :order => "point DESC")
+    @genres = Genre.all
     @races = Race.find(:all, :conditions => ['end_date >= ?' , Date.today.to_datetime])
     render "races/top"
   end
 
   # GET /races/1
   def show
-    @sign_check = current_user != nil ? "true" : "false" ;
     if Race.find_by_id(params[:id])
       @race = Race.find(params[:id], :include => :race_horses)
       if current_user
