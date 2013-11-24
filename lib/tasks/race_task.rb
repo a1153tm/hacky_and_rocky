@@ -3,13 +3,6 @@ require './app/models/race'
 
 class RaceTask
 
-  def self.execute
-    puts "#{Time.now} RaceTask started."
-    update_race_progress
-    payback_voting_card
-    puts "#{Time.now} RaceTask finished."
-  end
-
   def self.update_race_progress
     puts "#{Time.now} update_race_progress started."
     today = Date.today.to_datetime
@@ -21,6 +14,19 @@ class RaceTask
     puts "#{Time.now} update_race_progress finished."
   end
 
+  def self.start_races
+    puts "#{Time.now} start races started."
+    threads = []
+    Race.where(["state = ? and start_date <= ?", 'READY', Time.now]).each do |r|
+      threads << Thread.new { r.start }
+    end    
+    sleep 1
+    threads.each {|t| t.join}
+    puts "#{Time.now} start races finished."
+  end
+
+# start_races()でVotingCard#payback()を呼び出すため、コメントアウト
+=begin
   def self.payback_voting_card
     puts "#{Time.now} payback_voting_card started."
     today = Date.today.to_datetime
@@ -33,5 +39,6 @@ class RaceTask
     end
     puts "#{Time.now} payback_voting_card finished."
   end
+=end
 
 end

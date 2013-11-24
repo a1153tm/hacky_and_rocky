@@ -14,7 +14,7 @@
 	<tbody>
 	<% @prog.race_horses.each do |horse| %>
 		<tr>
-			<td class="rank <%= horse_number_colors(horse.order-1) %>">
+			<td class="rank <%= horse_number_colors(horse.horse_no - 1) %>">
 				<%= horse.order %>
 				<!-- 順位 -->
 			</td>

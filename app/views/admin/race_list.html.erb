@@ -16,8 +16,10 @@
           <th class="req" >グレード</th>
           <th class="req" >タイプ</th>
           <th class="req" >出走数</th>
-          <th class="req" >開始日</th>
-          <th class="req" >終了日</th>
+          <th class="req" >集計開始日</th>
+          <th class="req" >集計集計日</th>
+          <th class="req" >開始日時</th>
+          <th class="req" >終了日時</th>
         </tr>
         <tr>
       <% @races.each do |r| %>
@@ -27,8 +29,10 @@
           <td><%= Race::GRADES[r.grade] || '-' %></td>
           <td><%= r.etype %></td>
           <td><%= r.race_horses.size %></td>
-          <td><%= format_time_to_date(r.start_date) %></td>
-          <td><%= format_time_to_date(r.end_date) %></td>
+          <td><%= format_time_to_date(r.collect_start) %></td>
+          <td><%= format_time_to_date(r.collect_end) %></td>
+          <td><%= r.start_date.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= r.end_date.strftime("%Y-%m-%d %H:%M") %></td>
         </tr>
       <% end %>
       </table>

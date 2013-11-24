@@ -71,10 +71,11 @@ class AdminController < ApplicationController
     end
 
     def race_params
-      params.require(:race).permit(:name, :genre_id, :etype, :grade, :start_date, :end_date)
+      params.require(:race).permit(:name, :genre_id, :etype, :grade, :collect_start, :collect_end, :start_date, :end_date)
     end
 
     def set_breadcrumb
       add_breadcrumb 'Home', admin_home_path
     end
 end
+

@@ -14,8 +14,14 @@ class Race < ActiveRecord::Base
       record.errors[attr] << "本を10冊登録してください。"
     end
   end
+  validates_each :state do |record, attr, state|
+    unless !STATES.include? state
+      record.errors[attr] << " must in READY, RUNNING, ENDED."
+    end
+  end
 
   GRADES = {1 => 'GⅠ', 2 => 'GⅡ', 3 => 'GⅢ'}
+  STATES = %w{ READY, RUNNING, ENDED }
 
   # バッチ処理から呼出される
   def create_progress(the_date)
@@ -38,6 +44,11 @@ class Race < ActiveRecord::Base
   def create_result()
     self.race_result = RaceResult.new(race_progress: progress(:last), race: self)
     save!
+  end
+
+  def start
+    puts "race start: {name: #{name}, start_date: #{start_date}, end_date: #{end_date}}"
+    puts "race end:   {name: #{name}, start_date: #{start_date}, end_date: #{end_date}}"
   end
 
   # for testing
