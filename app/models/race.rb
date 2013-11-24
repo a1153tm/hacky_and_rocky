@@ -6,6 +6,7 @@ class Race < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_one  :race_result, :dependent => :destroy
   belongs_to :genre
+  has_one  :current_progress, foreign_key: "current_progress_id", class_name: "RaceProgress"
   
   validates :name, :start_date, :end_date, :genre_id,  presence: true
   validates :name, length: {minimum: 3, maximum: 20}

@@ -11,7 +11,7 @@ Enpit::Application.routes.draw do
   get '/race/:id(.:format)'     => "races#show",  :as => :race
 
   # Race progress
-  get '/race/:id/progresses/:date/race_horses' => "race_progresses#race_horses"
+  #get '/race/:id/progresses/:date/race_horses' => "race_progresses#race_horses"
   get '/race/:id/progresses/:date' => "race_progresses#show", :as => :race_progress
 
   # Race result
