@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131124052903) do
+ActiveRecord::Schema.define(version: 20131124074325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,8 @@ ActiveRecord::Schema.define(version: 20131124052903) do
     t.integer  "genre_id"
     t.datetime "collect_start"
     t.datetime "collect_end"
-    t.string   "state",         default: "READY"
+    t.string   "state",               default: "READY"
+    t.integer  "current_progress_id"
   end
 
   create_table "ranking_points", force: true do |t|

@@ -53,7 +53,7 @@ $ ->
   ctx.strokeText('ゴール', HANKEI + YOHAKU, YOHAKU + HANKEI * 2 + 30)
 
   # Map horses
-  $.get "#{location.pathname}/race_horses", (horses) ->
+  $.getJSON "#{location.pathname}", (horses) ->
     totalLen = STRAIT * 2 + Math.PI * HANKEI
     limitLen = totalLen
     denominator = horses[0].point

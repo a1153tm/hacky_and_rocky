@@ -1,10 +1,5 @@
 class RaceProgressesController < ApplicationController
 
-  def race_horses
-    race = Race.find_by_id(params[:id])
-    @horses = race.progress(params[:date].to_sym).race_horses
-  end
-  
   def show
     flash[:error] = "レースが存在しません。" unless @race = Race.find_by_id(params[:id])
     # @TODO　ラスト前提で現在は構成しているため。現在は日付までは追っていない 
