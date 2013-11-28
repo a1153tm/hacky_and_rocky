@@ -27,7 +27,7 @@ class Race < ActiveRecord::Base
   # バッチ処理として呼出される
   def create_progress(the_date)
     olds = race_progresses.select {|p| p.record_date == the_date}
-    olds.each {|o| o.destroy} unless olds.empty?
+    #olds.each {|o| o.destroy} unless olds.empty?
     prog = RaceProgress.new(record_date: the_date)
     prog.race = self
     prog.calc_order()
