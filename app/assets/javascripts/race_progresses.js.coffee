@@ -50,7 +50,7 @@ $ ->
   ctx.stroke()
   ctx.font = "120% Sans-Serif"
   ctx.textAlign = 'center'
-  ctx.strokeText('ゴール', HANKEI + YOHAKU, YOHAKU + HANKEI * 2 + 30)
+  ctx.strokeText('ゴール', HANKEI + YOHAKU, YOHAKU + HANKEI * 2 - 30)
 
   # Map horses
   $.getJSON "#{location.pathname}", (horses) ->
