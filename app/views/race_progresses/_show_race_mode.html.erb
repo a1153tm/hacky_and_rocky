@@ -1,4 +1,13 @@
 <div class="overlay" style="display:none"></div>
+<div id="end-modal">
+	<div class="inner">
+		<p>レースは終了しました！</p>
+		<p>１位は<span id="race_king" style="color: orange;font-weight: bold;"></span>でした！</p>
+		<p>集計結果が出るまで、お待ちください。</p>
+		<button class="race-mode-close lib-btn lib-button-large">閉じる</button>
+	</div>
+		
+</div>
 <div id="modal" class="cf" style="display:none">
 	<div id="rank-list"></div>
 	<div class="cf">
@@ -32,6 +41,7 @@
 <div id="mode-frame">
 	<a href="javascript:void(0)" class="race-mode-open" title="実況モード">実況モードにする</a>
 </div>
+<input type="hidden" name="race_state" value="" id="race_state" />
 <input type="hidden" name="race_id" value="<%= @prog.race.id %>" id="race_id" />
 <% if current_user %>
 <input type="hidden" name="user_name" value="<%= current_user.name %>" id="user_name" />
@@ -47,8 +57,12 @@ $(window).load(function()
 	var modeHeight = 150;
 	var modePosition = function()
 	{
-		modeFrame.css('left', $(window).width() - modeWidth);
-		modeFrame.css('top',  $(window).scrollTop() + $(window).height() - modeHeight);
+		if($('#race_state').val() != 'END') {
+			modeFrame.css('left', $(window).width() - modeWidth);
+			modeFrame.css('top',  $(window).scrollTop() + $(window).height() - modeHeight);
+		} else {
+			modeFrame.hide();
+		}
 	}
 	
 	modePosition();
@@ -72,6 +86,7 @@ $(window).load(function()
 	var raceId = $('#race_id').val();
 	var userName = $('#user_name').val();
 	var modal = $("#modal");
+	var endModal = $("#end-modal");
 	var overlay = $(".overlay");
 	var backDefaultFrame = $("#back-default-mode");
 	var button = $(".race-mode-open");
@@ -91,57 +106,65 @@ $(window).load(function()
 //===========================================================================================================
 
 	// open
-	ws.onopen = function ()
-	{
+	ws.onopen = function (){
 		var message = {race_id: raceId, type: 'join'};
 		ws.send(JSON.stringify(message));
 	};
 
 	  // receive
-	ws.onmessage = function (event)
-	{
+	ws.onmessage = function (event){
 		sendMarquee(event.data);
 		sendLog(event.data, userName);
 	};
 
 	// close
-	ws.onclose = function(event)
-	{
+	ws.onclose = function(event){
 		console.log(ws.readyState);
 	};
 
-	button.click(function()
-	{
+	button.click(function(){
 		overlay.show();
 		modal.show();
+		modal.addClass('active');
 		backDefaultFrame.show();
+		setBackDefaultFramePosition();
 		setModalPosition();
 	});
 	
-	closeButton.click(function()
-	{
+	closeButton.click(function(){
+		modal.removeClass('active');
 		parentMarquee.html("");
 		overlay.hide();
 		modal.hide();
+		endModal.hide();
 		backDefaultFrame.hide();
 	})
 	
-	$(window).scroll(function()
-	{
-		setBackDefaultFramePosition();
-		setModalPosition();
+	$(window).scroll(function(){
+		if(modal.hasClass('active')){
+			setBackDefaultFramePosition();
+			setModalPosition();
+		}
 	});
 	
-	$(window).resize(function()
-	{
-		setBackDefaultFramePosition();
-		setModalPosition();
+	$(window).resize(function(){
+		if(modal.hasClass('active')){
+			setBackDefaultFramePosition();
+			setModalPosition();
+		}
 	});
 	
-	comments.submit(function()
-	{
-		if( validateMarquee(values.val()) )
-		{
+	setInterval(function(){
+		if(modal.hasClass('active')){
+			modal.hide();
+			modal.removeClass('active');
+			endModal.show();
+		}
+		setEndModalPosition();
+	},3000);
+	
+	comments.submit(function(){
+		if( validateMarquee(values.val())){
 		    var message = {race_id: raceId, type: 'comment', comment: values.val()};
 		    ws.send(JSON.stringify(message));
 			values.val("");
@@ -149,13 +172,11 @@ $(window).load(function()
 		return false;
 	});
 
-
 //===========================================================================================================
 //　ModalWindowのPosition関連
 //===========================================================================================================
 	
-	function setModalPosition()
-	{
+	function setModalPosition(){
 		marginWidth  = ($(window).width() - modalWidth) / 2;
 		marginHeight = $(window).scrollTop() + (($(window).height() - modalHeight) / 2);
 		modal.width(modalWidth);
@@ -164,22 +185,28 @@ $(window).load(function()
 		modal.css('top', marginHeight);
 	}
 	
-	function setBackDefaultFramePosition()
-	{
+	function setEndModalPosition(){
+		marginWidth  = ($(window).width() - modalWidth) / 2;
+		marginHeight = $(window).scrollTop() + (($(window).height() - modalHeight) / 2);
+		endModal.width(modalWidth);
+		endModal.height(modalHeight);
+		endModal.css('left', marginWidth);
+		endModal.css('top', marginHeight);
+	}
+	
+	function setBackDefaultFramePosition(){
 		backDefaultFrame.css('top', $(window).scrollTop());
 	}
 	
 //===========================================================================================================
 //　Log関連
 //===========================================================================================================
-	function sendLog(text, name)
-	{
+	function sendLog(text, name){
 		var results = '<dl><dt>'+ htmlSpecialChars(text) +'</dt><dd>'+ getCurrentTime() +' by'+ htmlSpecialChars(name) +'</dd></dl>';
 		_logList.prepend(results);
 	}
 	
-	function getCurrentTime()
-	{
+	function getCurrentTime(){
 		var now   = new Date();
 		var year  = now.getYear() < 2000 ? now.getYear() + 1900 : now.getYear();
 		var month = now.getMonth() + 1;
@@ -192,20 +219,18 @@ $(window).load(function()
 //===========================================================================================================
 //　Marquee関連
 //===========================================================================================================
-	function sendMarquee(text)
-	{
+
+	function sendMarquee(text){
 		var results = '<marquee behavior="scroll" loop="1" style="top:'+ _marqueePosition() +'px" scrollamount="'+ _marqueeSpeed(text) +'" direction="left">'+ htmlSpecialChars(text) +'</marquee>';
 		parentMarquee.append(results);
 	}
 	
-	function validateMarquee(text)
-	{
+	function validateMarquee(text){
 		if(42 > text.length && 0 < text.length) return true;
 		return false;   
 	}
 	
-	function _marqueePosition()
-	{
+	function _marqueePosition(){
 		var positionY = 0
 		if(parentMarquee.find("marquee").size() % 20 === 0)
 		{
@@ -216,32 +241,25 @@ $(window).load(function()
 		return positionY;
 	}
 	
-	function _marqueeSpeed(text)
-	{
-		if(text.length > 41)
-		{
+	function _marqueeSpeed(text){
+		if(text.length > 41) {
 			return 80;
 		} 
-		else if(text.length > 36 && text.length < 40)
-		{
+		else if(text.length > 36 && text.length < 40) {
 			return 75;
 		}
-		else if(text.length > 31 && text.length < 35)
-		{
+		else if(text.length > 31 && text.length < 35) {
 			return 70;
 		}
-		else if(text.length > 14 && text.length < 30)
-		{
+		else if(text.length > 14 && text.length < 30) {
 			return 50;
 		}
-		else
-		{
+		else {
 			return 30;
 		}
 	}
 	
-	function htmlSpecialChars(str)
-	{
+	function htmlSpecialChars(str){
 	    return str.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 	}
 	

@@ -64,6 +64,21 @@
   z-index:1001;
   position:absolute;
 }
+#end-modal {
+  width:980px;
+  height:600px;
+  font-size:340%;
+  overflow:auto;
+  z-index:1200;
+  position:absolute;
+  display:none;
+}
+#end-modal .inner {
+  line-height:3em;
+  border:5px solid #333;
+  background:#FFF;
+  text-align:center;
+}
 #modal #logs {
   width:187px;
   border:3px solid #333;
