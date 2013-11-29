@@ -8,7 +8,7 @@
 		<div id="developper-comment">
 			<h2 style="color:#FFF;background:#333;padding:10px;font-size:140%;font-weight:bold;display:block;">レース実況</h2>
 		</div>
-		<div id="race-paint">
+		<div id="race-canvas">
 			<div class="inner">
 				<div id="marquee"></div>
 				<%= image_tag('contents/race_images.png', alt: 'w') %>
@@ -21,15 +21,16 @@
 			</form>
 		</div>
 	</div>
-	<div id="list">
-	<% @prog.race_horses.each do |horse| %>
-		<dl class="cf">
-			<dt><%= horse.order %>位</dt>
-			<dd><%= horse.book.title %></dd>
-		</dl>
-	<% end %>
-	</div>	
+	<div id="rank-list"></div>	
 </div>
+
+<script type="text/html" id="rank-list-tmpl" charset="utf-8">
+	<dl class="cf">
+		<dt>{{horse.order}}位</dt>
+		<dl>{{horse.book.title}}</dl>
+	</dl>
+</script>
+
 <div id="back-default-mode" style="display:none">
 	<a href="javascript:void(0)" class="race-mode-close" title="通常モードに戻る">通常モードに戻る</a>
 </div>
@@ -42,6 +43,51 @@
 <% else %>
 <input type="hidden" name="user_name" value="774競馬" id="user_name" />
 <% end %>
+<script type="text/javascript" charset="utf-8">
+var RaceConf = {
+	raceId: $("#race_id").val(),
+	raceUrl: '/race/'+ $("#race_id").val() +'.json',
+	progressUrl: '/race/'+ $("#race_id").val() +'/progresses/current.json',
+	responseTime: 30000
+};
+
+var RaceProgress = Backbone.Model.extend({});
+
+var RaceProgresses = Backbone.Collection.extend({
+    model: RaceProgress,
+    url: RaceConf.progressUrl
+});
+
+var ProgressRankingList = Backbone.View.extend({
+	el: $('#rank-list'),
+	tmpl: $('#rank-list-tmpl'),
+    initialize: function(){
+    	this.collection.on("sync", this.render);
+    },
+	render: function(collection) {
+		collection.each(function(model){
+			console.log(model.attributes);			
+		},this);
+	}
+});
+
+$(window).load(function(){
+	var delay = 3000;
+	var progresses = new RaceProgresses();
+	var progressRankingList  = new ProgressRankingList({collection: progresses});
+	setInterval(function(){
+		$.get(RaceConf.raceUrl, function(race) {
+			if (race.state === 'RUNNING') {
+			
+			} else if(race.state === 'READY'){
+				
+			} else if(race.state === 'END') {
+				progresses.fetch();
+			}
+		});
+	},delay);
+});
+</script>
 <script type="text/javascript" charset="utf-8">
 $(window).load(function()
 {
