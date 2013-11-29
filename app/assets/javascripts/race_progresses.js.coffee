@@ -20,7 +20,7 @@ $ ->
     el: '#race-canvas'
 
     initialize: ->
-      #@collection.on('sync', @render)
+      @collection.on('sync', @render)
       @ctx = @el.getContext('2d')
       @YOHAKU_UE = 50
       @YOHAKU = 20
@@ -67,16 +67,16 @@ $ ->
     drawProgress: (horses) ->
       horse = horses[0]
       totalLen = @STRAIT * 2 + Math.PI * @HANKEI
-      if horse.numOfProgs
-        limitLen = totalLen * (horse.pointOfProgs / horse.numOfProgs)
+      if horse.get('numOfProgs')
+        limitLen = totalLen * (horse.get('pointOfProgs') / horse.get('numOfProgs'))
       else
         limitLen = totalLen
   
-      denominator = horses[0].point
+      denominator = horse.get('point')
       _.each horses, (horse) =>
-        console.log horse
+        #console.log horse
         if denominator
-          len = (horse.point / denominator) * limitLen
+          len = (horse.get('point') / denominator) * limitLen
         else
           len = 0
         if len <= @STRAIT
@@ -98,11 +98,11 @@ $ ->
           y = @HANKEI * 2 + @YOHAKU_UE
   
         img = new Image()
-        img.src = horse.book.small_image_url
+        img.src = horse.get('book').small_image_url
         img.onload = =>
           @ctx.drawImage(img, x, y)
   
-  raceCanvas = new RaceCanvas()
-  $.getJSON "#{location.pathname}", (horses) ->
-    raceCanvas.render(horses)
+  #raceCanvas = new RaceCanvas()
+  #$.getJSON "#{location.pathname}", (horses) ->
+  #  raceCanvas.render(horses)
 
