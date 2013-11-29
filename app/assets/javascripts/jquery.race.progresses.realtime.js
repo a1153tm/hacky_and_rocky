@@ -7,7 +7,7 @@ var RaceProgressConfig = {
     raceId: $("#race_id").val(),
     raceUrl: '/race/'+ $("#race_id").val() +'.json',
     progressUrl: '/race/'+ $("#race_id").val() +'/progresses/current.json',
-    responseTime: 30000
+    responseTime: 10000
 };
 
 /**
