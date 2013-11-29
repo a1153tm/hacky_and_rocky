@@ -6,9 +6,9 @@ $ ->
   #-----------------------------------------------------------------------------
   # For comment post
   #-----------------------------------------------------------------------------
-  $('#new_comment').bind 'ajax:success', (data, res, xhr) ->
-    $('#race-comments .read').html(res)
-    $('#comment_comment').val('')
+  #$('#new_comment').bind 'ajax:success', (data, res, xhr) ->
+  #  $('#race-comments .read').html(res)
+  #  $('#comment_comment').val('')
 
   #-----------------------------------------------------------------------------
   # For race canvas
@@ -17,7 +17,7 @@ $ ->
   HANKEI = 200
   STRAIT = 500
 
-  canvas = $('#race-canvas').get(0)
+  canvas = document.getElementById('race-canvas')
   return unless canvas;
   ctx = canvas.getContext("2d")
 
@@ -53,12 +53,15 @@ $ ->
   ctx.strokeText('ゴール', HANKEI + YOHAKU, YOHAKU + HANKEI * 2 - 30)
 
   # Map horses
-  $.getJSON "#{location.pathname}", (horses) ->
+  updateMap = (prog) ->
+    horses = prog['horses']
+
     totalLen = STRAIT * 2 + Math.PI * HANKEI
-    limitLen = totalLen
+    limitLen = totalLen * (prog.pointOfProgs / prog.numOfProgs)
+
     denominator = horses[0].point
     _.each horses, (horse) ->
-      len = (horse.point / denominator) * totalLen
+      len = (horse.point / denominator) * limitLen
       if len <= STRAIT
         x = YOHAKU + HANKEI + len
         y = YOHAKU - 20
@@ -82,4 +85,5 @@ $ ->
       img.onload = ->
         ctx.drawImage(img, x, y)
 
+  $.getJSON "#{location.pathname}", updateMap
 
