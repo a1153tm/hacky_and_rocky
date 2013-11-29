@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131124074325) do
+ActiveRecord::Schema.define(version: 20131128130808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20131124074325) do
     t.datetime "collect_end"
     t.string   "state",               default: "READY"
     t.integer  "current_progress_id"
+    t.integer  "num_of_progs"
+    t.integer  "point_of_progs"
   end
 
   create_table "ranking_points", force: true do |t|

@@ -27,7 +27,7 @@ class Race < ActiveRecord::Base
   # バッチ処理として呼出される
   def create_progress(the_date)
     olds = race_progresses.select {|p| p.record_date == the_date}
-    olds.each {|o| o.destroy} unless olds.empty?
+    #olds.each {|o| o.destroy} unless olds.empty?
     prog = RaceProgress.new(record_date: the_date)
     prog.race = self
     prog.calc_order()
@@ -63,11 +63,14 @@ class Race < ActiveRecord::Base
     state = "RUNNING"
     # 蓄積されている経過状況を、record_dateでソートして取得する
     progs = race_progresses.sort
+    # トータル経過をセットする
+    self.num_of_progs = progs.size
     # 更新頻度を計算する
     interval = (end_date - start_date) / progs.size.to_f
     # レース経過を計算した頻度でスイッチする
     progs.each_with_index do |prog, i|
       self.current_progress = prog
+      self.point_of_progs = i + 1
       save!
       sleep interval
     end
