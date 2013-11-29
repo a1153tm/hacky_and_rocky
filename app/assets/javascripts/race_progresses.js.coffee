@@ -71,6 +71,7 @@ $ ->
   
       denominator = horses[0].point
       _.each horses, (horse) =>
+        console.log horse
         len = (horse.point / denominator) * limitLen
         if len <= @STRAIT
           x = @YOHAKU + @HANKEI + len
