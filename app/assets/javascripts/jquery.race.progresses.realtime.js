@@ -42,12 +42,12 @@ var ProgressRankingList = Backbone.View.extend({
         	_createHtml += '<dd>'+ model.attributes.book.title +'</dd>';
         	_createHtml += '</dl>';
         });
-        $("#rank-list").html(_createHtml);
+        this.el.html(_createHtml);
     }
 });
 
-var delay = 10000;
 var progresses = new RaceProgresses();
+var raceCanvas = new RaceCanvas({collection: progresses});
 var progressRankingList  = new ProgressRankingList({collection: progresses});
 //初めにフェッチをする。
 progresses.fetch();	
@@ -60,6 +60,6 @@ setInterval(function(){
 		} else if(race.state === 'END') {
 		}
 	});
-},delay);
+}, RaceProgressConfig.responseTime);
 
 });
