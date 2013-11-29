@@ -1,5 +1,6 @@
 <% unless flash[:error] %>
   <h3 id="prog-date"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
+	<!-- <canvas id="race-canvas" width="720" height="360"></canvas> -->
 	<%= render 'race_progresses/show_table' %>
 	<%= render 'race_progresses/show_race_mode' %>
   <h2 class="lib-box-title lib-aside-mTop">コメント</h2>
