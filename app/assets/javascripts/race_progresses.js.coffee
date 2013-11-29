@@ -67,12 +67,18 @@ $ ->
     drawProgress: (horses) ->
       horse = horses[0]
       totalLen = @STRAIT * 2 + Math.PI * @HANKEI
-      limitLen = totalLen * (horse.pointOfProgs / horse.numOfProgs)
+      if horse.numOfProgs
+        limitLen = totalLen * (horse.pointOfProgs / horse.numOfProgs)
+      else
+        limitLen = totalLen
   
       denominator = horses[0].point
       _.each horses, (horse) =>
         console.log horse
-        len = (horse.point / denominator) * limitLen
+        if denominator
+          len = (horse.point / denominator) * limitLen
+        else
+          len = 0
         if len <= @STRAIT
           x = @YOHAKU + @HANKEI + len
           y = @YOHAKU_UE - 20
