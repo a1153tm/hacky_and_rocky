@@ -43,12 +43,6 @@ ActiveRecord::Schema.define(version: 20131124074325) do
     t.datetime "updated_at"
   end
 
-  create_table "dudas", force: true do |t|
-    t.string   "dum"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dummies", force: true do |t|
     t.string   "dummy"
     t.datetime "created_at"
@@ -58,12 +52,6 @@ ActiveRecord::Schema.define(version: 20131124074325) do
 
   create_table "genres", force: true do |t|
     t.integer  "genre_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "race_grades", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
