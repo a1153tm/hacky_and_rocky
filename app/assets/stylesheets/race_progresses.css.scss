@@ -64,66 +64,69 @@
   z-index:1001;
   position:absolute;
 }
-#modal > #logs {
-  width:194px;
+#modal #logs {
+  width:187px;
   border:3px solid #333;
+  border-top:none;
   background:#FFF;
   float:left;
 }
 #modal #log-list {
-  height:554px;
+  height:451px;
   display:block;
   position:relative;
   overflow:hidden;
 }
-#modal > #logs > #log-list dl {
+#modal  #logs  #log-list dl {
   border-bottom:1px solid #333;
   padding:5px;
 }
-#modal > #fields {
-  width:600px;
-  margin:0 10px;
+#modal  #fields {
+  width:740px;
+  margin-left:10px;
   float:left;
   position:relative;
   overflow:hidden;
 }
-#modal > #fields > #race-paint {
+#modal  #fields  #race-paint {
   background:#FFF;
-  height:428px;
+  height:320px;
   border:3px solid #333;
 }
 
-#modal > #fields > #race-paint img{
-  width:594px;
+#modal  #fields  #race-paint img{
+  width:740px;
   height:auto;
 }
 
-#modal > #fields > #race-paint .inner {
-}
-
-#modal > #fields > #race-comments {
+#modal  #fields  #race-comments {
   background:#FAFAFA;
   margin-top:10px;
   border:3px solid #333;
-  height:110px;
+  height: 35px;
 }
-#modal > #fields > #race-comments #test{
-  width:587px;
+#modal  #fields  #race-comments #test{
+  width:90%;
   padding:6px 1px;
   margin-bottom:5px;
 }
 
-#modal > #list {
-  width:160px;
-  height:600px;
-  float:left;
+#modal > #rank-list {
+  width:980px;
+  height:80px;
 }
-#modal > #list dl {
+#modal > #rank-list dl {
   background:#FFF;
   border:3px solid #333;
   margin-bottom:10px;
+  margin-right:10px;
+  width:79px;
+  float:left;
 }
-#modal > #list dt {
+#modal > #rank-list dl:last-child {
+  margin-right:0px;
+}
+#modal > #rank-list dt {
   color:#fff;
   background:#333;
   font-size:130%;
@@ -131,9 +134,10 @@
   padding:1px;
   text-align:center;
 }
-#modal > #list dd {
-  font-size:85%;
+#modal > #rank-list dd {
+  font-size:90%;
   font-weight:bold;
   line-height:1em;
+  height:60px;
   padding:2px;
 }
