@@ -20,7 +20,7 @@ $ ->
     el: '#race-canvas'
 
     initialize: ->
-      @collection.on('sync', @render)
+      #@collection.on('sync', @render)
       @ctx = @el.getContext('2d')
       @YOHAKU = 50
       @HANKEI = 200
@@ -29,7 +29,7 @@ $ ->
     render: (collection) ->
       @ctx.clearRect(0, 0, @el.width, @el.height);
       @drawTrac()
-      @drawProgress()
+      @drawProgress(collection)
   
     drawTrac: ->
       # Stroke track
@@ -63,14 +63,13 @@ $ ->
       @ctx.textAlign = 'center'
       @ctx.strokeText('ゴール', @HANKEI + @YOHAKU, @YOHAKU + @HANKEI * 2 - 30)
     
-    drawProgress: (prog) ->
-      horses = prog['horses']
-  
+    drawProgress: (horses) ->
+      horse = horses[0]
       totalLen = @STRAIT * 2 + Math.PI * @HANKEI
-      limitLen = totalLen * (prog.pointOfProgs / prog.numOfProgs)
+      limitLen = totalLen * (horse.pointOfProgs / horse.numOfProgs)
   
       denominator = horses[0].point
-      _.each horses, (horse) ->
+      _.each horses, (horse) =>
         len = (horse.point / denominator) * limitLen
         if len <= @STRAIT
           x = @YOHAKU + @HANKEI + len
@@ -92,8 +91,10 @@ $ ->
   
         img = new Image()
         img.src = horse.book.small_image_url
-        img.onload = ->
+        img.onload = =>
           @ctx.drawImage(img, x, y)
   
-  $.getJSON "#{location.pathname}", updateMap
+  raceCanvas = new RaceCanvas()
+  $.getJSON "#{location.pathname}", (horses) ->
+    raceCanvas.render(horses)
 
