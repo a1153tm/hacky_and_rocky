@@ -155,7 +155,7 @@ $(window).load(function()
 	});
 	
 	setInterval(function(){
-		if(modal.hasClass('active') && $('#race_state').val() !== 'END'){
+		if(modal.hasClass('active') && $('#race_state').val() === 'END'){
 			modal.hide();
 			modal.removeClass('active');
 			endModal.show();
