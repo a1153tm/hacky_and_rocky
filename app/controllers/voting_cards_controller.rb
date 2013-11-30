@@ -44,7 +44,7 @@ class VotingCardsController < ApplicationController
     end
 
     unless flash[:error]
-      redirect_to race_progress_path(@race, :last)
+      redirect_to race_progress_path(@race, :current)
     else
       render 'races/show'
     end
