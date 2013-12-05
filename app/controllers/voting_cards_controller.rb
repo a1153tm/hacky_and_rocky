@@ -24,21 +24,19 @@ class VotingCardsController < ApplicationController
     end
 
     unless flash[:error]
-      card = VotingCard.new(:race_id => @race.id , :user_id => current_user.id, :vote_date => Time.now)
-      items = params[:vote_items].select {|horse_id,weight| weight and !weight.empty?}
-      items.each do |horse_id,weight|
-        card.vote_items << VoteItem.new(voting_card: card, race_horse_id: horse_id, point_weight: weight)
-      end
-
+      card = VotingCard.new(:race_id => @race.id, :user_id => current_user.id, :vote_date => Time.now)
+      vote_params = params[:vote_item]
+      vote_item = VoteItem.new(voting_card: card, race_horse_id: vote_params[:horse], point_weight: vote_params[:amount])
+      card.vote_items << vote_item
       begin
-        user.point -= items.values.inject(0) {|sum,weight| sum += weight.to_i}
+        user.point -= vote_item.point_weight.to_i
         VotingCard.transaction do
           card.save!
           user.save!
         end
       rescue => e
-        logger.error "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
-        puts "logging!!!!!!!!!!!!!!!!!!!!!! #{e}"
+        logger.error e.to_s
+        logger.error ''
         flash[:error] = "投票できませんでした。"
       end
     end

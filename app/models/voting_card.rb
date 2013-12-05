@@ -8,12 +8,12 @@ class VotingCard < ActiveRecord::Base
   validates_each :vote_items do |record, attr, horses|
     record.errors[attr] << "本を１つ以上選択してださい。" if horses.empty?
   end
-  validates_each :vote_items do |record, attr, horses|
-    weigths = horses.map {|h| h.point_weight.to_i}
-    unless weigths.include? VoteItem::EXPECTATION.first[0]
-      record.errors[attr] << "#{VoteItem::EXPECTATION.first[1]}を選択してください。"
-    end
-  end
+  #validates_each :vote_items do |record, attr, horses|
+  #  weigths = horses.map {|h| h.point_weight.to_i}
+  #  unless weigths.include? VoteItem::EXPECTATION.first[0]
+  #    record.errors[attr] << "#{VoteItem::EXPECTATION.first[1]}を選択してください。"
+  #  end
+  #end
   validates_each :vote_items do |record, attr, horses|
     weigths = horses.map {|h| h.point_weight.to_i}
     unless weigths.size == weigths.uniq.size
