@@ -1,3 +1,86 @@
+<div id="races-list">
+	<div id="race-list-menu" class="menu">
+		<ul class="cf">
+			<li data-id="race-state-vote" class="active">投票受付中</li>
+			<li data-id="race-state-during">レース中</li>
+			<li data-id="race-state-end">レース終了</li>
+		</ul>
+	</div>
+	<div id="race-list-content" class="list cf">
+		<div id="race-state-vote">
+		<% @vote_races.each do |race| %>
+			<dl class="cf" data-id="<%= race.id %>">
+				<dt class="image">
+					<%= image_tag(race.race_horses[0].book.medium_image_url) %>
+				</dt>
+				<dd class="title">
+					<h3>
+                	<% if race.race_result and race.race_result.id %>
+						<%= link_to race.name, race_result_path(race.id) %>
+                	<% else %>
+                	  <% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
+						<%= link_to race.name, race_progress_path(race.id, :last) %>
+                	  <% else %>
+						<%= link_to race.name, race %>
+                	  <% end %>
+                	<% end %>
+                	</h3>
+				</dt><!--　タイトル名 -->
+				<dd class="participant">
+					参加者<span><%= race.voting_cards.size %></span>名
+				</dd><!--　ジャンル名 -->
+				<dd class="election-date">
+					<p>開始日時：<%= race.start_date.strftime("%m-%d %H:%M") %></p>
+					<p>終了日時：<%= race.end_date.strftime("%m-%d %H:%M") %></p>					
+				</dd><!-- 投票受付日から締日 -->
+				<dd style="padding:10px;text-align: center;">
+					<a href="" class="lib-btn lib-button-small" style="color: black">レース投票をする！</a>
+				</dd>
+			</dl>
+		<% end %>
+		</div>
+		<div id="race-state-end" style="display:none">
+		<% @end_races.each do |race| %>
+			<dl class="cf" data-id="<%= race.id %>">
+				<dt class="image">
+					<%= image_tag(race.race_horses[0].book.medium_image_url) %>
+				</dt>
+				<dd class="title">
+					<h3>
+                	<% if race.race_result and race.race_result.id %>
+						<%= link_to race.name, race_result_path(race.id) %>
+                	<% else %>
+                	  <% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
+						<%= link_to race.name, race_progress_path(race.id, :last) %>
+                	  <% else %>
+						<%= link_to race.name, race %>
+                	  <% end %>
+                	<% end %>
+                	</h3>
+				</dt><!--　タイトル名 -->
+				<dd class="participant">
+					参加者<span><%= race.voting_cards.size %></span>名
+				</dd><!--　ジャンル名 -->
+				<dd class="election-date">
+					<p>開始日時：<%= race.start_date.strftime("%m-%d %H:%M") %></p>
+					<p>終了日時：<%= race.end_date.strftime("%m-%d %H:%M") %></p>					
+				</dd><!-- 投票受付日から締日 -->
+				<dd style="padding:10px;text-align: center;">
+					<a href="" class="lib-btn lib-button-small" style="color: black">レース投票をする！</a>
+				</dd>
+			</dl>
+		<% end %>
+		</div>
+	</div>
+<% @races_id.each do |race| %>
+<input type="hidden" class="race_id_list" value="<%= race.id %>" />
+<% end %>
+</div>
+<div id="race-list-dialog">
+	<div class="race-dialog-header">aiueo</div>
+	<h3 style="font-size:130%;font-weight:bold;padding:10px 15px 5px 15px;">出場リスト</h3>
+	<div class="race-dialog-contents cf"></div>
+</div>
 <div id="aside">
 <% if current_user %>
 	<section class="aside-list">
@@ -18,61 +101,6 @@
 			</li>
 		</ul>
 	</section>
-<% end %>
-
-	<section class="aside-list lib-aside-mTop">
-		<h2><i class="icon-list icon-margin-right"></i>カテゴリー</h2>
-		<ul>
-		<% @genres.each do |genre| %>
-			<li><a href="#genre_<%= genre.id %>"><span><%= genre.name %></span></a></li>
-		<% end %>
-		</ul>
-	</section>
-			
-	<section class="lib-box lib-aside-mTop">
-		<img src="images/aside/beginner.png" alt="" />
-		<span style="font-size:230%;font-weight:bold;">初めての方</span>
-	</section>
+<% end %>			
 </div><!-- aside -->
-
-<div id="main">
-	<div id="race-list">
-		<h2><%= image_tag('contents/race_list_bg.png', alt: '') %></h2>
-		<div id="race-list-detail">
-			<!-- ここから　ループ対象 -->
-		<% @races.each do |race| %>
-			<dl class="cf">
-				<dt>
-					<h3>
-                <% if race.race_result and race.race_result.id %>
-					<%= link_to race.name, race_result_path(race.id) %>
-                <% else %>
-                  <% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
-					<%= link_to race.name, race_progress_path(race.id, :last) %>
-                  <% else %>
-					<%= link_to race.name, race %>
-                  <% end %>
-                <% end %>
-							</h3>
-						</dt><!--　タイトル名 -->
-						<dd class="participant">
-							参加者<span><%= race.voting_cards.size %></span>名
-						</dd><!--　ジャンル名 -->
-						<dd class="election-date">
-							<p style="font-weight:bold">開始日時</p>
-							<%= race.start_date.strftime("%m-%d %H:%M") %>
-							<p style="font-weight:bold">終了日時</p>
-							<%= race.end_date.strftime("%m-%d %H:%M") %>
-						</dd><!-- 投票受付日から締日 -->
-					</dl>
-					<% end %>
-					<!-- ここまで　-->
-					<div class="last">
-						<ul class="lib-pagination">
-							<li><a href="#" class="active">1</a></li>
-							<!-- <li class="next"><a href="">Next</a></li> -->
-						</ul>
-					</div>
-				</div><!-- // race-list-detail -->
-			</div><!-- // race-list -->
-		</div><!-- //main -->
+<div id="main"></div><!-- //main -->

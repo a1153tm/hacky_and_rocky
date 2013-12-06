@@ -82,12 +82,82 @@
   <div class="submit lib-aside-mTop" style="text-align: center">
 　　<% if current_user %>
 	    <button id="submit_vote" class="lib-btn-black lib-button-large" style="font-size:200%;" disabled="disabled">投票する</button>
+	    <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+	    <input type="hidden" id="user_zeny" name="user_zeny" value="<%= current_user.point %>" />
+	    <div id="my-status" class="cf">
+	    	<h2 style="font-weight:bold;font-size:130%;line-height:4em;text-align:left"><%= current_user.name %>さんのステータス</h2>
+	    	<ul style="width:220px;float:left;border:2px solid #000">
+	    		<li style="padding:6px 0 10px 0"><%= image_tag('contents/no_image.png') %></li>
+	    		<li style="background:#333;color:#FFF;font-size:110%;padding:10px;font-weight:bold;">
+	    			<p><%= current_user.name %>さんのお財布</p>
+	    			<p><%= number_with_delimiter current_user.point %> ゼニー</p>
+	    		</li>
+	    	</ul>
+	    	<ul style="margin-left:20px;width:600px;float:left;">
+	    		<li>
+	    			<ul class="cf">
+	    				<li class="zeny-title">投票ゼニー</li>
+	    				<li class="zeny-display">
+	    					<span id="wagar-display" class="zeny-big">0</span>ゼニー
+	    				</li>
+	    			</ul>
+	    		</li>
+	    		<li class="lib-aside-mTop">
+	    			<ul class="cf">
+	    				<li class="zeny-title">残りのゼニー</li>
+	    				<li class="zeny-display">
+	    					<span id="remaining-display" class="remining-zeny-big">
+	    						<%= number_with_delimiter current_user.point %>
+	    					</span>ゼニー
+	    				</li>
+	    			</ul>
+	    		</li>
+	    	</ul>
+	    </div>
+ 	<% else %>
+	    <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 　　<% end %>
 <% end %>
-<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 </div>
 
 <style type="text/css" media="screen">
+#my-status {
+	margin-top:40px;
+	margin-left:40px;
+}
+#my-status .zeny-title {
+	color:#FFF;
+	background:#333;
+	font-weight:bold;
+	font-size:130%;
+	border-top:2px solid #000;
+	border-bottom:2px solid #000;
+	border-left:2px solid #000;
+	width:200px;
+	padding:33px 10px;
+	text-align:left;
+	float:left;
+}
+#my-status .zeny-display {
+	color:#333;
+	font-weight:bold;
+	border:2px solid #000;
+	font-size:130%;
+	padding:32px 10px;
+	text-align:left;
+	width:352px;
+	float:left;
+}
+#my-status .zeny-big {
+	color:#FF6600;
+	font-size:140%;
+	margin-right:10px;
+}
+#my-status .remining-zeny-big {
+	color:#FF3300;
+	font-size:140%;
+	margin-right:10px;
+}
 #race-table td {width:97px;}
 .title td {width:10px;}
 .require {margin-top:10px;margin-bottom:5px;}

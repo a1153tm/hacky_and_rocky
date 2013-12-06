@@ -9,7 +9,9 @@ class RacesController < ApplicationController
   def top
     @users = User.find(:all, :order => "point DESC")
     @genres = Genre.all
-    @races = Race.find(:all, :conditions => ['end_date >= ?' , Date.today.to_datetime])
+    @races_id = Race.all;
+    @vote_races = Race.find(:all, :conditions => ['end_date >= ?' , Date.today.to_datetime])
+    @end_races = Race.find(:all, :conditions => ['end_date < ?' , Date.today.to_datetime])
     render "races/top"
   end
 

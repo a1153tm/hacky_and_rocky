@@ -142,23 +142,25 @@ var ProgressRankingList = Backbone.View.extend({
     }
 });
 
-var progresses = new RaceProgresses();
-var raceCanvas = new RaceCanvas({collection: progresses});
-var progressRankingList  = new ProgressRankingList({collection: progresses});
 
-//初めにフェッチをする。
-progresses.fetch();	
-setInterval(function(){
-	$.get(RaceProgressConfig.raceUrl, function(race) {
-		if (race.state === 'RUNNING') {
-			progresses.fetch();				
-		} else if(race.state === 'READY'){
-			progresses.fetch();	
-		} else if(race.state === 'END') {
-			$('#race_state').val('END');
-			$('#race_king').text($('#race_rank1').find('dd').text());
-		}
-	});
-}, RaceProgressConfig.responseTime);
-
+if($("#race-canvas").length) {	
+	var progresses = new RaceProgresses();
+	var raceCanvas = new RaceCanvas({collection: progresses});
+	var progressRankingList  = new ProgressRankingList({collection: progresses});
+	
+	progresses.fetch();	
+	
+	setInterval(function(){
+		$.get(RaceProgressConfig.raceUrl, function(race) {
+			if (race.state === 'RUNNING') {
+				progresses.fetch();				
+			} else if(race.state === 'READY'){
+				progresses.fetch();	
+			} else if(race.state === 'END') {
+				$('#race_state').val('END');
+				$('#race_king').text($('#race_rank1').find('dd').text());
+			}
+		});
+	}, RaceProgressConfig.responseTime);
+};
 });

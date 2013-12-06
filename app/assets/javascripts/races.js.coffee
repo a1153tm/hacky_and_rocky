@@ -4,7 +4,7 @@
 $ ->
   voteAmount = $('#vote_item_amount')
   voteSubmit = $('#submit_vote')
-
+  myAmount = $('#user_zeny')
   class ItemView extends Backbone.View
     events:
       'click': 'changed'
@@ -23,4 +23,14 @@ $ ->
   form = $('#vote-form')
   if form
     form.submit ->
-      true
+      remainingAmount = parseInt(myAmount.val(), 10) - parseInt(voteAmount.val(), 10)
+      if 0 >= remainingAmount
+        alert('限度ゼニーを超えています！')
+        return false
+      else if 0 >= voteAmount.val()
+        alert('0よりも大きいゼニーを賭けてください！')
+        return false
+      else
+        if confirm '本当に投票しますか？'
+          return true
+        return false
