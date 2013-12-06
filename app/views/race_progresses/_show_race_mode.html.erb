@@ -203,7 +203,7 @@ $(window).load(function()
 //===========================================================================================================
 	function sendLog(text, name){
 		console.log(text);
-		var results = '<dl><dt>'+ htmlSpecialChars(text) +'</dt><dd>'+ getCurrentTime() +' by'+ htmlSpecialChars(name) +'</dd></dl>';
+		var results = '<dl><dt>'+ htmlSpecialChars(text) +'</dt><dd>'+ getCurrentTime() +'<p>by　'+ htmlSpecialChars(name) +'</p></dd></dl>';
 		_logList.prepend(results);
 	}
 	
