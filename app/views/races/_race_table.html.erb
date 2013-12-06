@@ -43,19 +43,17 @@
 			<td class="title"><%= row_text("オッズ").html_safe %></td>
 		</tr><!-- オッズ -->
 		<% unless @card %>
-			<% @race.race_horses.each do |horse| %>
+			<% @race.race_horses.reverse_each do |horse| %>
 			  <td id="vote_item_<%= horse.id %>" class="vote_item">
           <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
 			  </td>
 			<% end %>
 		<% else %>
-			<% @race.race_horses.each do |horse| %>
+			<% @race.race_horses.reverse_each do |horse| %>
 			<td>
         <% vote_item = @card.vote_items.find {|item| item.race_horse == horse} %>
         <% if vote_item %>
-				  <select class="lib-select lib-select-small" disabled>
-					  <option value=""><%= VoteItem::EXPECTATION[vote_item.point_weight] %></option>
-				  </select>
+          <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
         <% end %>
 			</td>
 			<% end %>

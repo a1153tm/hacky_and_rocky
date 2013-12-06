@@ -57,7 +57,7 @@
       <% if @card %>
         <% item = @card.vote_items.find {|item| item.race_horse == horse} %>
         <% if item %>
-          <td><%= VoteItem::EXPECTATION[item.point_weight]%></td>
+          <td>☆</td>
         <% else %>
           <td></td>
         <% end %>
