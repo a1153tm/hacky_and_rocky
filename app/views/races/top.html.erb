@@ -11,7 +11,7 @@
 		<% @vote_races.each do |race| %>
 			<dl class="cf" data-id="<%= race.id %>">
 				<dt class="image">
-					<% if !race.race_horses[0].book.medium_image_url.nil? %>
+					<% if !race.race_horses[0].book.nil? %>
 						<%= image_tag(race.race_horses[0].book.medium_image_url) %>
 					<% else %>
 						<%= image_tag('contents/no_image.png', :style => 'width:auto;height:120px') %>

@@ -34,6 +34,8 @@ $(window).load(function(){
 			result_html += '<div id="race_'+ race_id +'" style="display:none">';
 			for(key in horses) {
 				var horse = horses[key];
+				horse.book.item_url = horse.book.item_url.length > 0 ? horse.book.item_url : '#'; 
+				horse.book.small_image_url = horse.book.small_image_url.length > 0 ? horse.book.small_image_url : '#';
 				result_html += '<dl>';
 				result_html += '<dt>';
 				result_html += '<a href="'+ horse.book.item_url +'" target="_blank">';
@@ -63,6 +65,7 @@ $(window).load(function(){
 		
 		race_dialog.show();
 		$("#race_" + race_id).show();
+		
 		position.top += -50 ;
 		if(index % 4 == 1 || index % 4 === 2) {
 			position.left += 225;
@@ -70,6 +73,7 @@ $(window).load(function(){
 			position.left -= 610;
 		}
 		race_dialog.css(position);
+		
 	}, function() {
 		race_dialog.find('.race-dialog-contents').find('div').hide();
 		race_dialog.hide();
