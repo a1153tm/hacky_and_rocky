@@ -17,6 +17,7 @@ class VotingCardTest < ActiveSupport::TestCase
     assert card.errors[:vote_items].any?
   end
 
+=begin
   test "voting_card must have honmei" do
     honmei = VoteItem::EXPECTATION.first[0]
     item = VoteItem.new(race_horse_id: 1, point_weight: VoteItem::EXPECTATION.keys[1])
@@ -28,6 +29,7 @@ class VotingCardTest < ActiveSupport::TestCase
     card.vote_items << item
     assert card.valid?
   end
+=end
 
   test "vote_items in voting_card must be uniq" do
     honmei = VoteItem::EXPECTATION.first[0]

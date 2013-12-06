@@ -45,9 +45,7 @@
 		<% unless @card %>
 			<% @race.race_horses.each do |horse| %>
 			  <td id="vote_item_<%= horse.id %>" class="vote_item">
-          <%= label "vote_items", horse.id, '', {:class => 'valid-message'} %>
-          <%= select "vote_items", horse.id, VoteItem::EXPECTATION.map {|k,v| [v,k]},
-            {:include_blank => true}, {:style => 'padding:0' ,:class => 'require lib-select lib-select-small'} %>
+          <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
 			  </td>
 			<% end %>
 		<% else %>
@@ -75,13 +73,18 @@
 	<h3 style="font-weight:bold;text-align:center;font-size:150%;padding:10px;"> <%= row_text(@race.name).html_safe %> <%= "(" + Race::GRADES[@race.grade] +")"%></h3>
 </div>
 </div>
-<div class="submit lib-aside-mTop" style="text-align: center">
 <% unless @card %>
+  <div id="vote_amount">
+    <span>投票金額</span>
+    <%= number_field "vote_item", "amount", {disabled: true, required: true, min: 1}%>
+    <span>ゼニー</span>
+  </div>
+  <div class="submit lib-aside-mTop" style="text-align: center">
 　　<% if current_user %>
-	<button class="lib-btn-black lib-button-large" style="font-size:200%;">投票する</button>
+	    <button id="submit_vote" class="lib-btn-black lib-button-large" style="font-size:200%;" disabled="disabled">投票する</button>
 　　<% end %>
 <% end %>
-	<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+<%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
 </div>
 
 <style type="text/css" media="screen">
@@ -129,5 +132,16 @@ label.valid-success{
 	color:#FF6600;
 	background: #FAFAFA;
 	border:2px solid #999;
+}
+#vote_amount {
+  margin-top: 20px;
+  text-align: center;
+}
+#vote_amount span {
+  font-size: 180%;
+  margin: 0 10px;
+}
+#vote_item_amount {
+  font-size: 200%;
 }
 </style>

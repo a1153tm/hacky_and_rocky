@@ -11,8 +11,8 @@ class VoteItemTest < ActiveSupport::TestCase
 
   test "point weight must be included in VoteItem::EXPECTATION" do
     item = VoteItem.new(race_horse_id: 1, point_weight: 999)
-    assert item.invalid?
-    assert item.errors[:point_weight].any?
+    assert item.valid?
+    assert !item.errors[:point_weight].any?
   end
 
 end
