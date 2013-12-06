@@ -43,7 +43,9 @@
 		<% @end_races.each do |race| %>
 			<dl class="cf" data-id="<%= race.id %>">
 				<dt class="image">
-					<%= image_tag(race.race_horses[0].book.medium_image_url) %>
+					<% if race.race_horses[0].book.medium_image_url %>
+						<%= image_tag(race.race_horses[0].book.medium_image_url) %>
+					<% end %>
 				</dt>
 				<dd class="title">
 					<h3>
