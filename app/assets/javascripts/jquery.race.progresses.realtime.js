@@ -14,7 +14,7 @@ var RaceCanvas = Backbone.View.extend({
     },
     
     render: function(collection,models) {
-        this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
+        this.ctx.clearRect(0, 0, this.el.width, this.el.height);
         this.drawTrac();
         this.drawProgress(models);
     },
