@@ -113,7 +113,7 @@ $(window).load(function()
 	  // receive
 	ws.onmessage = function (event){
 		var getMessage = JSON.parse(event.data);
-		sendMarquee(message.comment);
+		sendMarquee(getMessage.comment);
 		sendLog(getMessage.comment, getMessage.user_name);
 	};
 
