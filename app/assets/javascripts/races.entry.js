@@ -1,4 +1,4 @@
-$(window).load(function(){
+$(window).load(function() {
 
 	//賭け金
 	var wagarZeny = $('#vote_item_amount');
@@ -23,5 +23,8 @@ $(window).load(function(){
 		wagarDisplay.text( numberFormat($(this).val()) );
 		remainingDisplay.text( numberFormat(_remainingZeny.toString()) );
 	});
-	
 });
+
+どのジャンルでどの本が売れているのか・・・。
+本がどれくらい売れているのかというレースをみたい。
+どれが強いか予想するのも楽しいので、たくさんレースがあるのも楽しい。
