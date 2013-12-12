@@ -3,19 +3,6 @@
 	<!-- <canvas id="race-canvas" width="720" height="360"></canvas> -->
 	<%= render 'race_progresses/show_table' %>
 	<%= render 'race_progresses/show_race_mode' %>
-  <h2 class="lib-box-title lib-aside-mTop">コメント</h2>
-  <div id="race-comments" class="lib-box">
-  	<div class="write">
-      <%= form_for(@comment, {:url => comments_path(@race.id), :remote => true}) do |c| %>
-        <%= c.hidden_field :user_id %>
-        <%= c.text_field :comment, {class: 'lib-input lib-input-width-long'} %>
-        <%= c.submit '書込み', {id: 'post-comment', class: 'lib-btn-black'} %>
-      <% end %>
-  	</div>
-  	<div class="read">
-	      <%= render 'comments/comments' %>
-  	</div>
-  </div><!-- #result-comments -->
 <% else %>
 	<%= render 'race_progresses/show_error' %>
 <% end %>

@@ -98,7 +98,6 @@ $(window).load(function()
 	var _logList = $("#log-list");
 	var comments = $("#comments");
 	var values = $("#test");
-
 	_logList.perfectScrollbar();
 	
 //===========================================================================================================
@@ -113,8 +112,9 @@ $(window).load(function()
 
 	  // receive
 	ws.onmessage = function (event){
-		sendMarquee(event.data);
-		sendLog(event.data, userName);
+		var getMessage = JSON.parse(event.data);
+		sendMarquee(getMessage.comment);
+		sendLog(getMessage.comment, getMessage.user_name);
 	};
 
 	// close
@@ -165,7 +165,7 @@ $(window).load(function()
 	
 	comments.submit(function(){
 		if( validateMarquee(values.val())){
-		    var message = {race_id: raceId, type: 'comment', comment: values.val()};
+		    var message = {race_id: raceId, type: 'post', user_name: userName, comment: values.val()};
 		    ws.send(JSON.stringify(message));
 			values.val("");
 		} 
@@ -202,7 +202,7 @@ $(window).load(function()
 //　Log関連
 //===========================================================================================================
 	function sendLog(text, name){
-		var results = '<dl><dt>'+ htmlSpecialChars(text) +'</dt><dd>'+ getCurrentTime() +' by'+ htmlSpecialChars(name) +'</dd></dl>';
+		var results = '<dl><dt>'+ htmlSpecialChars(text) +'</dt><dd>'+ getCurrentTime() +'<p>by　'+ htmlSpecialChars(name) +'</p></dd></dl>';
 		_logList.prepend(results);
 	}
 	

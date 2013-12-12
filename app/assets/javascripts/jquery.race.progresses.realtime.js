@@ -13,7 +13,7 @@ var RaceCanvas = Backbone.View.extend({
         this.collection.on("sync", this.render, this);
     },
     
-    render: function(collection,models) {
+    render: function(collection, models) {
         this.ctx.clearRect(0, 0, this.el.width, this.el.height);
         this.drawTrac();
         this.drawProgress(models);
@@ -36,7 +36,7 @@ var RaceCanvas = Backbone.View.extend({
         this.ctx.stroke();
         this.ctx.font = "120% Sans-Serif";
         this.ctx.textAlign = 'center';
-        this.ctx.strokeText('Start', this.HANKEI + this.YOHAKU, this.YOHAKU_UE - 20);
+        this.ctx.strokeText('Start', this.HANKEI + this.YOHAKU, this.YOHAKU_UE - 25);
         this.ctx.moveTo(this.HANKEI + this.YOHAKU, this.YOHAKU_UE + this.HANKEI * 2 - 10);
         this.ctx.lineTo(this.HANKEI + this.YOHAKU, this.YOHAKU_UE + this.HANKEI * 2 + 10);
         this.ctx.closePath();
@@ -44,7 +44,7 @@ var RaceCanvas = Backbone.View.extend({
         this.ctx.stroke();
         this.ctx.font = "120% Sans-Serif";
         this.ctx.textAlign = 'center';
-        this.ctx.strokeText('Goal', this.HANKEI + this.YOHAKU, this.YOHAKU_UE + this.HANKEI * 2 - 30);
+        this.ctx.strokeText('Goal', this.HANKEI + this.YOHAKU, this.YOHAKU_UE + this.HANKEI * 2 - 25);
     },
 
     drawProgress: function(horses) {
@@ -52,7 +52,6 @@ var RaceCanvas = Backbone.View.extend({
             _this = this;
         horse = horses[0];
         totalLen = this.STRAIT * 2 + Math.PI * this.HANKEI;
-        console.log(horse);
         if (horse.numOfProgs) {
             limitLen = totalLen * (horse.pointOfProgs / horse.numOfProgs);
         } else {
@@ -68,7 +67,7 @@ var RaceCanvas = Backbone.View.extend({
             }
             if (len <= _this.STRAIT) {
                 x = _this.YOHAKU + _this.HANKEI + len;
-                y = _this.YOHAKU_UE - 20;
+                y = _this.YOHAKU_UE - 2;
             } else if (len <= _this.STRAIT + Math.PI * _this.HANKEI) {
                 arcLen = len - _this.STRAIT;
                 deg = (arcLen / (Math.PI * _this.HANKEI)) * 180.0;
@@ -77,17 +76,26 @@ var RaceCanvas = Backbone.View.extend({
                 x = _x + _this.YOHAKU + _this.HANKEI + _this.STRAIT;
                 _y = Math.cos(rad) * _this.HANKEI;
                 if (_y < 0) {
-                    y = _y * -1 + _this.HANKEI + _this.YOHAKU_UE;
+                    y = _y * -1 + _this.HANKEI + _this.YOHAKU_UE - 2;
                 } else {
-                    y = (_this.HANKEI - _y) + _this.YOHAKU_UE;
+                    y = (_this.HANKEI - _y) + _this.YOHAKU_UE - 2;
                 }
             } else {
                 x = (_this.YOHAKU + _this.HANKEI + _this.STRAIT) - (len - _this.STRAIT - Math.PI * _this.HANKEI);
-                y = _this.HANKEI * 2 + _this.YOHAKU_UE;
+                y = _this.HANKEI * 2 + _this.YOHAKU_UE - 2;
             }
             img = new Image();
             img.src = horse.book.small_image_url;
             return img.onload = function() {
+                var rectHeight = 18;
+                _this.ctx.beginPath();
+                _this.ctx.rect(x, y - rectHeight, img.width, rectHeight);
+                _this.ctx.fillStyle = horse.color.background_color;
+                _this.ctx.fill();
+                _this.ctx.font = "90% Sans-Serif";
+                _this.ctx.strokeStyle = horse.color.text_color;
+                _this.ctx.textAlign = 'center';
+                _this.ctx.strokeText(horse.horseNo, x + img.width / 2, y - rectHeight + 12);
                 return _this.ctx.drawImage(img, x, y);
             };
         });
@@ -142,23 +150,25 @@ var ProgressRankingList = Backbone.View.extend({
     }
 });
 
-var progresses = new RaceProgresses();
-var raceCanvas = new RaceCanvas({collection: progresses});
-var progressRankingList  = new ProgressRankingList({collection: progresses});
 
-//初めにフェッチをする。
-progresses.fetch();	
-setInterval(function(){
-	$.get(RaceProgressConfig.raceUrl, function(race) {
-		if (race.state === 'RUNNING') {
-			progresses.fetch();				
-		} else if(race.state === 'READY'){
-			progresses.fetch();	
-		} else if(race.state === 'END') {
-			$('#race_state').val('END');
-			$('#race_king').text($('#race_rank1').find('dd').text());
-		}
-	});
-}, RaceProgressConfig.responseTime);
-
+if($("#race-canvas").length) {	
+	var progresses = new RaceProgresses();
+	var raceCanvas = new RaceCanvas({collection: progresses});
+	var progressRankingList  = new ProgressRankingList({collection: progresses});
+	
+	progresses.fetch();	
+	
+	setInterval(function(){
+		$.get(RaceProgressConfig.raceUrl, function(race) {
+			if (race.state === 'RUNNING') {
+				progresses.fetch();				
+			} else if(race.state === 'READY'){
+				progresses.fetch();	
+			} else if(race.state === 'END') {
+				$('#race_state').val('END');
+				$('#race_king').text($('#race_rank1').find('dd').text());
+			}
+		});
+	}, RaceProgressConfig.responseTime);
+};
 });

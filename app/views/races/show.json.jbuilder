@@ -1,1 +1,4 @@
-json.extract! @race, :name, :grade, :etype, :start_date, :end_date, :state, :created_at, :updated_at
+json.array! @race.race_horses do |horse|
+	json.race horse.race
+	json.book horse.book
+end

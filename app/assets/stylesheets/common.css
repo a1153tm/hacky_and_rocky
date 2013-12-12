@@ -56,6 +56,10 @@ img {
 	line-height:2em;
 	font-weight:bold;
 }
+#header .top-logo a {
+	color:#FFF;
+	text-decoration:none;
+}
 #header .top-login {
 	color:#FFF;
 	line-height:2.8em;
@@ -150,16 +154,15 @@ img {
 #footer {
 	background:#FAFAFA;
 	border-top:8px solid #333;
-	min-height:300px;
+	min-height:70px;
 }
 #footer .inner {
 	width:980px;
 	margin: 0 auto;
 }
 #footer .copyright {
-	margin-top:10px;
+	margin-top:15px;
 	font-weight:bold;
-	border-top:1px solid #AAA;
 	padding:10px 0;
 	text-align:center;
 }

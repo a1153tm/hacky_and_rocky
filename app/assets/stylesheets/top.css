@@ -1,6 +1,144 @@
 @charset "utf-8";
 
 /*　メインメニュー関連　*/
+#races-list .menu li{
+	color: #333;
+	background: #CCC;
+	font-weight: bold;
+	font-size: 160%;
+	text-align: center;
+	border-left: 5px solid #FFF;
+	border-right: 5px solid #FFF;
+	border-bottom: 5px solid #FFF;
+	padding:20px 10px;
+	width:120px;
+	float:left;
+}
+#raceslist .menu li:last-child {
+	border-left: none;
+}
+#races-list .menu li:hover {
+	color: #FFF;
+	background: #333;
+}
+#races-list .menu li.active {
+	color: yellow;
+	background: #333;
+	border-left: 5px solid #333;
+	border-right: 5px solid #333;
+	border-bottom: 5px solid #333;
+}
+#races-list .menu li.active:hover {
+	color: yellow;
+	border-left: 5px solid #333;
+	border-right: 5px solid #333;
+	border-bottom: 5px solid #333;
+}
+#races-list .list {
+	background: #333;
+	min-height: 600px;
+	padding: 20px 20px 0 20px;
+}
+#races-list .list dt.image {
+	background: #111;
+	text-align: center;
+}
+#races-list .list dt.image {
+	background: #111;
+	text-align: center;
+}
+#races-list .list dd {
+	font-size: 90%;
+	padding:5px 10px 0 10px;
+}
+#raecs-list .list dd.election-date {
+	padding-bottom: 10px;
+}
+#races-list .list dd a {
+	color: #FFF;
+	font-size: 105%;
+	font-weight: bold;
+	text-decoration: none;
+}
+#races-list .list dd a:hover {
+	color: yellow;
+	text-decoration: underline;
+}
+#races-list .list dl {
+	color:#FFF;
+	width:220px;
+	margin-right:20px;
+	margin-bottom:20px;
+	float:left;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+#races-list .list dl:hover {
+	color: #333;
+	background: #FAFAFA;
+	-webkit-box-shadow: 0 0 1px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 1px 3px rgba(0,0,0,0.4);
+	box-shadow: 0 0 1px 3px rgba(0,0,0,0.4);
+}
+#races-list .list dl:hover dd a {
+	color: #333;
+}
+#races-list .list dl:hover dt.image {
+	background: #CCC;
+	border-bottom:1px solid #BBB;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+}
+#race-list-dialog {
+	background: #FAFAFA;
+	width:600px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 0px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 0 0px 2px rgba(0,0,0,0.2);
+	box-shadow: 0 0 0px 2px rgba(0,0,0,0.2);
+	display:none;	
+	position: absolute;
+}
+#race-list-dialog .race-dialog-header {
+	color: #FFF;
+	background:#333;
+	font-size: 140%;
+	line-height: 2em;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	position: relative;
+}
+#race-list-dialog .race-dialog-contents {
+	padding:15px;
+}
+#race-list-dialog .race-dialog-contents dl {
+	width:100px;
+	margin-right:10px;
+	margin-bottom:10px;
+	float:left;
+}
+#race-list-dialog .race-dialog-contents dl > dt {
+	background: #CCC;
+	text-align: center;
+}
+#race-list-dialog .race-dialog-contents dl > dt img:hover {
+	opacity: 0.8;
+}
+#race-list-dialog .race-dialog-contents dl > dd a {
+	font-size: 80%;
+	font-weight: bold;
+	color: #333;
+	text-decoration: none;
+}
+#race-list-dialog .race-dialog-contents dl > dd a:hover {
+	text-decoration: underline;
+}
+/* 過去の遺産物　一応　万が一の時の保持しておく。 */
 #race-list-title {
 	height:45px;
 	background:url(../images/contents/race_list_bg.png) no-repeat;
