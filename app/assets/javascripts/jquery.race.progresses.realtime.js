@@ -14,7 +14,7 @@ var RaceCanvas = Backbone.View.extend({
     },
     
     render: function(collection,models) {
-        this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
+        this.ctx.clearRect(0, 0, this.el.width, this.el.height);
         this.drawTrac();
         this.drawProgress(models);
     },
@@ -134,9 +134,9 @@ var ProgressRankingList = Backbone.View.extend({
     	var select_horse = $('#select_horse').length ? $('#select_horse').val() : 0;
         collection.each(function(model) {
         	var horse = model.attributes;
+        	_createHtml += '<dl id="race_rank'+ horse.order +'" horse-id="'+ horse.id +'" class="cf">';
         	if(select_horse == horse.id)
         		_createHtml += '<span class="select_horse" horse-id="'+ horse.id +'">投票</span>';
-        	_createHtml += '<dl id="race_rank'+ horse.order +'" horse-id="'+ horse.id +'" class="cf">';
         	_createHtml += '<dt>'+ horse.order +'</dt>';
         	_createHtml += '<dd>'+ horse.book.title +'</dd>';
         	_createHtml += '</dl>';
@@ -144,7 +144,6 @@ var ProgressRankingList = Backbone.View.extend({
         this.$el.html(_createHtml);
     }
 });
-
 
 if($("#race-canvas").length) {	
 	var progresses = new RaceProgresses();
@@ -166,4 +165,6 @@ if($("#race-canvas").length) {
 		});
 	}, RaceProgressConfig.responseTime);
 };
+
 });
+

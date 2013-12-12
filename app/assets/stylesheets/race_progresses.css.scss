@@ -8,7 +8,7 @@
   -webkit-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
   box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
-  padding:20px 0;
+  padding:20px 0 40px 0;
 }
 #race-modes {
   width: 980px;
@@ -17,6 +17,19 @@
 #race-comments-wrap {
   width: 980px;
   margin:20px auto;
+}
+#race-modes .race-modes-title {
+  color:#000;
+  font-size:220%;
+  font-weight:bold;
+  line-height:1.1em;
+  padding:15px 0;
+  margin:0 0 8px 0;
+  border-bottom:1px solid #AAA;
+  -webkit-box-shadow: 0 1px rgba(255,255,255,0.5);
+  -moz-box-shadow: 0 1px rgba(255,255,255,0.5);
+  box-shadow: 0 1px rgba(255,255,255,0.5);
+  display:block;
 }
 #race-modes div#ranking-list dl {
   background:#FFF;
@@ -52,7 +65,9 @@
   width:740px;
   height:419px;
   background:#FFF;
-  border:3px solid #333;
+  border-top:3px solid #333;
+  border-bottom:3px solid #333;
+  border-left:3px solid #333;
   float: left;
   position:relative;
   z-index:200;
@@ -62,6 +77,7 @@
   width:234px;
   float: left;
   position:relative;
+  border-left:3px solid #333;
   z-index:1000;
 }
 #race-modes-aside li {
@@ -70,7 +86,7 @@
 #race-modes-aside li a {
   color: #FFF;
   font-weight: bold;
-  width: 76px;
+  width: 78px;
   height:20px;
   background:#666;
   border:1px solid #000;
@@ -83,7 +99,7 @@
   background: #FFF;
 }
 #race-modes-aside li a:last-child {
-  width: 75px;
+  width: 77px;
   border-left:none;
 }
 #race-comment,
@@ -100,23 +116,94 @@
   border-bottom:1px solid #333;
   padding:5px;
 }
+//race-vote
+#race-vote dl {
+  border-bottom:1px solid #333;
+  padding: 5px;
+}
+#race-vote dl:last-child {
+  border-bottom: none;
+}
+#race-vote dt {
+  font-size: 90%;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+#race-vote dd {
+  color: #FF6600;
+  font-size:120%;
+  font-weight: bold;
+  text-align: right;
+}
+//race-participants
+#race-participants dl {
+  width: 100%;
+  display: block;
+}
+#race-participants dl > dt {
+  font-size: 120%;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-bottom:1px solid #333;
+  padding: 5px;
+  display: block;
+}
+#race-participants dl > dt > img {
+  width:40px;
+  height:auto;
+}
+//race-comments
 #race-modes-comments {
   background: #333;
   padding:5px 10px;
 }
-#race-vote {display:none}
+#race-vote, #race-participants {display:none}
+//投票の表し
+span.select_horse{
+  font-weight: bold;
+  top: -35px;
+  left: 30px;
+  width: 30px;
+  padding: 10px;
+  border-radius: 2px;
+  color:#333;
+  background: #FAFAFA;
+  font-size: 12px;
+  line-height: 1;
+  transition: .3s;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+  display:block;
+  position: absolute;
+  z-index:10000;
+}
+span.select_horse:after{
+  position: absolute;
+  top: 100%;
+  left: 17px;
+  height: 0;
+  width: 0;
+  border: 6px solid transparent;
+  border-top: 6px solid #FAFAFA;
+  content: "";
+}
 
 // marquee
 #marquee {
   font-size:180%;
-  color:#333;
+  text-shadow: 1px  1px 2px black,
+               -1px  1px 2px black,
+               1px -1px 2px black,
+               -1px -1px 2px black;
+  color: white;
   font-weight:bold;
   position:absolute;
   z-index: 600;
 }
 #marquee > marquee {
   width:800px;
-  line-height:1em;
+  line-height:1.2em;
   top:0;
   left:0;
   position:absolute;
@@ -267,16 +354,4 @@
   height:60px;
   padding:2px;
 }
-span.select_horse {
-  color: #FFF;
-  font-weight: bold;
-  background: #FF6600;
-  top: -30px;
-  padding: 10px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  position: absolute;
-  display:block;
-  z-index: 100000;
-}
+

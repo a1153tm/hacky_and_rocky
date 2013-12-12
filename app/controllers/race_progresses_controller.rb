@@ -14,7 +14,6 @@ class RaceProgressesController < ApplicationController
     unless flash[:error]
       @prog = @race.progress(params[:date].to_sym)
       @horse_count = {}
-      
       #投票の調査調べ
       @race.race_horses.each do |horse|
         @horse_count[horse.id] = {}    
@@ -25,7 +24,6 @@ class RaceProgressesController < ApplicationController
           @horse_count[horse.id]['count'] = horse.vote_item.size
         end
       end
-      
       @user_voting_card = @race.voting_cards.find_by_user_id(current_user.id) if current_user
       @comment = Comment.new(user_id: current_user.id) if current_user
     end
