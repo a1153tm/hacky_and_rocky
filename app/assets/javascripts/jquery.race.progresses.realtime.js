@@ -167,12 +167,12 @@ if($("#race-canvas").length) {
 	
 	setInterval(function(){
 		$.get(RaceProgressConfig.raceUrl, function(race) {
-			console.log(race.state);
-			if (race.state == 'RUNNING') {
+			var state = race[0].state;
+			if (state == 'RUNNING') {
 				progresses.fetch();				
-			} else if(race.state == 'READY'){
+			} else if(state == 'READY'){
 				progresses.fetch();	
-			} else if(race.state == 'END') {
+			} else if(state == 'END') {
 				$('#race_state').val('END');
 				$('#race-paint').hide();
 				$('#race-modes-end').show();
