@@ -1,0 +1,44 @@
+<div id="race-state-end" style="display:none">
+<% @end_races.each do |race| %>
+	<dl class="cf" data-id="<%= race.id %>">
+		<dt class="image">
+			<% if !race.race_horses[0].book.nil? %>
+				<%= image_tag(race.race_horses[0].book.medium_image_url) %>
+			<% else %>
+				<%= image_tag('contents/no_image.png', :style => 'width:auto;height:120px') %>
+			<% end %>
+		</dt>
+		<dd class="title">
+			<h3>
+          	<% if race.race_result and race.race_result.id %>
+				<%= link_to race.name, race_result_path(race.id) %>
+           	<% else %>
+ 				<% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
+					<%= link_to race.name, race_progress_path(race.id, :last) %>
+				<% else %>
+					<%= link_to race.name, race %>
+				<% end %>
+			<% end %>
+			</h3>
+		</dd><!--　タイトル名 -->
+		<dd class="participant">
+			参加者<span><%= race.voting_cards.size %></span>名
+		</dd><!--　ジャンル名 -->
+		<dd class="election-date">
+			<p>開始日時：<%= race.start_date.strftime("%m-%d %H:%M") %></p>
+			<p>終了日時：<%= race.end_date.strftime("%m-%d %H:%M") %></p>					
+		</dd><!-- 投票受付日から締日 -->
+		<dd style="padding:10px;text-align: center;">
+		<% if race.race_result and race.race_result.id %>
+			<%= link_to '終了レースを見る！', race_result_path(race.id), :class => 'lib-btn lib-button-small',:style => 'color:black' %>
+		<% else %>
+			<% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
+				<%= link_to '終了レースを見る！', race_progress_path(race.id, :last), :class => 'lib-btn lib-button-small',:style => 'color:black' %>
+			<% else %>
+				<%= link_to '終了レースを見る！', race, :class => 'lib-btn lib-button-small',:style => 'color:black' %>
+			<% end %>
+		<% end %>
+		</dd>
+	</dl>
+	<% end %>
+</div>

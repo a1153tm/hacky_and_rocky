@@ -7,6 +7,41 @@
  *  @CreateAt 2013/09/18
  */
 
+.lib-box-dl-item {
+	color: #333;
+	background: #FAFAFA;
+	-webkit-box-shadow: 0 0 1px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 1px 3px rgba(0,0,0,0.4);
+	box-shadow: 0 0 1px 3px rgba(0,0,0,0.4);
+	width:220px;
+	margin-right:20px;
+	margin-bottom:20px;
+	float:left;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.lib-box-dl-item dt.image {
+	background: #111;
+	text-align: center;
+}
+.lib-box-dl-item dt.image {
+	background: #111;
+	text-align: center;
+}
+.lib-box-dl-item dd {
+	font-size: 90%;
+	padding:5px 10px 0 10px;
+}
+
+.lib-box-dl-item:hover dt.image {
+	background: #CCC;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+}
+
 /* input select design Black */
 .lib-select {
 	border:2px solid #333;

@@ -11,7 +11,21 @@ $(window).load(function(){
 		var userName = $('#user_name').val();
 		var comments = $("#comments");
 		var values = $("#test");
-		
+		var ownerCommentDelete = function(){
+			setTimeout(function(){			
+				if( $('#race-modes-owner').find('marquee').length ){
+					$('#race-modes-owner').html('');
+				}
+			}, 15000);
+		};
+		var ownerComment = function($text) {
+			var text = $text.slice(1);
+			var result = '<marquee scrolldelay="300" scrollamount="970" width="970">'+ text +'</marquee>';
+			$('#race-modes-owner').html('');
+			$('#race-modes-owner').html(result);
+			ownerCommentDelete();
+		}
+				
 		//webSocketの開始
 		ws.onopen = function (){
 			var message = {race_id: raceId, type: 'join'};
@@ -21,8 +35,14 @@ $(window).load(function(){
 		//webSocketからデータが送られ、marqueeとlogを表示する。
 		ws.onmessage = function (event){
 			var getMessage = JSON.parse(event.data);
-			wsMarquee.send(getMessage.comment);
-			wsLog.send(getMessage.comment, getMessage.user_name);
+			if(getMessage.comment.length > 0){
+				if(getMessage.comment.charAt(0) == '$') {
+					ownerComment(getMessage.comment);
+				} else {
+					wsMarquee.send(getMessage.comment);
+					wsLog.send(getMessage.comment, getMessage.user_name);								
+				}
+			}
 		};
 		
 		//接続停止
