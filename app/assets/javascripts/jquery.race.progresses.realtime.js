@@ -95,7 +95,7 @@ var RaceCanvas = Backbone.View.extend({
                 _this.ctx.font = "90% Sans-Serif";
                 _this.ctx.strokeStyle = horse.color.text_color;
                 _this.ctx.textAlign = 'center';
-                _this.ctx.strokeText(horse.horseNo, x + img.width / 2, y - rectHeight + 12);
+                _this.ctx.strokeText(horse.book.title.substr(0,3), x + img.width / 2, y - rectHeight + 12);
                 return _this.ctx.drawImage(img, x, y);
             };
         });
