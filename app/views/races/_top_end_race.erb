@@ -30,12 +30,12 @@
 		</dd><!-- 投票受付日から締日 -->
 		<dd style="padding:10px;text-align: center;">
 		<% if race.race_result and race.race_result.id %>
-			<%= link_to '終了レースを見る！', race_result_path(race.id), :class => 'lib-btn lib-button-small',:style => 'color:black' %>
+			<%= link_to 'レース結果を見る！', race_result_path(race.id), :class => 'lib-btn lib-button-small',:style => 'color:black' %>
 		<% else %>
 			<% if current_user and current_user.voting_cards.find {|c| c.race == race} and !race.race_progresses.empty? %>
-				<%= link_to '終了レースを見る！', race_progress_path(race.id, :last), :class => 'lib-btn lib-button-small',:style => 'color:black' %>
+				<%= link_to 'レース結果を見る！', race_progress_path(race.id, :last), :class => 'lib-btn lib-button-small',:style => 'color:black' %>
 			<% else %>
-				<%= link_to '終了レースを見る！', race, :class => 'lib-btn lib-button-small',:style => 'color:black' %>
+				<%= link_to 'レース結果を見る！', race, :class => 'lib-btn lib-button-small',:style => 'color:black' %>
 			<% end %>
 		<% end %>
 		</dd>
