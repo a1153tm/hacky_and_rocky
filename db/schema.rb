@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(version: 20131209154733) do
   end
 
   create_table "race_horses", force: true do |t|
+    t.integer  "horse_no"
     t.text     "comment"
     t.integer  "race_id"
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "horse_no"
     t.float    "odds",       default: 1.0
   end
 
