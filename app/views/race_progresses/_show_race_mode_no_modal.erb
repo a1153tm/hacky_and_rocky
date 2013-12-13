@@ -19,7 +19,15 @@
 					<div id="marquee"></div>
 					<canvas id="race-canvas" width="720" height="400"></canvas>
 				</div>
-			</div>
+			</div><!-- レースキャンバス 　-->
+			<div id="race-modes-end">
+				<p>レースは終了しました！</p>
+				<p>１位は<span id="race_king" style="color: orange;font-weight: bold;"></span>でした！</p>
+				<p>集計結果が出るまで、お待ちください。</p>
+				<p class="lib-aside-mTop">				
+					<%= link_to "戻る" , root_path , :class => 'lib-btn lib-button-large' %>
+				</p>
+			</div><!-- レース終了画面 -->
 		</div>
 		<div id="race-modes-aside">
 			<ul id="race-modes-tabs" class="cf">

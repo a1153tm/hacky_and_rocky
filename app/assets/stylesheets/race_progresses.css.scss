@@ -32,7 +32,15 @@
 #race-modes-owner marquee {
   padding:8px 5px;
 }
-
+//レース終了時
+#race-modes-end {
+  font-size: 180%;
+  font-weight: bold;
+  padding: 50px 20px 20px 20px;
+  line-height: 1.9em;
+  text-align: center;
+  display: none;
+}
 #race-modes .race-modes-title {
   color:#000;
   font-size:220%;
@@ -77,7 +85,7 @@
 // end ranking list
 #race-modes div#race-modes-main {
   width:740px;
-  height:422px;
+  height:421px;
   background:#FFF;
   border-top:1px solid #333;
   border-bottom:3px solid #333;

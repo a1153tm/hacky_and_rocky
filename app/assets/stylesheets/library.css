@@ -76,11 +76,8 @@
 	border-radius: 4px;
 	padding:7px 12px;
 }
-.lib-btn a{
-	color:#000;
-	text-decoration:none;
-	margin-top:2px;
-	padding:5px 12px;
+a.lib-btn {
+	text-decoration: none;
 }
 .lib-btn:hover {
 	color:#000;

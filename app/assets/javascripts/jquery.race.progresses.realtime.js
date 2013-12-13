@@ -173,6 +173,8 @@ if($("#race-canvas").length) {
 				progresses.fetch();	
 			} else if(race.state === 'END') {
 				$('#race_state').val('END');
+				$('#race-paint').hide();
+				$('#race-modes-end').show();
 				$('#race_king').text($('#race_rank1').find('dd').text());
 			}
 		});

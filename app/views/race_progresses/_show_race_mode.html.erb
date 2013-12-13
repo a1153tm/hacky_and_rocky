@@ -4,9 +4,8 @@
 		<p>レースは終了しました！</p>
 		<p>１位は<span id="race_king" style="color: orange;font-weight: bold;"></span>でした！</p>
 		<p>集計結果が出るまで、お待ちください。</p>
-		<button class="race-mode-close lib-btn lib-button-large">閉じる</button>
+		<%= link_to "閉じる" , root_path , :class => 'lib-btn lib-button-large' %>
 	</div>
-		
 </div>
 <div id="modal" class="cf" style="display:none">
 	<div id="rank-list"></div>
