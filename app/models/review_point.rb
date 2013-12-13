@@ -16,7 +16,7 @@ class ReviewPoint < ActiveRecord::Base
   end
 
   def point
-    @point ||= (review_count * review_average * 100).to_i
+    @point ||= (review_count * review_average * 10).to_i
   end
   
   def get_json(isbn)
