@@ -47,12 +47,27 @@
   font-weight:bold;
   line-height:1.1em;
   padding:15px 0;
-  margin:0 0 8px 0;
-  border-bottom:1px solid #AAA;
+  margin:0 0 2px 0;
   -webkit-box-shadow: 0 1px rgba(255,255,255,0.5);
   -moz-box-shadow: 0 1px rgba(255,255,255,0.5);
   box-shadow: 0 1px rgba(255,255,255,0.5);
-  display:block;
+  float: left;
+  /*display:block;*/
+}
+#race-modes #race-status {
+  color: #808080;
+  background: #FFFF00;
+  margin: 8px 0;
+  padding: 7px 7px;
+  font-weight: bold;
+  font-size: 160%;
+  float: right;
+  display: block;
+}
+#race-modes #race-divider {
+  margin: 0 0 8px 0;
+  clear: both;
+  border-bottom:1px solid #AAA;
 }
 #race-modes div#ranking-list dl {
   background:#FFF;

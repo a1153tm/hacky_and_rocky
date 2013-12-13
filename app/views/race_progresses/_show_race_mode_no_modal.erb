@@ -5,8 +5,10 @@
 		<span style="font-weight:bold;background:#555;color:#FFF;text-align:center;padding:3px 10px;"><%= (@race.id.to_s) %></span>
 		<%= @race.name %>
 	</h2>
+  <h3 id="race-status">レース中</h3>
+  <div id="race-divider"></div>
 	<h3 id="prog-date" style="font-size:70%;float: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> レース状況</h3>
-	<p style="font-size: 110%;font-weight: bold;margin-bottom:20px;">
+	<p style="font-size: 110%;font-weight: bold;margin-bottom:30px;">
 		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">ジャンル</span><%= (@race.genre.name) %>
 		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">出 走</span><%= @race.start_date.strftime("%y年%m月%d日 %H:%M") %>
 	</p>

@@ -179,6 +179,10 @@ if($("#race-canvas").length) {
 			}
 		});
 	}, RaceProgressConfig.responseTime);
+
+	setInterval(function(){
+    $('#race-status').fadeOut(1000,function(){$(this).fadeIn(1000)});
+	}, 2000);
 };
 
 });
