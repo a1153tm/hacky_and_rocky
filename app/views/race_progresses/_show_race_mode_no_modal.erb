@@ -1,11 +1,11 @@
 <div id="race-modes-wrap">
 <div id="race-modes">
-	<h3 id="prog-date" style="font-size:70%;text-align: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
 	<h2 class="race-modes-title">
 		<%= image_tag('contents/cup.png', alt: @race.name, title: @race.name) %>
 		<span style="font-weight:bold;background:#555;color:#FFF;text-align:center;padding:3px 10px;"><%= (@race.id.to_s) %></span>
 		<%= @race.name %>
 	</h2>
+	<h3 id="prog-date" style="font-size:70%;float: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
 	<p style="font-size: 110%;font-weight: bold;margin-bottom:20px;">
 		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">ジャンル</span><%= (@race.genre.name) %>
 		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">開始日</span><%= @race.start_date.strftime("%y年%m月%d日") %>
