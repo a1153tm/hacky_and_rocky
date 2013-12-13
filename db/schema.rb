@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128130808) do
+ActiveRecord::Schema.define(version: 20131209154733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,15 +43,21 @@ ActiveRecord::Schema.define(version: 20131128130808) do
     t.datetime "updated_at"
   end
 
-  create_table "dummies", force: true do |t|
-    t.string   "dummy"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "dum2"
-  end
-
   create_table "genres", force: true do |t|
     t.integer  "genre_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "horse_colors", force: true do |t|
+    t.string   "text_color"
+    t.string   "background_color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "race_grades", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

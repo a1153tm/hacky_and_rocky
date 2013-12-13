@@ -3,8 +3,8 @@
 <table id="vote-table">
 	<thead>
 		<tr>
-		<% @race.race_horses.size.downto(1) do |number| %>
-			<th class="<%= horse_number_colors(number - 1) %>"><%= number %></th>
+		<% @race.race_horses.reverse_each do |horse| %>
+			<th style="color: <%= horse.horse_color.text_color %>; background-color: <%= horse.horse_color.background_color %>"><%= horse.horse_no %></th>
 		<% end %>
 			<!-- ここまで -->
 			<th>　</th>
@@ -42,24 +42,27 @@
     <% end %>
 			<td class="title"><%= row_text("オッズ").html_safe %></td>
 		</tr><!-- オッズ -->
-		<% unless @card %>
-			<% @race.race_horses.reverse_each do |horse| %>
-			  <td id="vote_item_<%= horse.id %>" class="vote_item">
-          <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
-			  </td>
-			<% end %>
-		<% else %>
-			<% @race.race_horses.reverse_each do |horse| %>
-			<td>
-        <% vote_item = @card.vote_items.find {|item| item.race_horse == horse} %>
-        <% if vote_item %>
-          <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
-        <% end %>
-			</td>
-			<% end %>
-		<% end %>
+    <% if current_user %>
+    <tr>
+  		<% unless @card %>
+  			<% @race.race_horses.reverse_each do |horse| %>
+  			  <td id="vote_item_<%= horse.id %>" class="vote_item">
+            <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
+  			  </td>
+  			<% end %>
+  		<% else %>
+  			<% @race.race_horses.reverse_each do |horse| %>
+  			<td>
+          <% vote_item = @card.vote_items.find {|item| item.race_horse == horse} %>
+          <% if vote_item %>
+            <%= radio_button "vote_item", 'horse', horse.id, {:checked => false, :class => 'vote_item_radio'}%>
+          <% end %>
+  			</td>
+  			<% end %>
+  		<% end %>
 			<td class="title"><%= row_text("選択").html_safe %></td>
 		</tr>
+    <% end %>
 	</tbody>
 </table>
 </div>
@@ -74,16 +77,19 @@
 $(window).load(function(){$('#race-caption').height($('#vote-table').height());});
 </script>
 </div>
-<% unless @card %>
+<% if current_user %>
+  <% unless @card %>
   <div id="vote_amount">
     <span>投票金額</span>
     <%= number_field "vote_item", "amount", {disabled: true, required: true, min: 1}%>
     <span>Zeny</span>
   </div>
   <div class="submit lib-aside-mTop" style="text-align: center">
-　　<% if current_user %>
 	    <button id="submit_vote" class="lib-btn-black lib-button-large" style="font-size:200%;" disabled="disabled">投票する</button>
 	    <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+
+      <hr style="margin-top: 20px;">
+
 	    <input type="hidden" id="user_zeny" name="user_zeny" value="<%= current_user.point %>" />
 	    <div id="my-status" class="cf">
 	    	<h2 style="font-weight:bold;font-size:130%;line-height:4em;text-align:left"><%= current_user.name %>さんのステータス</h2>
@@ -117,7 +123,12 @@ $(window).load(function(){$('#race-caption').height($('#vote-table').height());}
 	    </div>
  	<% else %>
 	    <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
-　　<% end %>
+  <% end %>
+<%else %>
+  <div style="text-align: center">
+  <p id="please_login">投票するにはログインしてください。</p>
+  <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+  </div>
 <% end %>
 </div>
 
@@ -213,6 +224,10 @@ label.valid-success{
   margin: 0 10px;
 }
 #vote_item_amount {
+  font-size: 200%;
+}
+#please_login {
+  margin: 20px 0px 30px 0px;
   font-size: 200%;
 }
 </style>
