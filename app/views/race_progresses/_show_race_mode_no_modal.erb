@@ -25,9 +25,9 @@
 			<div id="race-modes-end">
 				<p>レースは終了しました！</p>
 				<p>１位は<span id="race_king" style="color: orange;font-weight: bold;"></span>でした！</p>
-				<p>集計結果が出るまで、お待ちください。</p>
-				<p class="lib-aside-mTop">				
-					<%= link_to "ロビーへ戻る" , root_path , :class => 'lib-btn lib-button-large' %>
+				<p>結果の詳細は下記のボタンをクリックしてください！</p>
+				<p class="lib-aside-mTop">
+					<%= link_to "レース結果を見る", race_result_path(@race.id), :class => 'lib-btn lib-button-large' %>	
 				</p>
 			</div><!-- レース終了画面 -->
 		</div>
