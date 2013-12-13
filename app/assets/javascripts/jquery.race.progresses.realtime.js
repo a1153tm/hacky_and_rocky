@@ -88,14 +88,15 @@ var RaceCanvas = Backbone.View.extend({
             img.src = horse.book.small_image_url;
             return img.onload = function() {
                 var rectHeight = 18;
-                _this.ctx.beginPath();
-                _this.ctx.rect(x, y - rectHeight, img.width, rectHeight);
-                _this.ctx.fillStyle = horse.color.background_color;
-                _this.ctx.fill();
-                _this.ctx.font = "90% Sans-Serif";
-                _this.ctx.strokeStyle = horse.color.text_color;
-                _this.ctx.textAlign = 'center';
-                _this.ctx.strokeText(horse.book.title.substr(0,3), x + img.width / 2, y - rectHeight + 12);
+                //_this.ctx.beginPath();
+                //_this.ctx.rect(x, y - rectHeight, img.width, rectHeight);
+                //_this.ctx.fillStyle = horse.color.background_color;
+                //_this.ctx.fill();
+                //_this.ctx.font = "90% Sans-Serif";
+                //_this.ctx.strokeStyle = horse.color.text_color;
+                //_this.ctx.textAlign = 'center';
+                //_this.ctx.strokeText(horse.book.title.substr(0,3), x + img.width / 2, y - rectHeight + 12);
+                _//this.ctx.strokeText("1", x + img.width / 2, y - rectHeight + 12);
                 return _this.ctx.drawImage(img, x, y);
             };
         });
