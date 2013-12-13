@@ -4,11 +4,13 @@
   <h2 class="lib-box-title lib-aside-mTop">このレースに一言！</h2>
   <div id="race-comments" class="lib-box">
   	<div class="write">
+	<% if current_user %>
       <%= form_for(@comment, {:url => comments_path(@race.id), :remote => true}) do |c| %>
         <%= c.hidden_field :user_id %>
         <%= c.text_field :comment, {class: 'lib-input lib-input-width-long'} %>
         <%= c.submit '書込み', {id: 'post-comment', class: 'lib-btn-black'} %>
       <% end %>
+	<% end %>
   	</div>
   	<div class="read">
 	      <%= render 'comments/comments' %>
