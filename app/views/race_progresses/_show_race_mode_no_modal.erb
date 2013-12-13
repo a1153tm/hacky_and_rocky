@@ -8,7 +8,7 @@
 	<h3 id="prog-date" style="font-size:70%;float: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> レース状況</h3>
 	<p style="font-size: 110%;font-weight: bold;margin-bottom:20px;">
 		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">ジャンル</span><%= (@race.genre.name) %>
-		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">出 走</span><%= @race.start_date.strftime("%y年%m月%d日") %>
+		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">出 走</span><%= @race.start_date.strftime("%y年%m月%d日 %H:%M") %>
 	</p>
 	<div id="ranking-list" class="cf"></div><!-- ランキングリスト -->
 	<div id="race-modes-owner"><p style="margin:5px;padding:5px 10px;">運営者の声</p></div><!--　運営者の声 -->
