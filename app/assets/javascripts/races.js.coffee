@@ -25,7 +25,7 @@ $ ->
     form.submit ->
       remainingAmount = parseInt(myAmount.val(), 10) - parseInt(voteAmount.val(), 10)
       if 0 > remainingAmount
-        alert('お客さん、それは困ります・・・。うちも破産しちゃいますよ(\'A`;`)')
+        alert('お客さん・・・。うちも破産しちゃいますよ(\'A`;)')
         return false
       else if 0 > voteAmount.val()
         alert('0よりも大きいゼニーを賭けてください！')
