@@ -5,10 +5,10 @@
 		<span style="font-weight:bold;background:#555;color:#FFF;text-align:center;padding:3px 10px;"><%= (@race.id.to_s) %></span>
 		<%= @race.name %>
 	</h2>
-	<h3 id="prog-date" style="font-size:70%;float: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
+	<h3 id="prog-date" style="font-size:70%;float: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> レース状況</h3>
 	<p style="font-size: 110%;font-weight: bold;margin-bottom:20px;">
 		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">ジャンル</span><%= (@race.genre.name) %>
-		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">開始日</span><%= @race.start_date.strftime("%y年%m月%d日") %>
+		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">出 走</span><%= @race.start_date.strftime("%y年%m月%d日 %H:%M") %>
 	</p>
 	<div id="ranking-list" class="cf"></div><!-- ランキングリスト -->
 	<div id="race-modes-owner"><p style="margin:5px;padding:5px 10px;">運営者の声</p></div><!--　運営者の声 -->
@@ -32,8 +32,8 @@
 		<div id="race-modes-aside">
 			<ul id="race-modes-tabs" class="cf">
 				<li><a data-id="race-comment" class="active" href="javascript:void(0)">コメント</a></li>
-				<li><a data-id="race-vote" href="javascript:void(0)">投票推移</a></li>
-				<li><a data-id="race-participants" href="javascript:void(0)">参加者</a></li>
+				<li><a data-id="race-vote" href="javascript:void(0)">人気</a></li>
+				<li><a data-id="race-participants" href="javascript:void(0)">投票者</a></li>
 			</ul>
 			<div id="race-modes-list">
 				<div id="race-comment"></div>
