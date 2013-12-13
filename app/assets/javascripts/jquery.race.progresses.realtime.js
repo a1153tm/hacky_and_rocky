@@ -142,10 +142,15 @@ var ProgressRankingList = Backbone.View.extend({
     	var select_horse = $('#select_horse').length ? $('#select_horse').val() : 0;
         collection.each(function(model) {
         	var horse = model.attributes;
-        	_createHtml += '<dl id="race_rank'+ horse.order +'" horse-id="'+ horse.id +'" class="cf">';
+        	if(horse.horseNo == 1) horse.color.background_color = '#DDD';
+        	//リストの色づけ
+        	var borderStyle = 'style="border:3px solid '+ horse.color.background_color +'"';
+        	var style = 'style="color:'+horse.color.text_color+';background:'+ horse.color.background_color +'"';
+        	//ランキングリストの生成
+        	_createHtml += '<dl id="race_rank'+ horse.order +'" '+ borderStyle +' horse-id="'+ horse.id +'" class="cf">';
         	if(select_horse == horse.id)
         		_createHtml += '<span class="select_horse" horse-id="'+ horse.id +'">投票</span>';
-        	_createHtml += '<dt>'+ horse.order +'</dt>';
+        	_createHtml += '<dt '+ style +'>'+ horse.order +'位</dt>';
         	_createHtml += '<dd>'+ horse.book.title +'</dd>';
         	_createHtml += '</dl>';
         });

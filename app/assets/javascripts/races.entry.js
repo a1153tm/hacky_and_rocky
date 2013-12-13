@@ -24,4 +24,3 @@ $(window).load(function() {
 		remainingDisplay.text( numberFormat(_remainingZeny.toString()) );
 	});
 });
-

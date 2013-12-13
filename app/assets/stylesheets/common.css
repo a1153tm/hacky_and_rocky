@@ -89,7 +89,6 @@ img {
 
 #top-contents .gallery {
 	background:#EEE;
-	@include box-shadow(0px 9px 12px -9px rgba(0,0,0,0.5));
 	min-height:200px;
 	position:relative;
 	z-index:900;
@@ -99,8 +98,7 @@ img {
 	margin: 0 auto;
 }
 #top-contents .gallery-list ul {
-	padding:10px;
-	text-align:right;
+	text-align:left;
 }
 #top-contents .search {
 	padding:10px 0;
