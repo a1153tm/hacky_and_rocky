@@ -1,13 +1,31 @@
 <% unless flash[:error] %>
-  <h3 id="prog-date"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
-	<!-- <canvas id="race-canvas" width="720" height="360"></canvas> -->
-	<%= render 'race_progresses/show_table' %>
-	<%= render 'race_progresses/show_race_mode' %>
+<%= render 'race_progresses/show_race_mode_no_modal' %>
+<div id="race-comments-wrap">
+  <h2 class="lib-box-title lib-aside-mTop">このレースに一言！</h2>
+  <div id="race-comments" class="lib-box">
+  	<div class="write">
+      <%= form_for(@comment, {:url => comments_path(@race.id), :remote => true}) do |c| %>
+        <%= c.hidden_field :user_id %>
+        <%= c.text_field :comment, {class: 'lib-input lib-input-width-long'} %>
+        <%= c.submit '書込み', {id: 'post-comment', class: 'lib-btn-black'} %>
+      <% end %>
+  	</div>
+  	<div class="read">
+	      <%= render 'comments/comments' %>
+  	</div>
+  </div><!-- #result-comments -->
+</div><!-- #result-comments-wrap -->
 <% else %>
 	<%= render 'race_progresses/show_error' %>
 <% end %>
 <style type="text/css" media="screen">
-
+#header {
+	margin-bottom:0;
+}
+#contents {
+	width:100%;
+	margin-top:0;
+}
 #prog-date {
   font-size: 140%;
   font-weight: bold;
@@ -77,3 +95,4 @@
 }
 
 </style>
+

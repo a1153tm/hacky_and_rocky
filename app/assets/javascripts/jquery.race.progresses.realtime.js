@@ -102,7 +102,6 @@ var RaceCanvas = Backbone.View.extend({
     }
 });
 
-
 /**
  * RaceProgressに必要な設定項目
  * @type {{raceId: (*|jQuery), raceUrl: string, progressUrl: string, responseTime: number}}
@@ -134,22 +133,25 @@ var RaceProgresses = Backbone.Collection.extend({
  * @type {*|void}
  */
 var ProgressRankingList = Backbone.View.extend({
-    el: $('#rank-list'),
+    el: $('#ranking-list'),
     initialize: function(){
         this.collection.on("sync", this.render, this);
     },
     render: function(collection) {
     	var _createHtml = '';
+    	var select_horse = $('#select_horse').length ? $('#select_horse').val() : 0;
         collection.each(function(model) {
-        	_createHtml += '<dl id="race_rank'+ model.attributes.order +'" class="cf">';
-        	_createHtml += '<dt>'+ model.attributes.order +'</dt>';
-        	_createHtml += '<dd>'+ model.attributes.book.title +'</dd>';
+        	var horse = model.attributes;
+        	_createHtml += '<dl id="race_rank'+ horse.order +'" horse-id="'+ horse.id +'" class="cf">';
+        	if(select_horse == horse.id)
+        		_createHtml += '<span class="select_horse" horse-id="'+ horse.id +'">投票</span>';
+        	_createHtml += '<dt>'+ horse.order +'</dt>';
+        	_createHtml += '<dd>'+ horse.book.title +'</dd>';
         	_createHtml += '</dl>';
         });
         this.$el.html(_createHtml);
     }
 });
-
 
 if($("#race-canvas").length) {	
 	var progresses = new RaceProgresses();
@@ -171,4 +173,6 @@ if($("#race-canvas").length) {
 		});
 	}, RaceProgressConfig.responseTime);
 };
+
 });
+

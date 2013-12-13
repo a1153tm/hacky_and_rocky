@@ -49,6 +49,11 @@
 <input type="hidden" name="user_name" value="774競馬" id="user_name" />
 <% end %>
 
+<% if @user_voting_card %>
+<% user_item = @user_voting_card.vote_items.find(:first) %>
+<input type="hidden" id="select_horse" value="<%= user_item.race_horse_id %>" />
+<% end %>
+
 <script type="text/javascript" charset="utf-8">
 $(window).load(function()
 {

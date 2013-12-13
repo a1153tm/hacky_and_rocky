@@ -66,13 +66,16 @@
 	</tbody>
 </table>
 </div>
-<div id="race-caption" style="width:65px;float:left">
-    <h3 style="font-weight:bold;text-align:center;font-size:140%;"><%= (@race.genre.name[0,3]) %></h3>
+<div id="race-caption" style="background:#FFF;width:61px;border:4px solid #333;border-left:none;float:left">
+    <h3 style="font-weight:bold;text-align:center;font-size:140%;padding-top:10px;"><%= (@race.genre.name[0,3]) %></h3>
 	<div style="font-weight:bold;background:#000;color:#FFF;font-size:250%;text-align:center;padding:10px;"><%= (@race.id.to_s) %></div>
 	<h4 style="text-align:center;font-weight:bold;font-size:130%">発走</h4>
 	<h4 style="text-align:center;font-weight:bold;font-size:110%"><%= @race.start_date.strftime("%m-%d") %></h4>
 	<h3 style="font-weight:bold;text-align:center;font-size:150%;padding:10px;"> <%= row_text(@race.name).html_safe %> <%= "(" + Race::GRADES[@race.grade] +")"%></h3>
 </div>
+<script type="text/javascript" charset="utf-8">
+$(window).load(function(){$('#race-caption').height($('#vote-table').height());});
+</script>
 </div>
 <% if current_user %>
   <% unless @card %>
@@ -84,7 +87,9 @@
   <div class="submit lib-aside-mTop" style="text-align: center">
 	    <button id="submit_vote" class="lib-btn-black lib-button-large" style="font-size:200%;" disabled="disabled">投票する</button>
 	    <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+
       <hr style="margin-top: 20px;">
+
 	    <input type="hidden" id="user_zeny" name="user_zeny" value="<%= current_user.point %>" />
 	    <div id="my-status" class="cf">
 	    	<h2 style="font-weight:bold;font-size:130%;line-height:4em;text-align:left"><%= current_user.name %>さんのステータス</h2>
@@ -116,7 +121,9 @@
 	    		</li>
 	    	</ul>
 	    </div>
-　　<% end %>
+ 	<% else %>
+	    <%= link_to "戻　る" , root_path , :class => "lib-btn lib-button-large" , :style => "margin-left:20px;font-size:200%;" %>
+  <% end %>
 <%else %>
   <div style="text-align: center">
   <p id="please_login">投票するにはログインしてください。</p>
@@ -127,6 +134,7 @@
 
 <style type="text/css" media="screen">
 #my-status {
+	margin-top:40px;
 	margin-left:40px;
 }
 #my-status .zeny-title {

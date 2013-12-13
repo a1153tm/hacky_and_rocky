@@ -1,0 +1,73 @@
+<div id="race-modes-wrap">
+<div id="race-modes">
+	<h3 id="prog-date" style="font-size:70%;text-align: right"><%= Time.now.strftime('%Y-%m-%d %H:%M') %> 時点 レース状況</h3>
+	<h2 class="race-modes-title">
+		<%= image_tag('contents/cup.png', alt: @race.name, title: @race.name) %>
+		<span style="font-weight:bold;background:#555;color:#FFF;text-align:center;padding:3px 10px;"><%= (@race.id.to_s) %></span>
+		<%= @race.name %>
+	</h2>
+	<p style="font-size: 110%;font-weight: bold;margin-bottom:20px;">
+		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">ジャンル</span><%= (@race.genre.name) %>
+		<span style="font-size:75%;background:#555;padding:5px;color:#FFF;margin-right:5px;">開始日</span><%= @race.start_date.strftime("%y年%m月%d日") %>
+	</p>
+	<div id="ranking-list" class="cf"></div><!-- ランキングリスト -->
+	<div id="race-modes-content" class="cf">
+		<div id="race-modes-main">
+			<div id="race-paint">
+				<div class="inner">
+					<div id="marquee"></div>
+					<canvas id="race-canvas" width="720" height="400"></canvas>
+				</div>
+			</div>
+		</div>
+		<div id="race-modes-aside">
+			<ul id="race-modes-tabs" class="cf">
+				<li><a data-id="race-comment" class="active" href="javascript:void(0)">コメント</a></li>
+				<li><a data-id="race-vote" href="javascript:void(0)">投票推移</a></li>
+				<li><a data-id="race-participants" href="javascript:void(0)">参加者</a></li>
+			</ul>
+			<div id="race-modes-list">
+				<div id="race-comment"></div>
+				<div id="race-vote">
+				<% @horse_count.each_value do |horse| %>
+					<dl>
+						<dt><%= horse['name'] %></dt>
+						<dd><%= horse['count'] %> 票</dd>
+					</dl>
+				<% end %>
+				</div>
+				<div id="race-participants">
+					<dl>
+				<% if !@race.voting_cards.nil? %>
+					<% @race.voting_cards.each do |card| %>
+						<dt>
+							<%= image_tag('contents/no_image.png', alt: card.user.name, title: card.user.name) %>
+							<%= card.user.name %>さん
+						</dt>
+					<% end %>
+				<% end %>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="race-modes-comments">
+		<form action="javascript:void(0)" id="comments" >
+			<input type="text" class="lib-input" name="test" id="test" style="width:600px" placeholder="コメント入力してください！！" maxlength="38" required="required" />
+			<input type="submit" class="lib-btn" value="送信" />
+			<input type="button" id="comment-display" class="lib-btn-black show" value="コメント非表示" />
+		</form>
+	</div>
+</div>
+<input type="hidden" name="race_state" value="" id="race_state" />
+<input type="hidden" name="race_id" value="<%= @prog.race.id %>" id="race_id" />
+<% if current_user %>
+<input type="hidden" name="user_name" value="<%= current_user.name %>" id="user_name" />
+<% else %>
+<input type="hidden" name="user_name" value="774競馬" id="user_name" />
+<% end %>
+<% if @user_voting_card %>
+<% user_item = @user_voting_card.vote_items.find(:first) %>
+<input type="hidden" id="select_horse" value="<%= user_item.race_horse_id %>" />
+<% end %>
+</div>

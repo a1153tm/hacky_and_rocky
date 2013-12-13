@@ -53,7 +53,7 @@ RaceProgressMarquee.prototype._htmlSpecialChars = function() {
  * @return boolean
  */
 RaceProgressMarquee.prototype._validate = function() {
-    if(this.text.length > 0 && this.text.length < 42) return true;
+    if(this.text.length > 0 && this.text.length < 39) return true;
     return false;
 };
 
@@ -83,18 +83,18 @@ RaceProgressMarquee.prototype._marqueeSpeed = function() {
     var textLength = this.text.length;
     switch (textLength) {
         case textLength > 41 :
-            return 80;
+            return 30;
             break;
         case textLength > 36 && textLength < 40 :
-            return 75;
+            return 25;
             break;
         case textLength > 31 && textLength < 35 :
-            return 70;
+            return 20;
             break;
         case textLength > 14 && textLength < 30 :
-            return 50;
+            return 15;
             break;
         default :
-            return 30;
+            return 10;
     };
 };

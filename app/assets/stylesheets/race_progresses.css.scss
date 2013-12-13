@@ -1,6 +1,216 @@
 // Place all the styles related to the RaceProgresses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+#race-modes-wrap {
+  background:#EEE;
+  -webkit-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+  padding:20px 0 40px 0;
+}
+#race-modes {
+  width: 980px;
+  margin:0 auto;
+}
+#race-comments-wrap {
+  width: 980px;
+  margin:20px auto;
+}
+#race-modes .race-modes-title {
+  color:#000;
+  font-size:220%;
+  font-weight:bold;
+  line-height:1.1em;
+  padding:15px 0;
+  margin:0 0 8px 0;
+  border-bottom:1px solid #AAA;
+  -webkit-box-shadow: 0 1px rgba(255,255,255,0.5);
+  -moz-box-shadow: 0 1px rgba(255,255,255,0.5);
+  box-shadow: 0 1px rgba(255,255,255,0.5);
+  display:block;
+}
+#race-modes div#ranking-list dl {
+  background:#FFF;
+  border:3px solid #333;
+  margin-bottom:10px;
+  margin-right:10px;
+  width:73px;
+  height:74px;
+  float:left;
+  position: relative;
+  overflow: visible;
+}
+#race-modes div#ranking-list dl:last-child {
+  margin-right:0px;
+}
+#race-modes div#ranking-list dt {
+  color:#fff;
+  background:#333;
+  font-size:130%;
+  font-weight:bold;
+  padding:1px;
+  text-align:center;
+}
+#race-modes div#ranking-list dd {
+  font-size:90%;
+  font-weight:bold;
+  line-height:1em;
+  height:60px;
+  padding:2px;
+}
+// end ranking list
+#race-modes div#race-modes-main {
+  width:740px;
+  height:419px;
+  background:#FFF;
+  border-top:3px solid #333;
+  border-bottom:3px solid #333;
+  border-left:3px solid #333;
+  float: left;
+  position:relative;
+  z-index:200;
+}
+// race- aside
+#race-modes-aside {
+  width:234px;
+  float: left;
+  position:relative;
+  border-left:3px solid #333;
+  z-index:1000;
+}
+#race-modes-aside li {
+  float: left;
+}
+#race-modes-aside li a {
+  color: #FFF;
+  font-weight: bold;
+  width: 78px;
+  height:20px;
+  background:#666;
+  border:1px solid #000;
+  text-decoration: none;
+  text-align: center;
+  display:block;
+}
+#race-modes-aside li a.active {
+  color:#000;
+  background: #FFF;
+}
+#race-modes-aside li a:last-child {
+  width: 77px;
+  border-left:none;
+}
+#race-comment,
+#race-vote,
+#race-participants {
+  height:400px;
+  background:#FFF;
+  border-right:1px solid #000;
+  border-bottom:3px solid #333;
+  overflow-x:hidden;
+  overflow-y:scroll;
+}
+#race-comment dl {
+  border-bottom:1px solid #333;
+  padding:5px;
+}
+//race-vote
+#race-vote dl {
+  border-bottom:1px solid #333;
+  padding: 5px;
+}
+#race-vote dl:last-child {
+  border-bottom: none;
+}
+#race-vote dt {
+  font-size: 90%;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+#race-vote dd {
+  color: #FF6600;
+  font-size:120%;
+  font-weight: bold;
+  text-align: right;
+}
+//race-participants
+#race-participants dl {
+  width: 100%;
+  display: block;
+}
+#race-participants dl > dt {
+  font-size: 120%;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-bottom:1px solid #333;
+  padding: 5px;
+  display: block;
+}
+#race-participants dl > dt > img {
+  width:40px;
+  height:auto;
+}
+//race-comments
+#race-modes-comments {
+  background: #333;
+  padding:5px 10px;
+}
+#race-vote, #race-participants {display:none}
+//投票の表し
+span.select_horse{
+  font-weight: bold;
+  top: -35px;
+  left: 30px;
+  width: 30px;
+  padding: 10px;
+  border-radius: 2px;
+  color:#333;
+  background: #FAFAFA;
+  font-size: 12px;
+  line-height: 1;
+  transition: .3s;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+  display:block;
+  position: absolute;
+  z-index:10000;
+}
+span.select_horse:after{
+  position: absolute;
+  top: 100%;
+  left: 17px;
+  height: 0;
+  width: 0;
+  border: 6px solid transparent;
+  border-top: 6px solid #FAFAFA;
+  content: "";
+}
+
+// marquee
+#marquee {
+  font-size:180%;
+  text-shadow: 1px  1px 2px black,
+               -1px  1px 2px black,
+               1px -1px 2px black,
+               -1px -1px 2px black;
+  color: white;
+  font-weight:bold;
+  position:absolute;
+  z-index: 600;
+}
+#marquee > marquee {
+  width:800px;
+  line-height:1.2em;
+  top:0;
+  left:0;
+  position:absolute;
+  display:block;
+  z-index: 600;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
 #back-default-mode {
   left:980px;
   position:absolute;
@@ -45,20 +255,7 @@
   left: 0;
   z-index: 1000;
 }
-#marquee {
-  font-size:200%;
-  color:#ff9900;
-  font-weight:bold;
-  position:absolute;
-}
-#marquee > marquee {
-  width:800px;
-  line-height:1em;
-  position:absolute;
-  top:0;
-  left:0;
-  display:block;
-}
+
 #modal{
   overflow:auto;
   z-index:1001;
@@ -105,7 +302,6 @@
 }
 #modal  #fields  #race-paint {
   background:#FFF;
-
   border:3px solid #333;
 }
 
@@ -125,18 +321,20 @@
   padding:6px 1px;
   margin-bottom:5px;
 }
-
 #modal > #rank-list {
   width:980px;
-  height:80px;
 }
 #modal > #rank-list dl {
   background:#FFF;
   border:3px solid #333;
   margin-bottom:10px;
   margin-right:10px;
-  width:79px;
+  width:73px;
+  height:74px;
   float:left;
+  position: relative;
+  overflow: visible;
+  z-index:-1;
 }
 #modal > #rank-list dl:last-child {
   margin-right:0px;
@@ -156,3 +354,4 @@
   height:60px;
   padding:2px;
 }
+

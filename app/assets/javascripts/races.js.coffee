@@ -24,10 +24,10 @@ $ ->
   if form
     form.submit ->
       remainingAmount = parseInt(myAmount.val(), 10) - parseInt(voteAmount.val(), 10)
-      if 0 >= remainingAmount
+      if 0 > remainingAmount
         alert('限度ゼニーを超えています！')
         return false
-      else if 0 >= voteAmount.val()
+      else if 0 > voteAmount.val()
         alert('0よりも大きいゼニーを賭けてください！')
         return false
       else

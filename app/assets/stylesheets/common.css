@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 /**
  * Default Setting
  * 全体の基本的な文字などの設定ファイル
@@ -14,7 +15,7 @@ body {
 	line-height: 1.6em;
 	letter-spacing:0.1em;
 	color : #333;
-	background:#FFF;
+	background:#FAFAFA;
 	text-align :left;
 	font-family:Arial, Helvetica, Hiragino Kaku Gothic Pro, "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", MS PGothic, "ＭＳ Ｐゴシック", MS Gothic, "ＭＳ ゴシック", sans-serif;
 }
@@ -35,10 +36,15 @@ img {
 /*header*/
 #header .top {
 	color:#FFF;
-	padding:0 10px;
+	padding:3px 10px;
 	font-size:80%;
-	height:30px;
-	background:#333;
+	line-height:2em;
+	background: #333;
+	-webkit-box-shadow: 0 0 1px 2px rgba(0,0,0,0.9);
+	-moz-box-shadow: 0 0 1px 2px rgba(0,0,0,0.9);
+	box-shadow: 0 0 1px 2px rgba(0,0,0,0.9);
+	position:relative;
+	z-index:1000;
 }
 #header .top i {
 	margin-right:5px
@@ -82,8 +88,11 @@ img {
 
 
 #top-contents .gallery {
-	background:#FFFF99;
+	background:#EEE;
+	@include box-shadow(0px 9px 12px -9px rgba(0,0,0,0.5));
 	min-height:200px;
+	position:relative;
+	z-index:900;
 }
 #top-contents .gallery-list {
 	width:980px;
